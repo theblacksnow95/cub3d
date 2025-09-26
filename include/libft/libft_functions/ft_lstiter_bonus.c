@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/17 17:32:29 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/17 17:39:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
-
-
-
-#endif
-
-
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
+}

@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/01 15:45:59 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/16 11:52:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 0177)
+	{
+		return (1);
+	}
+	return (0);
+}
 
+/* int	main(void)
+{
+	int	c;
 
-
-#endif
-
-
+	c = 0x81;
+	printf("result of (%d) is: %i", c, ft_isascii(c));
+	return (0);
+}
+ */

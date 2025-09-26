@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/16 11:16:58 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/16 11:42:44 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+void	ft_putendl_fd(char *s, int fd)
+{
+	int	i;
 
-
-
-#endif
-
-
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
+}

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/01 14:46:39 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/16 11:52:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1024);
+	}
+	else
+		return (0);
+}
 
+/* int	main(void)
+{
+	char	c;
 
-
-#endif
-
-
+	c = '7';
+	printf("result: %d", ft_isdigit(c));
+	return (1);
+}
+ */

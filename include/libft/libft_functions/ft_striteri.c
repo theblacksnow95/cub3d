@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/16 14:18:24 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/16 14:25:04 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+/*
+**
+**	This function iterates through a string "s" and for each character inside
+**	if applies the function "f" to each char, and uses the index and the
+**	chars as its own arguments.
+**
+**
+ */
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
 
-
-
-#endif
-
-
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
+}

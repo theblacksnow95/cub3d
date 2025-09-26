@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd_int.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/22 12:32:02 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/25 13:43:17 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "ft_printf.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+int	ft_putstr_fd_int(char const *str, int fd)
+{
+	int	ret;
 
-
-
-#endif
-
-
+	ret = 0;
+	if (!str)
+		str = "(null)";
+	while (str[ret])
+	{
+		if ((write(fd, &str[ret], 1) == -1))
+			return (-1);
+		ret++;
+	}
+	return (ret);
+}

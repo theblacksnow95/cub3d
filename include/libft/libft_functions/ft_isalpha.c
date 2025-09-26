@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/01 14:00:16 by emurillo          #+#    #+#             */
+/*   Updated: 2024/10/01 17:50:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+int	ft_isalpha(int c)
+{
+	if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122)))
+		return (0);
+	else
+		return (1);
+}
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+/* int	main(void)
+{
+	char	c;
 
-
-
-#endif
-
-
+	c = 123;
+	printf("Res: %d ", ft_isalpha(c));
+} */

@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/09/26 16:29:42 by emurillo         ###   ########.fr       */
+/*   Created: 2024/10/04 14:41:08 by yourlogin         #+#    #+#             */
+/*   Updated: 2024/10/16 11:51:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <mlx.h>
-# include "libft.h"
+int	ft_toupper(int ch)
+{
+	if (ch >= 97 && ch <= 122)
+	{
+		ch = ch - 32;
+		return (ch);
+	}
+	return (ch);
+}
 
+/* int	main(void)
+{
+	int	ch;
+	int	a;
+	int	b;
 
-
-#endif
-
-
+	ch = 'p';
+	a = 'S';
+	b = '9';
+	printf("%c => %c\n", ch, ft_toupper(ch));
+	printf("%c => %c\n", a, ft_toupper(a));
+	printf("%c => %c\n", b, ft_toupper(b));
+	return (0);
+} */
