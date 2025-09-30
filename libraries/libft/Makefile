@@ -6,7 +6,7 @@
 #    By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 16:54:42 by emurillo          #+#    #+#              #
-#    Updated: 2024/12/17 14:10:19 by emurillo         ###   ########.fr        #
+#    Updated: 2025/09/29 15:13:52 by emurillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ BONUSOBJECTS = $(BONUSSOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar crs $(NAME) $(OBJECTS)
+	@ar crs $(NAME) $(OBJECTS)
 
 clean:
 	rm -f $(OBJECTS) $(BONUSOBJECTS)

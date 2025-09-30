@@ -5,14 +5,15 @@ CC = gcc
 
 # ================== SOURCES ============================================================================
 
-SRC = src/parsing/cub3d.c
+SRCS = src/parsing/cub3d.c
 
 
 # ================== DIRECTORIES ========================================================================
 
 INC = include
-LIBFT_DIR = $(INC)/libft
-MLX_DIR = $(INC)/ml_linux
+LIBS = libraries
+LIBFT_DIR = $(LIBS)/libft
+MLX_DIR = $(LIBS)/ml_linux
 BIN = bin
 OBJECTS = obj
 
@@ -20,7 +21,7 @@ OBJECTS = obj
 
 
 C_FLAGS = -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
-ML_FLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm
+ML_FLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lz -lm
 
 # =============== LIBRARIES =============================================================================
 
@@ -29,39 +30,62 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 
 # =============== OBJECTS COMPILATION ===================================================================
 
-OBJ = $(SRC:$(SRC)/%.c=$(OBJECTS)/%.o)
+OBJ_PARS = $(SRCS:src/parsing/%.c=$(OBJECTS)/%.o)
+
+
+
+#================= COLORS ===============================================================================
+
+#ANSI COLORS
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RED = \033[0;31m
+RESET = \033[0m
 
 
 #================= COMPILATION RULES ====================================================================
 
 all: $(BIN)/$(NAME)
 
-$(BIN)/$(NAME): $(OBJ)
-	@mkdir -p $(BIN)
-	$(CC) $(C_FLAGS) -I$(INC) -o $@ $^
 
-$(OBJ)/%.o: $(SRC)/%.c
-	@mkdir -p $(OBJ)
+# main target NAME compilation rule
+$(BIN)/$(NAME): $(OBJ_PARS) $(LIBFT_LIB) $(MLX_LIB)
+	@echo "$(YELLOW)Compiling binary ...$(RESET)"
+	@$(CC) $(C_FLAGS) $(OBJ_PARS) -o $(BIN)/$(NAME) $(ML_FLAGS) -s 2> .error_log && \
+	(echo "$(YELLOW)Binary compiled: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Error compiling : $(RED) [KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
 
 
-$(NAME): $(OBJ) $(MLX_LIB) $(LIBFT_LIB)
-	$(CC) $(C_FLAGS) $(OBJ) -o $(NAME) $(ML_FLAGS)
+#rule to compile the OBJECTS
+$(OBJECTS)/%.o:src/parsing/%.c
+	@mkdir -p $(OBJECTS) 
+	@$(CC) $(C_FLAGS) -c $< -o $@  2> .error_log && \
+	(echo "$(YELLOW)Objects parsing compiled: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Error compiling : $(RED)[KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
 
-$(LIBFT_LIB):
-	$(MAKE) -C $(LIBFT_DIR)
+$(LIBFT_LIB): 
+	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)" && sleep 0.5
+	@$(MAKE) bonus  -C $(LIBFT_DIR) -s 2> error_log && \
+	(echo "$(YELLOW)Libft: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Libft: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
 
 $(MLX_LIB):
-	$(MAKE) -C $(MLX_DIR)
+	@echo "$(YELLOW)Building $(RED)MLX_LINUX $(YELLOW)library..." && sleep 0.5
+	@$(MAKE) -C $(MLX_DIR) -s 2> .error_log && \
+	(echo "$(YELLOW)MLX: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)MLX: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
 
 clean:
-	rm -rf $(OBJECTS)/$(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
+	@rm -rf $(OBJ_PARS) && sleep 0.5
+	@$(MAKE) -C $(LIBFT_DIR) -s clean 
+	@$(MAKE) -C $(MLX_DIR) -s clean
+	@echo "$(YELLOW)CLEANING $(RED)OBJECTS$(RESET) $(YELLOW)FROM LIBS...$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MLX_DIR) fclean
+	@echo "$(RED)Deleting$(RESET) $(YELLOW)BINARY$(RESET)" 
+	@echo "$(RED)Deleting$(RESET) $(YELLOW)LIBRARIES$(RESET)" && sleep 0.5
+	@rm -rf $(BIN)/$(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) -s fclean
 
 re: clean all
 
