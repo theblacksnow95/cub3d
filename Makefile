@@ -58,12 +58,12 @@ $(BIN)/$(NAME): $(OBJ_PARS) $(LIBFT_LIB) $(MLX_LIB)
 
 #rule to compile the OBJECTS
 $(OBJECTS)/%.o:src/parsing/%.c
-	@mkdir -p $(OBJECTS) 
+	@mkdir -p $(OBJECTS) && sleep 0.5
 	@$(CC) $(C_FLAGS) -c $< -o $@  2> .error_log && \
 	(echo "$(YELLOW)Objects parsing compiled: $(GREEN)[OK]$(RESET)") || \
-	(echo "$(YELLOW)Error compiling : $(RED)[KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
+	(echo "$(YELLOW)Error compiling obj: $(RED)[KO]$(RESET)" && cat < .error_log && rm -rf .error_log && exit 1)
 
-$(LIBFT_LIB): 
+$(LIBFT_LIB):
 	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)" && sleep 0.5
 	@$(MAKE) bonus  -C $(LIBFT_DIR) -s 2> error_log && \
 	(echo "$(YELLOW)Libft: $(GREEN)[OK]$(RESET)") || \
@@ -77,12 +77,12 @@ $(MLX_LIB):
 
 clean:
 	@rm -rf $(OBJ_PARS) && sleep 0.5
-	@$(MAKE) -C $(LIBFT_DIR) -s clean 
+	@$(MAKE) -C $(LIBFT_DIR) -s clean
 	@$(MAKE) -C $(MLX_DIR) -s clean
 	@echo "$(YELLOW)CLEANING $(RED)OBJECTS$(RESET) $(YELLOW)FROM LIBS...$(RESET)"
 
 fclean: clean
-	@echo "$(RED)Deleting$(RESET) $(YELLOW)BINARY$(RESET)" 
+	@echo "$(RED)Deleting$(RESET) $(YELLOW)BINARY$(RESET)"
 	@echo "$(RED)Deleting$(RESET) $(YELLOW)LIBRARIES$(RESET)" && sleep 0.5
 	@rm -rf $(BIN)/$(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) -s fclean
