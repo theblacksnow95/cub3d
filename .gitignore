@@ -1,6 +1,11 @@
 # To ignore all binaries (no extention)
 *
+# Unignore all
 !*.*
+
+# Unignore directories
+
+!*/
 
 .vscode
 # Prerequisites
