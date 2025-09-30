@@ -1,0 +1,2 @@
+To see all the folders and subfolders used 
+git ls-tree --full-tree --name-only -r  -d HEAD
