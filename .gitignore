@@ -1,7 +1,8 @@
 # To ignore all binaries (no extention)
 *
-.*
+!*.*
 
+.vscode
 # Prerequisites
 *.d
 
