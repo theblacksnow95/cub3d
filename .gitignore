@@ -1,5 +1,5 @@
 # To ignore all binaries (no extention)
-/*
+*
 # Unignore all
 !/*.*
 /bin/cub3d
