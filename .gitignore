@@ -2,7 +2,7 @@
 *
 # Unignore all
 /*.*
-bin
+bin/
 
 # Unignore directories
 
