@@ -1,8 +1,9 @@
 # To ignore all binaries (no extention)
-*
+/*
 # Unignore all
-/*.*
-bin/
+!/*.*
+/bin/cub3d
+cub3d
 
 # Unignore directories
 
