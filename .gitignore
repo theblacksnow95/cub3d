@@ -1,13 +1,14 @@
 # To ignore all binaries (no extention)
 *
+
 # Unignore all
-!/*.*
-/bin/cub3d
-cub3d
+!*.*
 
 # Unignore directories
 
 !*/
+/bin/cub3d
+cub3d
 
 .vscode
 # Prerequisites
