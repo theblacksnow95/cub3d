@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/03 14:59:04 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/04 18:50:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	check_file_format_n_extention(char *file)
 	}
 	if (fd)
 	{
-		file = file + (ft_strlen(file) - 4);
-		if (ft_strncmp(file, ".cub", 4))
+		file = file + (ft_strlen(file) - EXTENSION_LEN);
+		if (ft_strncmp(file, ".cub", EXTENSION_LEN))
 		{
 			ft_printf(CLR_RED"Error:\nIncorrect format [.cub] [KO]..\n"RST_ALL);
 			exit(1);
@@ -49,12 +49,27 @@ int	ft_isspace(int s)
 {
 	if (!s)
 		return (1);
-	if ((s >= 9 && s <= 13) || s == 32 )
+	if ((s >= 9 && s <= 13) || s == 32)
 	{
-		ft_printf("%c\n", s);
+		// ft_printf("%c\n", s);
 		return (1);
 	}
 	return (0);
+}
+
+static int first_word(char *line)
+{
+	int	i;
+	int	ret;
+
+	i = 0;
+	ret = 0;
+	while (!ft_isspace(line[i]))
+	{
+		ret++;
+		i++;
+	}
+	return (ret);
 }
 
 int	check_id(char *line)
@@ -64,29 +79,53 @@ int	check_id(char *line)
 	// int		i;
 
 	// i = 0;
-	while (ft_isspace(*line))
+	while (ft_isspace(*line) && line++)
 	{
-		ft_printf("char == [%c]\n", *line);
-		line++;
+		// ft_printf("char == [%c]\n", *line);
 	}
 	len = 0;
-	while (!ft_isspace(*line))
-	{
-		line++;
-		len++;
-	}
+	len = first_word(line);
 	ft_printf("value of len %d\n", len);
-	
-	if (ft_strncmp(line - len, NO_ID, len))
+	if (!ft_strncmp(line, NO_ID, len))
 	{
-		ft_printf("Incorrect _id NO: %s\n", line - len);
-		ft_printf("Len of ID: #%d\n", len);
-		exit (1);
+		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
+		return (1);
+	}
+	else if (!ft_strncmp(line, SO_ID, len))
+	{
+		ft_printf(CLR_GRN"Correct ID SO name: %s"RST_ALL, line);
+
+		return (1);
+	}
+	else if (!ft_strncmp(line, WE_ID, len))
+	{
+		ft_printf(CLR_GRN"Correct ID WE name: %s"RST_ALL, line);
+
+		return (1);
+	}
+	else if (!ft_strncmp(line, EA_ID, len))
+	{
+		ft_printf(CLR_GRN"Correct ID EA name: %s"RST_ALL, line);
+
+		return (1);
+	}
+	else if (!ft_strncmp(line, F_ID, len))
+	{
+		ft_printf(CLR_GRN"Correct ID F name: %s\n"RST_ALL, line);
+
+		return (1);
+	}
+	else if (!ft_strncmp(line, C_ID, len ))
+	{
+		ft_printf(CLR_GRN"Correct ID C name: %s\n"RST_ALL, line);
+		return (1);
 	}
 	else
 	{
+		ft_printf(CLR_RED"Incorrect id NO: %s\n"RST_ALL, line);
+		ft_printf(CLR_YLLW"Len of ID: #%d\n"RST_ALL, len);
 
-		ft_printf("Correct ID name: %s\n",  line - len);
+		return (0);
 	}
 	return (0);
 }
@@ -108,6 +147,14 @@ int	check_data_map(char *file_name)
 			return (1);
 		if (!check_id(line))
 			return (1);
+		params_cnt++;
+		ft_printf("Params found--> %d\n", params_cnt);
+		if (params_cnt == 6)
+		{
+			ft_printf("All data collected.\n");
+			break;
+		}
 	}
+	// ft_printf("line %s", line);
 	return (0);
 }

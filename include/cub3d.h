@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/03 13:32:05 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/04 18:33:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 
 # define NO_ID          "NO"
 # define SO_ID          "SO"
-# define EW_ID          "EW"
+# define WE_ID          "WE"
 # define EA_ID          "EA"
 # define F_ID           "F"
 # define C_ID           "C"
 
+# define EXTENSION_LEN   4
 
 int		check_file_format_n_extention(char *file);
 int		check_data_map(char *file_name);
