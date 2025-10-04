@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/02 19:18:34 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:32:05 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <errno.h>
 # include "libft.h"
+# include <ctype.h>
 
 # define RST_ALL          "\x1b[0m"
 # define CLR_RED          "\x1b[31m"

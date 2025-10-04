@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/02 20:04:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:59:04 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	check_file_format_n_extention(char *file)
 	return (1);
 }
 
-
 int	ft_isspace(int s)
 {
 	if (!s)
@@ -53,34 +52,41 @@ int	ft_isspace(int s)
 	if ((s >= 9 && s <= 13) || s == 32 )
 	{
 		ft_printf("%c\n", s);
-		return (0);
-	}
-	else
-	{
-		ft_printf("Char: %c\n", s);
 		return (1);
 	}
+	return (0);
 }
 
 int	check_id(char *line)
 {
 	int		len;
 	// int		id_len;
+	// int		i;
 
+	// i = 0;
 	while (ft_isspace(*line))
-		(*line)++;
+	{
+		ft_printf("char == [%c]\n", *line);
+		line++;
+	}
 	len = 0;
 	while (!ft_isspace(*line))
 	{
-		(*line)++;
+		line++;
 		len++;
 	}
-	if (!ft_strncmp(line, NO_ID, len))
+	ft_printf("value of len %d\n", len);
+	
+	if (ft_strncmp(line - len, NO_ID, len))
 	{
-		ft_printf("Correct _id NO: %s\n", line);
+		ft_printf("Incorrect _id NO: %s\n", line - len);
 		ft_printf("Len of ID: #%d\n", len);
-		free(line);
 		exit (1);
+	}
+	else
+	{
+
+		ft_printf("Correct ID name: %s\n",  line - len);
 	}
 	return (0);
 }
