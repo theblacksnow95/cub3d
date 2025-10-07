@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/04 18:50:02 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:15:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	check_file_format_n_extention(char *file)
 	return (1);
 }
 
+
+
 int	ft_isspace(int s)
 {
 	if (!s)
@@ -57,7 +59,38 @@ int	ft_isspace(int s)
 	return (0);
 }
 
-static int first_word(char *line)
+int	ft_count_words(char *line)
+{
+	int	cnt_wrd;
+	int	inword;
+
+	inword = 0;
+	cnt_wrd = 0;
+	while (*line)
+	{
+		if (ft_isspace(*line))
+		{
+			inword = 0;
+			while (ft_isspace(*line))
+				line++;
+		}
+		else
+		{
+			if (!inword)
+			{
+				inword = 1;
+				cnt_wrd++;
+				ft_printf("line char %c --> cnt [%d]\n", *line, cnt_wrd);
+			}
+			line++;
+		}
+	}
+	ft_printf("words in line == [%d]\n", cnt_wrd);
+	return (cnt_wrd);
+}
+
+
+static int	first_word(char *line)
 {
 	int	i;
 	int	ret;
@@ -83,7 +116,6 @@ int	check_id(char *line)
 	{
 		// ft_printf("char == [%c]\n", *line);
 	}
-	len = 0;
 	len = first_word(line);
 	ft_printf("value of len %d\n", len);
 	if (!ft_strncmp(line, NO_ID, len))
@@ -115,7 +147,7 @@ int	check_id(char *line)
 
 		return (1);
 	}
-	else if (!ft_strncmp(line, C_ID, len ))
+	else if (!ft_strncmp(line, C_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID C name: %s\n"RST_ALL, line);
 		return (1);
@@ -143,6 +175,8 @@ int	check_data_map(char *file_name)
 	while (params_cnt < 6 && (*file_name != '1' || *file_name != '0'))
 	{
 		line = get_next_line(fd);
+		// if (ft_count_words(line) > 2)
+		// 	break ;
 		if (!line)
 			return (1);
 		if (!check_id(line))
@@ -152,9 +186,10 @@ int	check_data_map(char *file_name)
 		if (params_cnt == 6)
 		{
 			ft_printf("All data collected.\n");
-			break;
+			break ;
 		}
 	}
 	// ft_printf("line %s", line);
 	return (0);
 }
+

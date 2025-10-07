@@ -87,6 +87,12 @@ fclean: clean
 	@rm -rf $(BIN)/$(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) -s fclean
 
+make test:
+	@$(MAKE) -s
+	@echo "$(YELLOW)Running test with map1 example...$(RESET)" && sleep 1
+	@echo "\n"
+	@./bin/cub3d map1.cub
+
 re: clean all
 
 .PHONY: all clean fclean re
