@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/07 12:15:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/07 13:15:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,22 @@ int	ft_count_words(char *line)
 	cnt_wrd = 0;
 	while (*line)
 	{
-		if (ft_isspace(*line))
+		if (!ft_isspace(*line))
 		{
-			inword = 0;
-			while (ft_isspace(*line))
+			inword = 1;
+			cnt_wrd++;
+			while (!ft_isspace(*line))
 				line++;
 		}
 		else
 		{
-			if (!inword)
+			if (inword)
 			{
-				inword = 1;
-				cnt_wrd++;
+				inword = 0;
 				ft_printf("line char %c --> cnt [%d]\n", *line, cnt_wrd);
 			}
-			line++;
 		}
+		line++;
 	}
 	ft_printf("words in line == [%d]\n", cnt_wrd);
 	return (cnt_wrd);
@@ -175,8 +175,8 @@ int	check_data_map(char *file_name)
 	while (params_cnt < 6 && (*file_name != '1' || *file_name != '0'))
 	{
 		line = get_next_line(fd);
-		// if (ft_count_words(line) > 2)
-		// 	break ;
+		if (ft_count_words(line) > 2)
+			break ;
 		if (!line)
 			return (1);
 		if (!check_id(line))
