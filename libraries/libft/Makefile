@@ -6,7 +6,7 @@
 #    By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 16:54:42 by emurillo          #+#    #+#              #
-#    Updated: 2025/09/29 15:13:52 by emurillo         ###   ########.fr        #
+#    Updated: 2025/10/08 16:42:36 by emurillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ fclean: clean
 re: fclean all
 
 bonus: all $(BONUSOBJECTS)
-	ar crs $(NAME) $(BONUSOBJECTS)
+	@ar  crs $(NAME) $(BONUSOBJECTS)
+
+.SILENT:
 
 .PHONY: all clean fclean re

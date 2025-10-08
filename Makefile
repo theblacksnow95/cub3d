@@ -5,7 +5,7 @@ CC = gcc
 
 # ================== SOURCES ============================================================================
 
-SRCS = src/parsing/cub3d.c src/parsing/format_check.c
+SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c
 
 
 # ================== DIRECTORIES ========================================================================
@@ -51,7 +51,7 @@ all: $(BIN)/$(NAME)
 # main target NAME compilation rule
 $(BIN)/$(NAME): $(OBJ_PARS) $(LIBFT_LIB) $(MLX_LIB)
 	@echo "$(YELLOW)Compiling binary ...$(RESET)"
-	@$(CC) $(C_FLAGS) $(OBJ_PARS) -o $(BIN)/$(NAME) $(ML_FLAGS) -s 2> .error_log && \
+	@$(CC) $(C_FLAGS) $(OBJ_PARS) -o $(BIN)/$(NAME) $(ML_FLAGS) 2> .error_log && \
 	(echo "$(YELLOW)Binary compiled: $(GREEN)[OK]$(RESET)") || \
 	(echo "$(YELLOW)Error compiling : $(RED) [KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
 
@@ -65,7 +65,7 @@ $(OBJECTS)/%.o:src/parsing/%.c
 
 $(LIBFT_LIB):
 	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)"
-	@$(MAKE) bonus  -C $(LIBFT_DIR) -s 2> error_log && \
+	@$(MAKE) bonus  -C $(LIBFT_DIR)  2> error_log && \
 	(echo "$(YELLOW)Libft: $(GREEN)[OK]$(RESET)") || \
 	(echo "$(YELLOW)Libft: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
 
@@ -87,12 +87,16 @@ fclean: clean
 	@rm -rf $(BIN)/$(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) -s fclean
 
-make test:
-	@$(MAKE) -s
+test: all
 	@echo "$(YELLOW)Running test with map1 example...$(RESET)" && sleep 1
 	@echo "\n"
 	@./bin/cub3d map1.cub
 
+valgrind: all
+	@valgrind  --leak-check=full --show-leak-kinds=all -s ./bin/cub3d map1.cub
+
 re: clean all
 
-.PHONY: all clean fclean re
+.SILENT:
+
+.PHONY: all clean fclean re test valgrind

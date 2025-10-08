@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/07 13:15:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:20:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ int	ft_count_words(char *line)
 		else
 		{
 			if (inword)
-			{
 				inword = 0;
-				ft_printf("line char %c --> cnt [%d]\n", *line, cnt_wrd);
-			}
 		}
 		line++;
 	}
@@ -109,30 +106,26 @@ int	check_id(char *line)
 {
 	int		len;
 	// int		id_len;
-	// int		i;
 
-	// i = 0;
 	while (ft_isspace(*line) && line++)
 	{
-		// ft_printf("char == [%c]\n", *line);
 	}
 	len = first_word(line);
 	ft_printf("value of len %d\n", len);
 	if (!ft_strncmp(line, NO_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
+
 		return (1);
 	}
 	else if (!ft_strncmp(line, SO_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID SO name: %s"RST_ALL, line);
-
 		return (1);
 	}
 	else if (!ft_strncmp(line, WE_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID WE name: %s"RST_ALL, line);
-
 		return (1);
 	}
 	else if (!ft_strncmp(line, EA_ID, len))
@@ -168,27 +161,27 @@ int	check_data_map(char *file_name)
 	int		params_cnt;
 	int		fd;
 
-	fd = open(file_name, O_RDWR);
+	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	params_cnt = 0;
-	while (params_cnt < 6 && (*file_name != '1' || *file_name != '0'))
+	while (params_cnt < 6)
 	{
 		line = get_next_line(fd);
-		if (ft_count_words(line) > 2)
-			break ;
 		if (!line)
 			return (1);
-		if (!check_id(line))
-			return (1);
+		check_id(line);
 		params_cnt++;
 		ft_printf("Params found--> %d\n", params_cnt);
 		if (params_cnt == 6)
 		{
 			ft_printf("All data collected.\n");
+			s_free(line);
 			break ;
 		}
+		s_free(line);
 	}
+	close(fd);
 	// ft_printf("line %s", line);
 	return (0);
 }

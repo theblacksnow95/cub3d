@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/04 18:33:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/08 16:55:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 int		check_file_format_n_extention(char *file);
 int		check_data_map(char *file_name);
-
+void	s_free(void *ptr);
 
 
 #endif
