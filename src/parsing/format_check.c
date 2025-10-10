@@ -6,7 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/08 17:20:12 by emurillo         ###   ########.fr       */
+=======
+/*   Updated: 2025/10/07 16:14:56 by emurillo         ###   ########.fr       */
+>>>>>>> 9b9ce7f (ada)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +86,8 @@ int	ft_count_words(char *line)
 		}
 		line++;
 	}
-	ft_printf("words in line == [%d]\n", cnt_wrd);
 	return (cnt_wrd);
 }
-
 
 static int	first_word(char *line)
 {
@@ -155,25 +157,36 @@ int	check_id(char *line)
 	return (0);
 }
 
-int	check_data_map(char *file_name)
+int	check_data_map(char *file_name, t_cub data)
 {
 	char	*line;
-	int		params_cnt;
 	int		fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (1);
+<<<<<<< HEAD
 	params_cnt = 0;
 	while (params_cnt < 6)
+=======
+	data.params_cnt = 0;
+	while (data.params_cnt < 6)
+>>>>>>> 9b9ce7f (ada)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			return (1);
+<<<<<<< HEAD
 		check_id(line);
 		params_cnt++;
 		ft_printf("Params found--> %d\n", params_cnt);
 		if (params_cnt == 6)
+=======
+		if (!check_id(line))
+			return (1);
+		data.params_cnt++;
+		if (data.params_cnt == 6)
+>>>>>>> 9b9ce7f (ada)
 		{
 			ft_printf("All data collected.\n");
 			s_free(line);

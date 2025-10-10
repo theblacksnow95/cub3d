@@ -6,7 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/08 16:55:03 by emurillo         ###   ########.fr       */
+=======
+/*   Updated: 2025/10/07 16:14:38 by emurillo         ###   ########.fr       */
+>>>>>>> 9b9ce7f (ada)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +24,7 @@
 # include <errno.h>
 # include "libft.h"
 # include <ctype.h>
+# include "structs.h"
 
 # define RST_ALL          "\x1b[0m"
 # define CLR_RED          "\x1b[31m"
@@ -36,11 +41,14 @@
 
 # define EXTENSION_LEN   4
 
+
 int		check_file_format_n_extention(char *file);
+<<<<<<< HEAD
 int		check_data_map(char *file_name);
 void	s_free(void *ptr);
 
+=======
+int		check_data_map(char *file_name, t_cub data);
+>>>>>>> 9b9ce7f (ada)
 
 #endif
-
-
