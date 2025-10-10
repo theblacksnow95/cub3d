@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_images.c                                    :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/10 14:58:04 by emurillo         ###   ########.fr       */
+/*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
+/*   Updated: 2025/10/10 14:58:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	process_params(char *line, t_cub *data, char * id)
+int	error_map_param(char *line, int fd, t_ecode code)
 {
-	if (id = NO_ID)
+
+	if (code == E_PARAM)
 	{
-		data->NO_texture = mlx_xpm_to_image(data->ptr_mlx, &line, 600, 480);
-		if (!data->NO_texture)	
-			error_texture_path(line, data, E_NO);
+		ft_printf(CLR_RED"Incorrect id NO: %s\n"RST_ALL, line);
+		while(line)
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
+
+	}
+	return (0);
+}
+
+int	error_texture_path(char *line, t_cub *data, t_ecode code)
+{
+	(void *)data;
+	if (code == E_NO)
+	{
+		ft_printf("Error:\nTexture file or directory does not exist\n");
+		return (1);
 	}
 }

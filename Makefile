@@ -5,7 +5,7 @@ CC = gcc
 
 # ================== SOURCES ============================================================================
 
-SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c
+SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c
 
 
 # ================== DIRECTORIES ========================================================================

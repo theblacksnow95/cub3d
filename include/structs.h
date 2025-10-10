@@ -8,6 +8,12 @@ typedef struct s_texture
     int     *rendered;
 }   t_texture;
 
+typedef enum e_code 
+{
+    E_PARAM,
+    E_NO,
+}   t_ecode;
+
 typedef struct s_cub
 {
 	int		params_cnt;

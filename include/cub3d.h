@@ -6,11 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/08 16:55:03 by emurillo         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/07 16:14:38 by emurillo         ###   ########.fr       */
->>>>>>> 9b9ce7f (ada)
+/*   Updated: 2025/10/10 14:29:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +39,14 @@
 
 
 int		check_file_format_n_extention(char *file);
-<<<<<<< HEAD
-int		check_data_map(char *file_name);
-void	s_free(void *ptr);
-
-=======
 int		check_data_map(char *file_name, t_cub data);
->>>>>>> 9b9ce7f (ada)
+
+
+// error handling and frees
+
+void	s_free(void *ptr);
+int		error_map_param(char *line, int fd, t_ecode code);
+int		error_texture_path(char *line, t_cub *data, t_ecode code);
+int		process_params(char *line, t_cub *data, char *id);
 
 #endif

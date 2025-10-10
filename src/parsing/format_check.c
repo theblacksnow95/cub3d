@@ -6,11 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/10/08 17:20:12 by emurillo         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/07 16:14:56 by emurillo         ###   ########.fr       */
->>>>>>> 9b9ce7f (ada)
+/*   Updated: 2025/10/10 14:55:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +100,20 @@ static int	first_word(char *line)
 	return (ret);
 }
 
-int	check_id(char *line)
+int	check_id(char *line, t_cub *data)
 {
 	int		len;
 	// int		id_len;
 
 	while (ft_isspace(*line) && line++)
 	{
+		//asdfas;
 	}
 	len = first_word(line);
 	ft_printf("value of len %d\n", len);
 	if (!ft_strncmp(line, NO_ID, len))
 	{
+		process_params(line, data, NO_ID);
 		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
 
 		return (1);
@@ -148,12 +146,7 @@ int	check_id(char *line)
 		return (1);
 	}
 	else
-	{
-		ft_printf(CLR_RED"Incorrect id NO: %s\n"RST_ALL, line);
-		ft_printf(CLR_YLLW"Len of ID: #%d\n"RST_ALL, len);
-
 		return (0);
-	}
 	return (0);
 }
 
@@ -165,36 +158,23 @@ int	check_data_map(char *file_name, t_cub data)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (1);
-<<<<<<< HEAD
-	params_cnt = 0;
-	while (params_cnt < 6)
-=======
 	data.params_cnt = 0;
 	while (data.params_cnt < 6)
->>>>>>> 9b9ce7f (ada)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			return (1);
-<<<<<<< HEAD
-		check_id(line);
-		params_cnt++;
-		ft_printf("Params found--> %d\n", params_cnt);
-		if (params_cnt == 6)
-=======
-		if (!check_id(line))
-			return (1);
+		if (!check_id(line, &data))
+			return (error_map_param(line, fd, E_PARAM), 1);
 		data.params_cnt++;
 		if (data.params_cnt == 6)
->>>>>>> 9b9ce7f (ada)
 		{
 			ft_printf("All data collected.\n");
-			s_free(line);
 			break ;
 		}
 		s_free(line);
 	}
-	close(fd);
+	error_map_param(line, fd, E_PARAM);
 	// ft_printf("line %s", line);
 	return (0);
 }

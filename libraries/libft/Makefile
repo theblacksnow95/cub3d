@@ -6,12 +6,12 @@
 #    By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 16:54:42 by emurillo          #+#    #+#              #
-#    Updated: 2025/10/08 16:42:36 by emurillo         ###   ########.fr        #
+#    Updated: 2025/10/10 11:13:02 by emurillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -c -I.
+CFLAGS = -Wall -Werror -Wextra -g -c -I.
 NAME = libft.a
 PRINTF_DIR = printf
 GNL_DIR = get_next_line
@@ -42,6 +42,9 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@ar crs $(NAME) $(OBJECTS)
+	
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJECTS) $(BONUSOBJECTS)
@@ -52,7 +55,7 @@ fclean: clean
 re: fclean all
 
 bonus: all $(BONUSOBJECTS)
-	@ar  crs $(NAME) $(BONUSOBJECTS)
+	ar  crs $(NAME) $(BONUSOBJECTS)
 
 .SILENT:
 
