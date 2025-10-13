@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/10 14:58:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:45:13 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	error_map_param(char *line, int fd, t_ecode code)
 	return (0);
 }
 
-int	error_texture_path(char *line, t_cub *data, t_ecode code)
+int	error_texture_path(char *line, t_ecode code)
 {
-	(void *)data;
+	
 	if (code == E_NO)
 	{
 		ft_printf("Error:\nTexture file or directory does not exist\n");
+		ft_printf("%s", line);
 		return (1);
 	}
+	return (0);
 }

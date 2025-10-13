@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/10 14:29:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:44:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		check_data_map(char *file_name, t_cub data);
 
 void	s_free(void *ptr);
 int		error_map_param(char *line, int fd, t_ecode code);
-int		error_texture_path(char *line, t_cub *data, t_ecode code);
+int		error_texture_path(char *line, t_ecode code);
 int		process_params(char *line, t_cub *data, char *id);
 
 #endif
