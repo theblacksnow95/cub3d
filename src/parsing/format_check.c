@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/14 14:54:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:36:52 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,45 +111,45 @@ int	check_id(char *line, t_cub *data)
 	}
 	len = first_word(line);
 	ft_printf("value of len %d\n", len);
-	if (!ft_strncmp(line, NO_ID, len))
+	if (!ft_strncmp(line, NO_ID, len) && !data->no_texture->full)
 	{
 		process_params(line, data, NO_ID);
 		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
-		return (1);
+		return (0);
 	}
 	else if (!ft_strncmp(line, SO_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID SO name: %s"RST_ALL, line);
-		return (1);
+		return (0);
 	}
 	else if (!ft_strncmp(line, WE_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID WE name: %s"RST_ALL, line);
-		return (1);
+		return (0);
 	}
 	else if (!ft_strncmp(line, EA_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID EA name: %s"RST_ALL, line);
 
-		return (1);
+		return (0);
 	}
 	else if (!ft_strncmp(line, F_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID F name: %s\n"RST_ALL, line);
 
-		return (1);
+		return (0);
 	}
 	else if (!ft_strncmp(line, C_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID C name: %s\n"RST_ALL, line);
-		return (1);
+		return (0);
 	}
 	else
-		return (0);
-	return (0);
+		return (1);
+	return (1);
 }
 
-int	check_data_map(char *file_name, t_cub data)
+int	check_data_map(char *file_name, t_cub *data)
 {
 	char	*line;
 	int		fd;
@@ -157,16 +157,16 @@ int	check_data_map(char *file_name, t_cub data)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	data.params_cnt = 0;
-	while (data.params_cnt < 6)
+	data->params_cnt = 0;
+	while (data->params_cnt < 6)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			return (1);
-		if (!check_id(line, &data))
+		if (!check_id(line, data))
 			return (error_map_param(line, fd, E_PARAM), 1);
-		data.params_cnt++;
-		if (data.params_cnt == 6)
+		data->params_cnt++;
+		if (data->params_cnt == 6)
 		{
 			ft_printf("All data collected.\n");
 			break ;

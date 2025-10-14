@@ -1,44 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   init_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/14 18:32:14 by emurillo         ###   ########.fr       */
+/*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
+/*   Updated: 2025/10/14 19:34:37 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
+#include "cub3d.h"
 
-# define STRUCTS_H
-
-typedef struct s_texture
+void	*init_variables(t_cub *data)
 {
-	void	*id_texture;
-	int		*rendered;
-	int		full;
-}	t_texture;
-
-typedef enum e_code
-{
-	E_PARAM,
-	E_NO,
-}	t_ecode;
-
-typedef struct s_cub
-{
-	int			params_cnt;
-	char		*map_path;
-	void		*ptr_mlx;
-	t_texture	*no_texture;
-	t_texture	*so_texture;
-	t_texture	*we_texture;
-	t_texture	*ea_texture;
-	int			img_h;
-	int			img_w;
-}	t_cub;
-
-#endif
-
+	data->no_texture = s_malloc(sizeof(t_texture));
+	data->so_texture = s_malloc(sizeof(t_texture));
+	data->we_texture = s_malloc(sizeof(t_texture));
+	data->ea_texture = s_malloc(sizeof(t_texture));
+	return (data);
+}
