@@ -65,7 +65,7 @@ $(OBJECTS)/%.o:src/parsing/%.c
 
 $(LIBFT_LIB):
 	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)"
-	@$(MAKE) bonus  -C $(LIBFT_DIR)  2> error_log && \
+	@$(MAKE)  -C $(LIBFT_DIR)  2> error_log && \
 	(echo "$(YELLOW)Libft: $(GREEN)[OK]$(RESET)") || \
 	(echo "$(YELLOW)Libft: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
 

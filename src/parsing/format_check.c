@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/10 14:55:45 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:54:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int	check_id(char *line, t_cub *data)
 	{
 		process_params(line, data, NO_ID);
 		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
-
 		return (1);
 	}
 	else if (!ft_strncmp(line, SO_ID, len))

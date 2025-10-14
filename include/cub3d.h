@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/13 15:44:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:59:34 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@
 
 int		check_file_format_n_extention(char *file);
 int		check_data_map(char *file_name, t_cub data);
+
+
+// simple tools
+
+int		ft_isspace(int s);
 
 
 // error handling and frees
