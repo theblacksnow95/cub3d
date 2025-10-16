@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:38:26 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/14 19:35:21 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 11:58:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		data->map_path = av[1];
-		// if (!check_file_format_n_extention(data->map_path))
-		// 	return (1);
-		// else
-		// {
-		// 	check_data_map(data->map_path, data);
-		// }
+		data.map_path = av[1];
+		if (!check_file_format_n_extention(data.map_path))
+			return (1);
+		if (!check_data_map(data.map_path, data))
+		{
+			return (1);
+		}
 	}
 	free(data);
 	return (0);

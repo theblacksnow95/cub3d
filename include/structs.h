@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/14 18:32:14 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 11:57:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ typedef enum e_code
 {
 	E_PARAM,
 	E_NO,
+	E_SO,
+	E_WE,
+	E_EA
 }	t_ecode;
 
 typedef struct s_cub
