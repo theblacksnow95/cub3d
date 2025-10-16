@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/14 19:32:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:08:59 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ int		check_data_map(char *file_name, t_cub *data);
 // simple tools
 
 int		ft_isspace(int s);
-void	*s_malloc(size_t _size);
+void	*s_malloc(size_t bytes);
+void	free_struct(t_cub *data);
 
-void	*init_variables(t_cub *data);
+
+// init
+
+t_cub	*init_variables(t_cub *data);
+void	process_params(char *line, t_cub *data, char *id);
+void	colors_processing(char *line, t_cub *data, char *id);
 
 // error handling and frees
 
 void	s_free(void *ptr);
 int		error_map_param(char *line, int fd, t_ecode code);
 int		error_texture_path(char *line, t_ecode code, t_cub *data);
-int		process_params(char *line, t_cub *data, char *id);
 
 #endif

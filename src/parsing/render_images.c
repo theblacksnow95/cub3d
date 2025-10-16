@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 11:56:07 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:36:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,32 @@ static char	*move_line_to_path(char *line, char *id)
 
 }
 
-int	process_params(char *line, t_cub *data, char *id)
+void	colors_processing(char *line, int *var_color, char *id)
 {
+	char	*tmp;
+
+	line = move_line_to_path(line, id);
+	while (*line != '\n')
+	{
+		if (*line == '(' || *line == ')')
+		{
+			line++;
+			tmp = ft_split(line, ',');
+			*var_color = ft_atoi(tmp);
+			var_color++;
+		}
+
+	}
+}
+
+void	process_params(char *line, t_cub *data, char *id)
+{
+	line = move_line_to_path(line, id);
 	if (ft_strncmp(id, NO_ID, ft_strlen(id)))
 	{
-		data->no_texture = mlx_xpm_to_image(data->ptr_mlx, &line, &data->img_w,\
-			&data->img_h);
-		if (!data->no_texture)	
-			error_texture_path(line, E_NO);
+		data->no_texture = mlx_xpm_to_image(data->ptr_mlx, &line, &data->img_w, \
+&data->img_h);
+		if (!data->no_texture)
+			error_texture_path(line, E_NO, data);
 	}
-	return (0);
 }
