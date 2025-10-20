@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 18:36:02 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/17 09:30:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	colors_processing(char *line, int *var_color, char *id)
 		{
 			line++;
 			tmp = ft_split(line, ',');
-			*var_color = ft_atoi(tmp);
+			*var_color= ft_atoi(tmp);
 			var_color++;
 		}
-
+		line++;
 	}
 }
 

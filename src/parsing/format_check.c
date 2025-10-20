@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 11:59:43 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 21:34:30 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,9 @@ int	check_id(char *line, t_cub *data)
 	ft_printf("value of len %d\n", len);
 	if (!ft_strncmp(line, NO_ID, len) && !data->no_texture->full)
 	{
-		if (process_params(line, data, NO_ID))
-			ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
-		else
-			return (1);
+		process_params(line, data, NO_ID);
+		ft_printf(CLR_GRN"Correct ID NO name: %s"RST_ALL, line);
+		return (1);
 	}
 	else if (!ft_strncmp(line, SO_ID, len))
 	{

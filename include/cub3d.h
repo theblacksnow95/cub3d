@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 18:08:59 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/17 09:48:40 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_struct(t_cub *data);
 
 t_cub	*init_variables(t_cub *data);
 void	process_params(char *line, t_cub *data, char *id);
-void	colors_processing(char *line, t_cub *data, char *id);
+void	colors_processing(char *line, int *data, char *id);
 
 // error handling and frees
 

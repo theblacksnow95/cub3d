@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 18:19:42 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/16 21:28:41 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ CLR_RED"%s"CLR_RED, line);
 		ft_printf("Error:\nTexture <EA> does not exist\n"\
 CLR_RED"%s"CLR_RED, line);
 	if (code == E_F)
-		ft_printf("Error:\nTexture <NO> does not exist\n"\
+		ft_printf("Error:\nIncorrect <F> coordinates\n"\
+CLR_RED"%s"CLR_RED, line);
+	if (code == E_C)
+		ft_printf("Error:\nIncorrect <C> coordinates\n"\
 CLR_RED"%s"CLR_RED, line);
 	free_struct(data);
 }
