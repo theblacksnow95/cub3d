@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/21 11:20:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:36:08 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	valid_nums(char **rgb)
 
 }
 
-char	**colors_rgb(char *line, char *id)
+char	**colors_rgb(char *line, char *id, t_cub *data)
 {
 	char	**tmp;
 	char	*p;
@@ -69,7 +69,7 @@ char	**colors_rgb(char *line, char *id)
 	line = move_line_to_path(line, id);
 	p = line;
 	if (!valid_rgb(p))
-		error_texture_path(p, id);
+		error_texture_path(p, id, data);
 	while (*p)
 	{
 		if (*p == '(' || *p == ')'
