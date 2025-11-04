@@ -6,11 +6,12 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 21:28:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:29:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 void	error_map_param(char *line, int fd, t_ecode code)
 {
@@ -23,11 +24,16 @@ void	error_map_param(char *line, int fd, t_ecode code)
 			line = get_next_line(fd);
 		}
 	}
-	return (0);
 }
 
-void	error_texture_path(char *line, t_ecode code, t_cub *data)
+void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
 {
+	if (code == E_texture)
+		ft_printf("Error:\nTexture <%s> does not exist\n"\
+CLR_RED"%s"CLR_RED, id, line);
+	if (code == E_color)
+		ft_printf("Error:\nIncorrect <%s> coordinates\n"\
+CLR_RED"%s"CLR_RED, id, line);
 	if (code == E_NO)
 		ft_printf("Error:\nTexture <NO> does not exist\n"\
 CLR_RED"%s"CLR_RED, line);

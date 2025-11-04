@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/16 21:34:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/04 11:05:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	check_id(char *line, t_cub *data)
 	else if (!ft_strncmp(line, SO_ID, len))
 	{
 		ft_printf(CLR_GRN"Correct ID SO name: %s"RST_ALL, line);
-		return (0);
+		return (1);
 	}
 	else if (!ft_strncmp(line, WE_ID, len))
 	{
