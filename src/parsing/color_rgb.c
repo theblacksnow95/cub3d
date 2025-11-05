@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 17:33:05 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:11:24 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,48 +61,84 @@ static int	valid_rgb(char *s)
 	return (1);
 }
 
-void	*valid_nums(char **tmp, t_rgb *data, char *line)
+void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
+{
+	if ((num > -1 && num < 256) && ft_strncmp(id, F_ID, 1))
+	{
+		if (data->i == 0)
+			data->c_rgb->r = num;
+		if (data->i == 1)
+			data->c_rgb->g = num;
+		if (data->i == 2)
+			data->c_rgb->b = num;
+		if (data->i == 3)
+		{
+			data->c_rgb->full = 1;
+			return ;
+		}
+		data->i++;
+	}
+	else
+		error_texture_path(line, E_color, id, data);
+}
+
+void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
+{
+	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1))
+	{
+		if (data->i == 0)
+			data->f_rgb->r = num;
+		if (data->i == 1)
+			data->f_rgb->g = num;
+		if (data->i == 2)
+			data->f_rgb->b = num;
+		if (data->i == 3)
+		{
+			data->f_rgb->full = 1;
+			return ;
+		}
+		data->i++;
+	}
+	else
+		error_texture_path(line, E_color, id, data);
+}
+
+void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 {
 	int	i;
 	int	num;
+
 
 	i = 0;
 	while (tmp[i])
 		i++;
 	if (i != 3)
-		return (0);
-	i = 0;
+		error_texture_path(line, E_color, id, data);
+	data->i = 0;
 	tmp = 0;
 	while (*tmp)
 	{
 		num = ft_atoi(*tmp);
-		if (num > -1 && num < 256)
-		{
-			if (i == 0)
-				data->r = num;
-			if (i == 1)
-				data->g = num;
-			if (i == 2)
-				data->b = num;
-		}
-		else
-			error_texture_path(line, E_color, C_ID, data);
+		if (!ft_strncmp(id, F_ID, 1))
+			fill_f_rgb(data, line, id, num);
+		if (!ft_strncmp(id, C_ID, 1))
+			fill_c_rgb(data, line, id, num);
 		printf("color value: %d\n", num);
 		tmp++;
 	}
 }
 
-int	*colors_rgb(char *line, t_cub *data)
+void	colors_rgb(char *line, char *id, t_cub *data)
 {
 	char	**tmp;
 	char	*p;
-	int		*rgb;
 
 	p = ft_strdup(line);
+	printf("here!!\n");
 	if (!valid_rgb(p))
 	{
 		printf("return code [%d]\n", valid_rgb(p));
-		return (NULL);
+		error_texture_path(line, E_color, id, data);
 	}
 	while (*p)
 	{
@@ -112,8 +148,7 @@ int	*colors_rgb(char *line, t_cub *data)
 		p++;
 	}
 	tmp = ft_split(line, ',');
-	valid_nums(tmp, data, line);
+	valid_nums(tmp, data, id, line);
 	free(tmp);
-	return (rgb);
 }
 

@@ -6,13 +6,16 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 17:27:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:10:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 
 # define STRUCTS_H
+
+// Para guardar cada textura en un puntero void con un flag de si ya se ha
+// cargado, va a cambiar
 
 typedef struct s_texture
 {
@@ -21,12 +24,17 @@ typedef struct s_texture
 	int		full;
 }	t_texture;
 
+// Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
+
 typedef struct s_rgb
 {
 	int	r;
 	int	g;
 	int	b;
+	int	full;
 }	t_rgb;
+
+// Codidos de errores que uso para las texturas, va a cambiar
 
 typedef enum e_code
 {
@@ -41,6 +49,8 @@ typedef enum e_code
 	E_C,
 }	t_ecode;
 
+// Estructura principal que usa punteros con punteros a otras estructuras
+
 typedef struct s_cub
 {
 	int			params_cnt;
@@ -53,10 +63,9 @@ typedef struct s_cub
 	t_texture	*ea_texture;
 	t_rgb		*f_rgb;
 	t_rgb		*c_rgb;
-	int			*f_colors;
-	int			*c_colors;
 	int			img_h;
 	int			img_w;
+	int			i;
 }	t_cub;
 
 #endif

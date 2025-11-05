@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 16:58:13 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:12:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ static char	*move_line_to_path(char *line, char *id)
 
 void	colors_f_c(char *line, t_cub *data, char *id)
 {
-	int	*colors;
-
+	printf("here!!\n");
 	line = move_line_to_path(line, id);
-	colors = colors_rgb(line);
-	if (!colors)
-		error_texture_path(line, E_color, id, data);
-
+	colors_rgb(line, id, data);
 }
 
 void	process_params(char *line, t_cub *data, char *id)

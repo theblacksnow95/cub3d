@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 09:30:57 by emurillo          #+#    #+#             */
-/*   Updated: 2025/10/21 11:05:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 10:41:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,34 @@
 static int	expect(char *s, char c);
 static int	valid_rgb(char *s);
 
-char	**colors_rgb(char *line)
-{
-	char	**tmp;
-	char	*p;
+// char	**colors_rgb(char *line)
+// {
+// 	char	**tmp;
+// 	char	*p;
 
-	// line = move_line_to_path(line, id);
-	p = line;
-	while (*p)
-	{
-		if (*p == '(' || *p == ')'
-			|| *p == ' ' || *p == '\t')
-			*p = ',';
-		p++;
-	}
-	tmp = ft_split(line, ',');
-	return (tmp);
-}
+// 	// line = move_line_to_path(line, id);
+// 	p = line;
+// 	while (*p)
+// 	{
+// 		if (*p == '(' || *p == ')'
+// 			|| *p == ' ' || *p == '\t')
+// 			*p = ',';
+// 		p++;
+// 	}
+// 	tmp = ft_split(line, ',');
+// 	return (tmp);
+// }
 
-static int	expect(char *s, char c)
-{
-	while (*s)
-	{
-		if (*s == c)
-			return (1);
-		s++;
-	}
-	return (0);
-}
+// static int	expect(char *s, char c)
+// {
+// 	while (*s)
+// 	{
+// 		if (*s == c)
+// 			return (1);
+// 		s++;
+// 	}
+// 	return (0);
+// }
 
 static int	valid_rgb(char *s)
 {
