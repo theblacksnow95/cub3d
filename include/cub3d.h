@@ -6,7 +6,7 @@
 /*   By: anoviedo <antuel@outlook.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/06 13:11:31 by anoviedo         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:08:11 by anoviedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
-# include <mlx.h>
+# include "mlx.h"
 # include <errno.h>
 # include "libft.h"
 # include <ctype.h>

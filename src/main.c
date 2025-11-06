@@ -6,7 +6,7 @@
 /*   By: anoviedo <antuel@outlook.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/06 13:44:05 by anoviedo         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:54:50 by anoviedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	validation(char *av)
 	av = ft_strchr(av, '.');
 	if (!av)
 		return(1);
-	if (!ft_strncmp(av, ".cub", 4))
+	if (!ft_strncmp(av, ".cub\0", 5))
 		return (0);
 	return (1);
 }
@@ -34,9 +34,10 @@ int	main(int ac, char **av)
 		return(perror("you need only one map argument *.cub"), 1);
 	if (validation(av[1]))
 		return(perror("incorrect extension - necessary=\"maps_name.cub\""), 1);
-    // 2. Parsear archivo .cub
+    // 2. Parsear archivo .cub = hecho por ggeeenrrry
     // 3. Inicializar MiniLibX
     // 4. Inicializar estructuras del juego
     // 5. Bucle principal
     // 6. Limpieza al salir
+	return(0);
 }
