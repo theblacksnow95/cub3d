@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 11:05:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:53:53 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	check_file_format_n_extention(char *file)
 	}
 	return (1);
 }
-
-
 
 int	ft_isspace(int s)
 {
