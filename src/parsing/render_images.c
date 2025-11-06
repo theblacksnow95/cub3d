@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 17:12:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/06 09:46:34 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ void	colors_f_c(char *line, t_cub *data, char *id)
 void	process_params(char *line, t_cub *data, char *id)
 {
 	line = move_line_to_path(line, id);
-	if (ft_strncmp(id, NO_ID, ft_strlen(id)))
-		data->no_texture->id_texture = mlx_xpm_to_image
-			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
+	if (!ft_strncmp(id, NO_ID, ft_strlen(id)))
+		data->no_texture->id_texture = mlx_xpm_to_image(data->ptr_mlx, &line, &data->img_w, &data->img_h);
 	if (ft_strncmp(id, SO_ID, ft_strlen(id)))
 		data->so_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
@@ -46,6 +45,6 @@ void	process_params(char *line, t_cub *data, char *id)
 		data->ea_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
 	else if (!data->no_texture->id_texture || !data->so_texture->id_texture
-		|| !data->we_texture->id_texture || !data->ea_texture->id_texture)
+		|| !data->we_texture->id_texture || !data->ea_texture->id_texture) //no es correcto, da error siempre
 		error_texture_path(line, E_texture, id, data);
 }

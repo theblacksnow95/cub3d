@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:38:26 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 11:06:14 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/06 09:35:05 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		perror(CLR_RED"Error:\nIncorrect # arguments:"
 			CLR_YLLW"./bin/cub3d '[.cub]'"RST_ALL);
 		return (1);
-		printf("%s", av[1]);
+		printf("%s", av[1]); //debug 
 	}
 	else
 	{
