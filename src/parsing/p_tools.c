@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 10:54:43 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:06:08 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*s_malloc(size_t bytes)
 	var = malloc(bytes);
 	if (!var)
 	{
-		perror("Error:\n Malloc errorm\n");
+		perror("Error:\n Malloc error\n");
 		return (NULL);
 	}
 	return (var);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 11:10:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:06:18 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_struct(t_cub *data);
 
 t_cub	*init_variables(t_cub *data);
 void	process_params(char *line, t_cub *data, char *id);
-int		*colors_rgb(char *line);
+void	colors_rgb(char *line, char *id, t_cub *data);
 int		check_for_params(char *map_path, t_cub *data);
 void	colors_f_c(char *line, t_cub *data, char *id);
 
