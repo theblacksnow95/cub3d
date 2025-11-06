@@ -1,0 +1,58 @@
+src/
+├── main.c
+├── parsing/
+│   ├── map_parser.c
+│   ├── texture_parser.c
+│   └── validation.c
+├── raycasting/
+│   ├── raycast.c
+│   ├── textures.c
+│   └── drawing.c
+├── events/
+│   ├── keyboard.c
+│   └── mouse.c
+└── utils/
+    └── utils.c
+
+
+    int main(int argc, char **argv)
+{
+    t_game game;
+    
+    // 1. Validar argumentos
+    // 2. Parsear archivo .cub
+    // 3. Inicializar MiniLibX
+    // 4. Inicializar estructuras del juego
+    // 5. Bucle principal
+    // 6. Limpieza al salir
+}
+
+void raycast(t_game *game)
+{
+    int x;
+
+    x = 0;
+    while (x < SCREEN_WIDTH)
+    {
+        // Calcular posición y dirección del rayo
+        // DDA algorithm para encontrar pared
+        // Calcular distancia y altura de la pared
+        // Dibujar texturas
+        x++;
+    }
+}
+
+
+EJEMPLO MINIMO A LEER:
+
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220,100,0
+C 225,30,0
+111111
+100101
+101N01
+110001
+111111
