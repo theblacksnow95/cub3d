@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anoviedo <antuel@outlook.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:39:41 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/06 09:48:55 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/06 10:13:53 by anoviedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,7 @@
 #include "cub3d.h"
 #include "structs.h"
 
-// Archivo: map_parser.c - TÚ puedes implementar:
 
-typedef struct s_map {
-    char	**grid;
-    int		width;
-    int		height;
-    int		player_x;
-    int		player_y;
-    char	player_dir;
-} t_map;
 
 // 1. dLeer y almacenar el grid del mapa
 char	**parse_map_grid(int fd, t_cub *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anoviedo <antuel@outlook.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/04 17:27:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:16:05 by anoviedo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
+//errors code struct
 typedef enum e_code
 {
 	E_texture,
@@ -58,6 +59,16 @@ typedef struct s_cub
 	int			img_h;
 	int			img_w;
 }	t_cub;
+
+// for map_parser.c
+typedef struct s_map {
+    char	**grid;
+    int		width;
+    int		height;
+    int		player_x;
+    int		player_y;
+    char	player_dir;
+} t_map;
 
 #endif
 
