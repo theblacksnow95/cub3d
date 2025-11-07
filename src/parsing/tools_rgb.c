@@ -1,26 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_var.c                                         :+:      :+:    :+:   */
+/*   tools_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 15:28:31 by emurillo         ###   ########.fr       */
+/*   Created: 2025/11/07 18:42:42 by emurillo          #+#    #+#             */
+/*   Updated: 2025/11/07 18:43:52 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_cub	*init_variables(t_cub *data)
+void	clean_line(char *s)
 {
-	data->no_texture = s_malloc(sizeof(t_texture));
-	data->so_texture = s_malloc(sizeof(t_texture));
-	data->we_texture = s_malloc(sizeof(t_texture));
-	data->ea_texture = s_malloc(sizeof(t_texture));
-	data->f_rgb = s_malloc(sizeof(t_rgb));
-	data->c_rgb = s_malloc(sizeof(t_rgb));
-	data->params_cnt = 0;
-	data->ptr_mlx = mlx_init();
-	return (data);
+	while (*s)
+	{
+		if (*s == ' ' || *s == '\t')
+			*s = ',';
+		s++;
+	}
 }
+
+
+int	valid_rgb(char *s)
+{
+	char		*tmp;
+	int			i;
+
+	tmp = s;
+	i = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == '\n')
+			tmp[i] = '\0';
+		i++;
+	}
+	while (*tmp)
+	{
+		if (ft_isdigit(*tmp)
+			|| *tmp == ',' || *tmp == ' ' || *tmp == '\t')
+			tmp++;
+		else
+		{
+			return (0);
+		}
+	}
+	return (1);
+}
+

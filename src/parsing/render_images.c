@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 17:12:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:00:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ static char	*move_line_to_path(char *line, char *id)
 	while (ft_isspace(*line) && line++)
 	{
 	}
+	// if (*line == '.')
+	// 	line = line + 2;
 	return (line);
 }
 
 void	colors_f_c(char *line, t_cub *data, char *id)
 {
-	printf("here!!\n");
+	// printf("here!!\n");
 	line = move_line_to_path(line, id);
 	colors_rgb(line, id, data);
 }
@@ -33,16 +35,16 @@ void	colors_f_c(char *line, t_cub *data, char *id)
 void	process_params(char *line, t_cub *data, char *id)
 {
 	line = move_line_to_path(line, id);
-	if (ft_strncmp(id, NO_ID, ft_strlen(id)))
+	if (!ft_strncmp(id, NO_ID, ft_strlen(id)))
 		data->no_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
-	if (ft_strncmp(id, SO_ID, ft_strlen(id)))
+	if (!ft_strncmp(id, SO_ID, ft_strlen(id)))
 		data->so_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
-	if (ft_strncmp(id, WE_ID, ft_strlen(id)))
+	if (!ft_strncmp(id, WE_ID, ft_strlen(id)))
 		data->we_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
-	if (ft_strncmp(id, EA_ID, ft_strlen(id)))
+	if (!ft_strncmp(id, EA_ID, ft_strlen(id)))
 		data->ea_texture->id_texture = mlx_xpm_to_image
 			(data->ptr_mlx, &line, &data->img_w, &data->img_h);
 	else if (!data->no_texture->id_texture || !data->so_texture->id_texture

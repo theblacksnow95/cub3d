@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 17:10:22 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:48:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_cub
 	t_texture	*ea_texture;
 	t_rgb		*f_rgb;
 	t_rgb		*c_rgb;
+	int			params_full;
 	int			img_h;
 	int			img_w;
 	int			i;

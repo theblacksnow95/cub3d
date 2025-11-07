@@ -6,13 +6,20 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 17:06:08 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:49:53 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	s_array_free(char **s)
+{
+	if (!s || *s[0] == '\0')
+		return ;
+	while (*s && s++)
+		free(*s);
 
+}
 
 void	s_free(void *ptr)
 {

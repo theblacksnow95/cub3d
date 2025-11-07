@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 17:06:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:46:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ void	process_params(char *line, t_cub *data, char *id);
 void	colors_rgb(char *line, char *id, t_cub *data);
 int		check_for_params(char *map_path, t_cub *data);
 void	colors_f_c(char *line, t_cub *data, char *id);
+int		valid_rgb(char *s);
+void	clean_line(char *s);
+
+
+
 
 // error handling and frees
 
 void	s_free(void *ptr);
+void	s_array_free(char **s);
 void	error_map_param(char *line, int fd, t_ecode code);
 void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
 
