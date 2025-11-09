@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/09 01:06:18 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/09 01:37:53 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
 // loop principal
 int		game_loop(t_game *game);
 int     close_windows(t_game *game);
+int     key_press(int keycode, t_game *game);
 
 
 // dibujo

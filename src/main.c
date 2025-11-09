@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/09 01:14:21 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/09 01:43:29 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ static void	init_game(t_game *game)
 		exit (1);
 }
 
-/*mlx_hook 17 = X presionada*/
+/*	mlx_hook 17 = X presionada
+	mlx_hook_key corresponde a la reaccion de la ventana con las teclas
+	en este caso es para cerrar con escape(key_press)*/
 int	main(void)
 {
 	t_game game;
 
 	init_game(&game);
 	mlx_hook(game.mlx.win, 17, 0, close_windows, &game);
+	mlx_key_hook(game.mlx.win, key_press, &game);
 	mlx_loop(game.mlx.mlx);
 	return (0);
 }
@@ -55,13 +58,18 @@ int	main(int ac, char **av)
 {
     t_game game;
 
-	// 1. Validar argumentos
+	// 1. Validar argumentos (yo solo valido cantidad y extension del archivo)
 	if (ac != 2)
 		return(perror("you need only one map argument *.cub"), 1);
 	if (validation(av[1]))
 		return(perror("incorrect extension - necessary=\"maps_name.cub\""), 1);
     // 2. Parsear archivo .cub = hecho por ggeeenrrry
+	...
     // 3. Inicializar MiniLibX
+	init_game(&game);
+	mlx_hook(game.mlx.win, 17, 0, close_windows, &game);
+	mlx_key_hook(game.mlx.win, key_press, &game);
+	mlx_loop(game.mlx.mlx);
     // 4. Inicializar estructuras del juego
     // 5. Bucle principal
     // 6. Limpieza al salir
