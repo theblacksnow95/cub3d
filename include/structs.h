@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anoviedo <antuel@outlook.com>              +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/06 14:18:30 by anoviedo         ###   ########.fr       */
+/*   Updated: 2025/11/09 00:31:11 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
-
 # define STRUCTS_H
+
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
 
 // Para guardar cada textura en un puntero void con un flag de si ya se ha
 // cargado, va a cambiar
-
 typedef struct s_texture
 {
-	void	*id_texture;
-	int		*rendered;
-	int		full;
-}	t_texture;
+	void		*id_texture;
+	int			*rendered;
+	int			full;
+}				t_texture;
 
 // Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
-
 typedef struct s_rgb
 {
 	int	r;
@@ -35,7 +42,6 @@ typedef struct s_rgb
 }	t_rgb;
 
 // Codidos de errores que uso para las texturas, va a cambiar
-
 typedef enum e_code
 {
 	E_texture,
@@ -50,7 +56,6 @@ typedef enum e_code
 }	t_ecode;
 
 // Estructura principal que usa punteros con punteros a otras estructuras
-
 typedef struct s_cub
 {
 	int			params_cnt;
@@ -68,6 +73,7 @@ typedef struct s_cub
 	int			i;
 }	t_cub;
 
+/* a modo sugerencia para el parsing del mapa...
 // for map_parser.c
 typedef struct s_map {
     char	**grid;
@@ -76,19 +82,41 @@ typedef struct s_map {
     int		player_x;
     int		player_y;
     char	player_dir;
-} t_map;
+} 			t_map;*/
 
-// 1. dLeer y almacenar el grid del mapa
-char	**parse_map_grid(int fd, t_cub *data);
+/*datos del jugador, posicion, direccion donde mira...*/
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}			t_player;
 
-// 2. Validar caracteres del mapa (solo 0,1,N,S,E,W,espacio)
-int		validate_map_chars(char **grid);
+/*	struct para los parametros de minilibx
+	contexto, ventana, imagen, puntero a bytes*/
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_mlx;
 
-// 3. Encontrar posición inicial del jugador
-int		find_player_position(t_map *map);
-
-// 4. Verificar que el mapa esté cerrado por paredes
-int		is_map_closed(char **grid);
+/*	agrupa todo lo relacionado con MiniLibX,*/
+typedef struct s_game
+{
+	t_mlx		mlx;
+	t_player	player;
+	char		**map;
+	int			map_width;
+	int			map_height;
+}				t_game;
 
 #endif
 
