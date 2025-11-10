@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 18:46:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:17:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		check_for_params(char *map_path, t_cub *data);
 void	colors_f_c(char *line, t_cub *data, char *id);
 int		valid_rgb(char *s);
 void	clean_line(char *s);
+char	**read_map(t_cub *data, char *line, int fd);
 
 
 

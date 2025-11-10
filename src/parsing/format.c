@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 12:13:22 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:22:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	id_validation(t_cub *data, char *line)
 	int	len_id;
 
 	if (!line)
-		return (1);
+		return (0);
 	while (ft_isspace(*line) && line++)
 	{
 	}
@@ -49,7 +49,7 @@ int	id_validation(t_cub *data, char *line)
 		colors_f_c(line, data, F_ID);
 	if (!ft_strncmp(line, C_ID, len_id))
 		colors_f_c(line, data, C_ID);
-	return (0);
+	return (1);
 }
 
 int	check_for_params(char *map_path, t_cub *data)
@@ -60,19 +60,22 @@ int	check_for_params(char *map_path, t_cub *data)
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	// check de lineas duplicadas a anadir
 	while (data->params_cnt < 6)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			return (1);
-		id_validation(data, line);
+		if (id_validation(data, line))
+			data->params_cnt++;
 		if (line)
 			s_free(line);
+		printf("count: %d\n", data->params_cnt);
 		if (data->params_cnt == 6)
 		{
 			break ;
 		}
 	}
+	read_map(data, line, fd);
+	s_array_free(data->map);
 	return (0);
 }

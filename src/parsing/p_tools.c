@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/08 22:17:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:49:06 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 void	s_array_free(char **s)
 {
-	if (!s || *s[0] == '\0')
-		return ;
-	while (*s && s++)
-		free(*s);
+	int	i;
 
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		free(s[i]);
+		s[i] = NULL;
+		i++;
+	}
+	free(s);
+	s = NULL;
 }
 
 void	s_free(void *ptr)
@@ -44,10 +52,18 @@ void	*s_malloc(size_t bytes)
 
 static void	clear_textures(t_cub *data)
 {
+	mlx_destroy_image(data->ptr_mlx, data->no_texture->id_texture);
+	mlx_destroy_image(data->ptr_mlx, data->so_texture->id_texture);
+	mlx_destroy_image(data->ptr_mlx, data->we_texture->id_texture);
+	mlx_destroy_image(data->ptr_mlx, data->ea_texture->id_texture);
 	s_free(data->no_texture);
 	s_free(data->so_texture);
 	s_free(data->we_texture);
 	s_free(data->ea_texture);
+	s_free(data->f_rgb);
+	s_free(data->c_rgb);
+	mlx_destroy_display(data->ptr_mlx);
+
 }
 
 void	free_struct(t_cub *data)
@@ -55,11 +71,8 @@ void	free_struct(t_cub *data)
 	if (!data)
 		return ;
 	clear_textures(data);
-	mlx_destroy_display(data->ptr_mlx);
 	if (data->ptr_mlx)
-	{
 		s_free(data->ptr_mlx);
-	}
 	s_free(data);
 	exit(1);
 }

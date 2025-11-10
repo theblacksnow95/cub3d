@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 18:48:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:15:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_cub
 {
 	int			params_cnt;
 	char		*map_path;
+	char		**map;
 	void		*ptr_mlx;
 	void		*win_ptr;
 	t_texture	*no_texture;

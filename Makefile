@@ -7,7 +7,7 @@ CC = gcc
 
 SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
 		src/parsing/render_images.c src/parsing/init_var.c src/parsing/color_rgb.c src/parsing/format.c \
-		src/parsing/tools_rgb.c
+		src/parsing/tools_rgb.c src/parsing/read_map.c
 
 # ================== DIRECTORIES ========================================================================
 
@@ -64,6 +64,7 @@ $(OBJECTS)/%.o:src/parsing/%.c
 	(echo "$(YELLOW)Objects parsing compiled: $(GREEN)[OK]$(RESET)") || \
 	(echo "$(YELLOW)Error compiling obj: $(RED)[KO]$(RESET)" && cat < .error_log && rm -rf .error_log && exit 1)
 
+#library compilation
 $(LIBFT_LIB):
 	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)"
 	@$(MAKE)  -C $(LIBFT_DIR)  2> error_log && \
@@ -95,7 +96,6 @@ test: all
 
 valgrind: all
 	@valgrind  --leak-check=full --show-leak-kinds=all -s ./bin/cub3d map1.cub
-
 re: clean all
 
 .SILENT:
