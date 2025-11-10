@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 19:00:50 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:13:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ int	id_validation(t_cub *data, char *line)
 	{
 	}
 	len_id = first_word(line);
-	if (!ft_strncmp(line, NO_ID, len_id) && !data->no_texture->full)
+	if (!ft_strncmp(line, NO_ID, len_id))
 		process_params(line, data, NO_ID);
-	if (!ft_strncmp(line, SO_ID, len_id) && !data->so_texture->full)
+	if (!ft_strncmp(line, SO_ID, len_id))
 		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, WE_ID, len_id) && !data->we_texture->full)
-		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, EA_ID, len_id) && !data->ea_texture->full)
-		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, F_ID, len_id) && !data->f_rgb->full)
+	if (!ft_strncmp(line, WE_ID, len_id))
+		process_params(line, data, WE_ID);
+	if (!ft_strncmp(line, EA_ID, len_id))
+		process_params(line, data, EA_ID);
+	if (!ft_strncmp(line, F_ID, len_id))
 		colors_f_c(line, data, F_ID);
-	if (!ft_strncmp(line, C_ID, len_id) && !data->c_rgb->full)
+	if (!ft_strncmp(line, C_ID, len_id))
 		colors_f_c(line, data, C_ID);
 	return (0);
 }

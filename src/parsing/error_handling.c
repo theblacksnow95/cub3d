@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/08 22:39:31 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:56:32 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
 {
 	if (code == E_texture)
 	{
-		ft_printf(RST_ALL"Error:\nTexture <%s> does not exist\n", id);
+		ft_printf(RST_ALL"Error:\nTexture <%s> not correct\n", id);
 		ft_printf(CLR_RED"%s\n"CLR_RED, line);
 	}
 	if (code == E_color)

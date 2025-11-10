@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 19:01:13 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:17:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 {
 	// printf("idx: %d\n", data->i); //debug
 	// printf("val num: %d\n", num); //debug
-	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1))
+	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1)
+		&& !data->c_rgb->full)
 	{
 		if (data->i == 0)
 			data->c_rgb->r = num;
@@ -40,7 +41,7 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 		if (data->i == 2)
 		{
 			data->c_rgb->full = 1;
-			printf("rgb C full: %d\n", data->c_rgb->full); //debug
+			// printf("rgb C full: %d\n", data->c_rgb->full); //debug
 
 			return ;
 		}
@@ -53,7 +54,8 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 {
 	// printf("idx: %d\n", data->i); //debug
 	// printf("val num: %d\n", num); //debug
-	if ((num > -1 && num < 256) && !ft_strncmp(id, F_ID, 1))
+	if ((num > -1 && num < 256) && !ft_strncmp(id, F_ID, 1)
+		&& !data->f_rgb->full)
 	{
 		if (data->i == 0)
 			data->f_rgb->r = num;
@@ -64,7 +66,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 		if (data->i == 2)
 		{
 			data->f_rgb->full = 1;
-			printf("rgb F full: %d\n", data->f_rgb->full); //debug
+			// printf("rgb F full: %d\n", data->f_rgb->full); //debug
 			return ;
 		}
 	}
@@ -97,8 +99,8 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		data->i++;
 		// printf("color value: %d\n", num); // debug
 	}
-	printf("value f: %d,%d,%d\n", data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
-	printf("value c: %d,%d,%d\n", data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
+	// printf("value f: %d,%d,%d\n", data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
+	// printf("value c: %d,%d,%d\n", data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
 }
 
 void	colors_rgb(char *line, char *id, t_cub *data)
