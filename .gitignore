@@ -7,7 +7,7 @@
 # Unignore directories
 
 !*/
-/bin/cub3d
+./bin/cub3d
 cub3d
 
 .vscode
