@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 14:49:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:02:19 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ void	free_struct(t_cub *data)
 	if (data->ptr_mlx)
 		s_free(data->ptr_mlx);
 	s_free(data);
-	exit(1);
 }

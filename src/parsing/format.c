@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:22:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:17:24 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,16 @@ int	check_for_params(char *map_path, t_cub *data)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (1);
+			return (0);
 		if (id_validation(data, line))
 			data->params_cnt++;
 		if (line)
 			s_free(line);
 		printf("count: %d\n", data->params_cnt);
 		if (data->params_cnt == 6)
-		{
 			break ;
-		}
 	}
-	read_map(data, line, fd);
+	data->map = read_map(data, line, fd);
 	s_array_free(data->map);
-	return (0);
+	return (1);
 }
