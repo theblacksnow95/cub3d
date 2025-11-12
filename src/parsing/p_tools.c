@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 14:56:08 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:24:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	s_array_free(char **s)
 	int	i;
 
 	i = 0;
-	if (!s)
+	if (!s || *s == NULL)
 		return ;
 	while (s[i])
 	{
@@ -75,6 +75,8 @@ void	free_struct(t_cub *data)
 	if (!data)
 		return ;
 	clear_textures(data);
+	if (data->map)
+		s_array_free(data->map);
 	if (data->ptr_mlx)
 		s_free(data->ptr_mlx);
 }

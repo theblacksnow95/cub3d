@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 11:24:04 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:28:01 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 	}
 	else
 	{
+		data->dups = 1;
 		error_texture_path(line, E_COLOR, id, data);
 	}
 }

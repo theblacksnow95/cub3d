@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:17:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:01:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ void	s_free(void *ptr);
 void	s_array_free(char **s);
 void	error_map_param(char *line, int fd, t_ecode code);
 void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
+void	error_map(t_cub *data);
+
 
 #endif

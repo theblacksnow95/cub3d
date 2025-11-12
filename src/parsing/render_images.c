@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 14:50:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:00:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
 		error_texture_path(line, E_TEXTURE, id, data);
+		data->dups = 1;
 	}
 	if (t->id_texture)
 		t->full = 1;

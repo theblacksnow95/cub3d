@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:00:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:34:30 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_file_format_n_extention(char *file)
 		if (ft_strncmp(file, ".cub", EXTENSION_LEN))
 		{
 			ft_printf(CLR_RED"Error:\nIncorrect format [.cub] [KO]..\n"RST_ALL);
-			exit(1);
 		}
 		ft_printf(CLR_GRN"Extention is correct\n"RST_ALL);
 		return (1);

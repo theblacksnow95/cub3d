@@ -6,11 +6,20 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 15:31:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:29:38 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	error_map(t_cub *data)
+{
+	while (data->line)
+	{
+		s_free(data->line);
+		data->line = get_next_line(data->fd);
+	}
+}
 
 static int	first_word(char *line)
 {
@@ -56,8 +65,6 @@ int	check_for_params(char *map_path, t_cub *data)
 {
 
 	data->fd = open(map_path, O_RDONLY);
-	if (data->fd < 0)
-		return (0);
 	while (data->params_cnt < 6)
 	{
 		data->line = get_next_line(data->fd);
@@ -65,13 +72,20 @@ int	check_for_params(char *map_path, t_cub *data)
 			return (0);
 		if (id_validation(data, data->line))
 			data->params_cnt++;
+		if (data->dups)
+		{
+			while (data->line)
+			{
+				s_free(data->line);
+				data->line = get_next_line(data->fd);
+			}
+			return (1);
+		}
 		if (data->line)
 			s_free(data->line);
-		printf("count: %d\n", data->params_cnt); // debug
 		if (data->params_cnt == 6)
 			break ;
 	}
 	data->map = read_map(data, data->line, data->fd);
-	s_array_free(data->map);
 	return (1);
 }
