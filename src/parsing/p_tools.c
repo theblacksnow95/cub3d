@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 14:56:08 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:03:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	s_array_free(char **s)
 		return ;
 	while (s[i])
 	{
-		free(s[i]);
+		s_free(s[i]);
 		s[i] = NULL;
 		i++;
 	}
-	free(s);
+	s_free(s);
 	s = NULL;
 }
 

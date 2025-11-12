@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 15:28:05 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:03:49 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*advance_to_start(char *line, int fd)
 {
 	while (*line == '\n')
 	{
-		free(line);
+		s_free(line);
 		line = get_next_line(fd);
 	}
 	return (line);

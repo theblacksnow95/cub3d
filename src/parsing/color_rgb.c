@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 11:24:04 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:02:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	clean_line(p);
 	tmp = ft_split(p, ',');
 	// printf("%s,""%s""%s\n", *tmp, tmp[1], tmp[2]); //debug
-	free(p);
+	s_free(p);
 	valid_nums(tmp, data, id, line);
 	s_array_free(tmp);
 }
