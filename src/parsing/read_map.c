@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/11 15:19:40 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:28:05 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	print_array(char **arr)
 void	close_read(char *map_str, char *line, t_cub *data, int	fd)
 {
 	ft_printf("Error\n Map not valid.\n");
-	free(map_str);
-	free(line);
+	s_free(map_str);
+	s_free(line);
 	// if (buf)
 	// 	free(buf);
 	free_struct(data);

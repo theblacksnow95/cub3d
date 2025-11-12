@@ -6,11 +6,14 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/11 15:32:36 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:43:46 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-int	clean_and_verify(char **map, t_cub *data);
+int	clean_and_verify(char **map, t_cub *data)
+{
+
+}

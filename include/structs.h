@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 11:22:55 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:04:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_cub
 	int			img_w;
 	int			i;
 	int			fd;
+	char		*line;
 }	t_cub;
 
 #endif
