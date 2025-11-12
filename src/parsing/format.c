@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 18:29:38 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 22:28:31 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int	check_for_params(char *map_path, t_cub *data)
 		if (data->params_cnt == 6)
 			break ;
 	}
-	data->map = read_map(data, data->line, data->fd);
+	read_map(data, data->line, data->fd);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 15:03:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 22:32:40 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*advance_to_start(char *line, int fd)
 	return (line);
 }
 
-char	**read_map(t_cub *data, char *line, int fd)
+void	read_map(t_cub *data, char *line, int fd)
 {
 	char	*map_str;
 	char	*buf;
@@ -72,5 +72,6 @@ char	**read_map(t_cub *data, char *line, int fd)
 	data->map = ft_split(map_str, '\n');
 	free(map_str);
 	print_array(data->map);
-	return (data->map);
+	// add a link to flood fill
+	map_validation(data, data->map);
 }
