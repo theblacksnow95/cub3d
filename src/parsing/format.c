@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/11 15:17:24 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:19:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ int	id_validation(t_cub *data, char *line)
 int	check_for_params(char *map_path, t_cub *data)
 {
 	char	*line;
-	int		fd;
 
-	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
-		return (1);
+	data->fd = open(map_path, O_RDONLY);
+	if (data->fd < 0)
+		return (0);
 	while (data->params_cnt < 6)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		if (!line)
 			return (0);
 		if (id_validation(data, line))
@@ -73,7 +72,7 @@ int	check_for_params(char *map_path, t_cub *data)
 		if (data->params_cnt == 6)
 			break ;
 	}
-	data->map = read_map(data, line, fd);
+	data->map = read_map(data, line, data->fd);
 	s_array_free(data->map);
 	return (1);
 }

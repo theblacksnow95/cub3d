@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 11:54:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:20:21 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,20 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 {
 
 	printf("line: [%s]\n", line); // debug
-	t->id_texture = mlx_xpm_file_to_image
-		(data->ptr_mlx, line, &data->img_w, &data->img_h);
+	if (!t->id_texture || !t->full)
+		t->id_texture = mlx_xpm_file_to_image
+			(data->ptr_mlx, line, &data->img_w, &data->img_h);
 	if (!t->id_texture || t->full)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
-		error_texture_path(line, E_texture, id, data);
+		error_texture_path(line, E_TEXTURE, id, data);
 	}
-	t->full = 1;
+	if (t->id_texture)
+		t->full = 1;
 	printf("Img Id <%s> full: [%d]\n", id, t->full); // debug
 	printf("img: %p\n", t->id_texture); //debug
 }
 
-// cambiar la funcion render para pasar la estructura texture y que la tome como un argumento
 void	process_params(char *line, t_cub *data, char *id)
 {
 	line = move_line_to_path(line, id);

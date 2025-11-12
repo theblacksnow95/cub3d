@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 14:26:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:17:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_texture	*init_texture(t_texture *t)
 	texture = s_malloc(sizeof(t_texture));
 	t = texture;
 	t->full = 0;
+	t->id_texture = 0;
 	return (t);
 }
 
@@ -33,6 +34,7 @@ t_cub	*init_variables(t_cub *data)
 	data->f_rgb->full = 0;
 	data->c_rgb->full = 0;
 	data->params_cnt = 0;
+	data->fd = 0;
 	data->ptr_mlx = mlx_init();
 	return (data);
 }

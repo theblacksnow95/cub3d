@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/11 15:02:19 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:13:37 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,14 @@ void	*s_malloc(size_t bytes)
 
 static void	clear_textures(t_cub *data)
 {
-	mlx_destroy_image(data->ptr_mlx, data->no_texture->id_texture);
-	mlx_destroy_image(data->ptr_mlx, data->so_texture->id_texture);
-	mlx_destroy_image(data->ptr_mlx, data->we_texture->id_texture);
-	mlx_destroy_image(data->ptr_mlx, data->ea_texture->id_texture);
+	if (data->no_texture->id_texture)
+		mlx_destroy_image(data->ptr_mlx, data->no_texture->id_texture);
+	if (data->so_texture->full)
+		mlx_destroy_image(data->ptr_mlx, data->so_texture->id_texture);
+	if (data->we_texture->full)
+		mlx_destroy_image(data->ptr_mlx, data->we_texture->id_texture);
+	if (data->ea_texture->full)
+		mlx_destroy_image(data->ptr_mlx, data->ea_texture->id_texture);
 	s_free(data->no_texture);
 	s_free(data->so_texture);
 	s_free(data->we_texture);
@@ -73,5 +77,4 @@ void	free_struct(t_cub *data)
 	clear_textures(data);
 	if (data->ptr_mlx)
 		s_free(data->ptr_mlx);
-	s_free(data);
 }

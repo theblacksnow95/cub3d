@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:15:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:22:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_rgb
 
 typedef enum e_code
 {
-	E_texture,
-	E_color,
+	E_TEXTURE,
+	E_COLOR,
 	E_PARAM,
 	E_NO,
 	E_SO,
@@ -68,6 +68,7 @@ typedef struct s_cub
 	int			img_h;
 	int			img_w;
 	int			i;
+	int			fd;
 }	t_cub;
 
 #endif

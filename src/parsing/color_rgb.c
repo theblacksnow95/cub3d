@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:12:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:24:04 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 		}
 	}
 	else
-		error_texture_path(line, E_color, id, data);
+		error_texture_path(line, E_COLOR, id, data);
 }
 
 void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
@@ -72,7 +72,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 	}
 	else
 	{
-		error_texture_path(line, E_color, id, data);
+		error_texture_path(line, E_COLOR, id, data);
 	}
 }
 
@@ -87,7 +87,7 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		i++;
 	// printf("value of i after: %d\n", i); // debug
 	if (i != 3)
-		error_texture_path(line, E_color, id, data);
+		error_texture_path(line, E_COLOR, id, data);
 	data->i = 0;
 	while (tmp[data->i])
 	{
@@ -112,7 +112,7 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	if (!valid_rgb(p))
 	{
 		// printf("return code [%d]\n", valid_rgb(p)); // debug
-		error_texture_path(p, E_color, id, data);
+		error_texture_path(p, E_COLOR, id, data);
 	}
 	// printf("passed the valid_rgb: %s\n", p); // debug
 	clean_line(p);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/10 11:56:32 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:35:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 
 void	error_map_param(char *line, int fd, t_ecode code)
 {
+	int	i;
+
+	i = 0;
 	if (code == E_PARAM)
 	{
 		ft_printf(CLR_RED"Incorrect id check: %s\n"RST_ALL, line);
+		while (i < 8)
+		{
+			line--;
+			i++;
+		}
+		printf("check line after: %s\n", line);
 		while (line)
 		{
-			free(line);
 			line = get_next_line(fd);
 		}
 	}
@@ -28,15 +36,17 @@ void	error_map_param(char *line, int fd, t_ecode code)
 
 void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
 {
-	if (code == E_texture)
+	if (code == E_TEXTURE)
 	{
 		ft_printf(RST_ALL"Error:\nTexture <%s> not correct\n", id);
 		ft_printf(CLR_RED"%s\n"CLR_RED, line);
 	}
-	if (code == E_color)
+	if (code == E_COLOR)
 	{
 		ft_printf(RST_ALL"Error:\nIncorrect <%s> coordinates\n", id);
 		ft_printf(CLR_RED"%s\n"CLR_RED, line);
 	}
+	// error_map_param(line, data->fd, E_PARAM);
 	free_struct(data);
+	exit(1);
 }
