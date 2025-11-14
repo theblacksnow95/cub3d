@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 22:28:01 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:49:17 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <string.h>
 # include <mlx.h>
 # include <errno.h>
-# include "libft.h"
 # include <ctype.h>
+# include <stdbool.h>
+# include "libft.h"
 # include "structs.h"
 
 # define RST_ALL          "\x1b[0m"
@@ -47,6 +48,7 @@ int		check_data_map(char *file_name, t_cub *data);
 int		ft_isspace(int s);
 void	*s_malloc(size_t bytes);
 void	free_struct(t_cub *data);
+void	print_array(char **arr);
 
 
 // init
@@ -59,7 +61,8 @@ void	colors_f_c(char *line, t_cub *data, char *id);
 int		valid_rgb(char *s);
 void	clean_line(char *s);
 void	read_map(t_cub *data, char *line, int fd);
-
+int		locate_player(t_cub *data);
+int		map_validation(char **map, int y, int x);
 
 
 

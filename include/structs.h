@@ -6,13 +6,20 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 17:46:04 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 16:20:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 
 # define STRUCTS_H
+
+typedef struct s_flood
+{
+	bool	done;
+	bool	error;
+}	t_flood;
+
 
 // Para guardar cada textura en un puntero void con un flag de si ya se ha
 // cargado, va a cambiar
@@ -41,12 +48,7 @@ typedef enum e_code
 	E_TEXTURE,
 	E_COLOR,
 	E_PARAM,
-	E_NO,
-	E_SO,
-	E_WE,
-	E_EA,
-	E_F,
-	E_C,
+	E_MAP
 }	t_ecode;
 
 // Estructura principal que usa punteros con punteros a otras estructuras
@@ -71,6 +73,8 @@ typedef struct s_cub
 	int			fd;
 	char		*line;
 	int			dups;
+	int			x_p;
+	int			y_p;
 }	t_cub;
 
 #endif

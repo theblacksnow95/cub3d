@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 22:32:40 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:30:41 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_array(char **arr)
 	printf("\n");
 }
 
-void	close_read(char *map_str, char *line, t_cub *data, int	fd)
+void	close_read(char *map_str, char *line, t_cub *data, int fd)
 {
 	ft_printf("Error\n Map not valid.\n");
 	s_free(map_str);
@@ -73,5 +73,6 @@ void	read_map(t_cub *data, char *line, int fd)
 	free(map_str);
 	print_array(data->map);
 	// add a link to flood fill
-	map_validation(data, data->map);
+	// locate_player(data);
+	// map_validation(data->map, data->y_p, data->x_p);
 }

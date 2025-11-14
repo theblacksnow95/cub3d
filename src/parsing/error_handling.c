@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 18:13:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 16:22:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 void	error_map_param(char *line, int fd, t_ecode code)
 {
-	// int	i;
 
-	// i = 0;
 	if (code == E_PARAM)
 	{
 		ft_printf(CLR_RED"Incorrect id check: %s\n"RST_ALL, line);
-		// while (i < 9)
-		// {
-		// 	line--;
-		// 	i++;
-		// }
 		while (line != NULL)
 		{
 			line = get_next_line(fd);
@@ -46,6 +39,10 @@ void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
 	{
 		ft_printf(RST_ALL"Error:\nIncorrect <%s> coordinates\n", id);
 		ft_printf(CLR_RED"%s\n"CLR_RED, line);
+	}
+	if (code == E_MAP)
+	{
+		ft_printf(RST_ALL"Erro\nIncorrect map: %s\n", data->map_path);
 	}
 	// while (data->line)
 	// {

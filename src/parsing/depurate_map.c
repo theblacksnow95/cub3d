@@ -6,13 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 22:36:23 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 16:12:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 char	**copy_map(char **map)
 {
@@ -42,48 +40,45 @@ char	**copy_map(char **map)
 	return (map_copy);
 }
 
-void	flood(char **map, int y, int x, t_flood *state)
+void	flood(char **map, int y, int x, t_flood *fill)
 {
 	if (y < 0 || x < 0 || map[y][x] == '\0' || map[y][x] == '1')
 		return ;
-	if (map[y][x] == 'V' || map[y][x] == '1')
+	if (map[y][x] == 'V' || map[y][x] == '1' )
 		return ;
-	if (map[y][x] == 'E' )
+	if (map[y][x] == ' ' && (map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
 	{
-		state->exit_reached = 1;
+		fill->error = true;
+		printf("fill: [%d]\n", fill->error); //debug
 		return ;
 	}
 	map[y][x] = 'V';
-	flood(map, y - 1, x, state);
-	flood(map, y + 1, x, state);
-	flood(map, y, x - 1, state);
-	flood(map, y, x + 1, state);
+	flood(map, y - 1, x, fill);
+	flood(map, y + 1, x, fill);
+	flood(map, y, x - 1, fill);
+	flood(map, y, x + 1, fill);
 }
 
-int	map_validation(char **map, int y, int x, int coins)
+int	map_validation(char **map, int y, int x)
 {
 	int			i;
 	char		**map_copy;
-	t_flood		state;
+	t_flood		fill;
 
 	i = 0;
-	state.collected = 0;
-	state.exit_reached = 0;
-	state.total_collectibles = coins;
+
 	map_copy = copy_map(map);
 	if (!map_copy)
-		exit(1);
-	flood(map_copy, y, x, &state);
+		return (1);
+	flood(map_copy, y, x, &fill);
+	print_array(map_copy);
+	printf("fill: [%d]\n", fill.error); //debug
 	while (map_copy[i])
 	{
 		free(map_copy[i]);
 		i++;
 	}
 	free(map_copy);
-	if (state.collected != state.total_collectibles)
-		return (0);
-	if (!state.exit_reached)
-		return (0);
 	return (1);
 }
 

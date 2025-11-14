@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 18:34:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/14 16:43:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * This function checks that the file is correct, verifying that it is not a
  * folder and that the format is valid. The extension must be [".cub"]
  *
- * On error it returns 1.
+ * On error it returns 0.
  * @param file The path to the file, must be equal to argv[1]
 */
 int	check_file_format_n_extention(char *file)
@@ -37,10 +37,12 @@ int	check_file_format_n_extention(char *file)
 		if (ft_strncmp(file, ".cub", EXTENSION_LEN))
 		{
 			ft_printf(CLR_RED"Error:\nIncorrect format [.cub] [KO]..\n"RST_ALL);
+			return (0);
 		}
-		ft_printf(CLR_GRN"Extention is correct\n"RST_ALL);
-		return (1);
+		else
+			return (ft_printf(CLR_GRN"Extention is correct\n"RST_ALL), 1);
 	}
+	close (fd);
 	return (1);
 }
 
