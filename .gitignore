@@ -7,6 +7,7 @@
 # Unignore directories
 
 !*/
+
 ./bin/cub3d
 cub3d
 
