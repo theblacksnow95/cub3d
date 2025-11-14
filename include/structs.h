@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/09 00:31:11 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/11 10:51:26 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ typedef struct s_player
 }			t_player;
 
 /*	struct para los parametros de minilibx
-	contexto, ventana, imagen, puntero a bytes*/
+	contexto, ventana, imagen, puntero a bytes
+	addr → 			puntero a la dirección de memoria del buffer de la imagen.
+	bpp → 			bits por pixel.
+	line_len → 		cuántos bytes ocupa una fila de la imagen.
+	*/
 typedef struct s_mlx
 {
 	void	*mlx;

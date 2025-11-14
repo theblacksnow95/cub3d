@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/09 01:37:53 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/14 22:10:56 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,29 @@
 # include "mlx.h"
 # include "structs.h"
 
-# define RST_ALL          "\x1b[0m"
-# define CLR_RED          "\x1b[31m"
-# define CLR_GRN          "\x1b[32m"
-# define CLR_YLLW         "\x1b[33m"
-# define CLR_BLUE         "\x1b[34m"
+# define RST			"\x1b[0m"
+# define CLR_RED		"\x1b[31m"
+# define CLR_GRN		"\x1b[32m"
+# define CLR_YLLW		"\x1b[33m"
+# define CLR_BLUE		"\x1b[34m"
 
-# define WIN_W 800
-# define WIN_H 600
+# define WIN_W			900
+# define WIN_H			600
+# define TILE_SIZE		16
 
-# define NO_ID          "NO"
-# define SO_ID          "SO"
-# define WE_ID          "WE"
-# define EA_ID          "EA"
-# define F_ID           "F"
-# define C_ID           "C"
+# define LEFT			65361
+# define RIGHT			65363
+# define TOUCH_A		97
+# define TOUCH_S		115
+# define TOUCH_D		100
+# define TOUCH_W		119
+
+# define NO_ID			"NO"
+# define SO_ID			"SO"
+# define WE_ID			"WE"
+# define EA_ID			"EA"
+# define F_ID			"F"
+# define C_ID			"C"
 
 # define EXTENSION_LEN   4
 
@@ -71,6 +79,7 @@ int     key_press(int keycode, t_game *game);
 
 // dibujo
 void	draw_pixel(t_mlx *mlx, int x, int y, int color);
+int		draw_map(t_game *game);
 void	clear_window(t_mlx *mlx, int color);
 
 /*A MODO SUGERENCIA ...
