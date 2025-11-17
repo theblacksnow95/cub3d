@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_tools.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/14 15:22:35 by emurillo          #+#    #+#             */
+/*   Updated: 2025/11/14 16:25:46 by emurillo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	is_player(char c);
+
+int	is_valid(char c)
+{
+	if (is_player(c) || c == '1' || c == '0' || c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
+
+int	is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int	locate_player(t_cub *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (is_player(data->map[y][x]))
+			{
+				data->x_p = x;
+				data->y_p = y;
+				printf("Player position: map[%d][%d]\n", data->y_p, data->x_p); // debug
+				return (1);
+			}
+			if (!is_valid(data->map[y][x]))
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+

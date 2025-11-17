@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/06 09:48:46 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:21:03 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	error_map(t_cub *data)
+{
+	while (data->line)
+	{
+		s_free(data->line);
+		data->line = get_next_line(data->fd);
+	}
+}
 
 static int	first_word(char *line)
 {
@@ -32,48 +41,51 @@ int	id_validation(t_cub *data, char *line)
 	int	len_id;
 
 	if (!line)
-		return (1);
+		return (0);
 	while (ft_isspace(*line) && line++)
 	{
 	}
 	len_id = first_word(line);
-	if (!ft_strncmp(line, NO_ID, len_id) && !data->no_texture->full)
+	if (!ft_strncmp(line, NO_ID, len_id))
 		process_params(line, data, NO_ID);
-	if (!ft_strncmp(line, SO_ID, len_id) && !data->so_texture->full)
+	if (!ft_strncmp(line, SO_ID, len_id))
 		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, WE_ID, len_id) && !data->we_texture->full)
-		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, EA_ID, len_id) && !data->ea_texture->full)
-		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, F_ID, len_id) && !data->f_rgb->full)
+	if (!ft_strncmp(line, WE_ID, len_id))
+		process_params(line, data, WE_ID);
+	if (!ft_strncmp(line, EA_ID, len_id))
+		process_params(line, data, EA_ID);
+	if (!ft_strncmp(line, F_ID, len_id))
 		colors_f_c(line, data, F_ID);
-	if (!ft_strncmp(line, C_ID, len_id) && !data->c_rgb->full)
+	if (!ft_strncmp(line, C_ID, len_id))
 		colors_f_c(line, data, C_ID);
-		//funcion para checkear colores y texturas si todo es full
-	return (0);
+	return (1);
 }
 
 int	check_for_params(char *map_path, t_cub *data)
 {
-	char	*line;
-	int		fd;
 
-	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	// check de lineas duplicadas a anadir
+	data->fd = open(map_path, O_RDONLY);
 	while (data->params_cnt < 6)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			return (1);
-		id_validation(data, line);
-		if (line)
-			s_free(line);
-		if (data->params_cnt == 6)
+		data->line = get_next_line(data->fd);
+		if (!data->line)
+			return (0);
+		if (id_validation(data, data->line))
+			data->params_cnt++;
+		if (data->dups)
 		{
-			break ;
+			while (data->line)
+			{
+				s_free(data->line);
+				data->line = get_next_line(data->fd);
+			}
+			return (1);
 		}
+		if (data->line)
+			s_free(data->line);
+		if (data->params_cnt == 6)
+			break ;
 	}
-	return (0);
+	read_map(data, data->line, data->fd);
+	return (1);
 }

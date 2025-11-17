@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/06 09:51:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:15:21 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 // static int	expect(char *s, char c)
 // {
@@ -26,44 +25,12 @@
 // 	return (0);
 // }
 
-static int	valid_rgb(char *s)
-{
-	char		*tmp;
-
-	tmp = s;
-	while (*tmp++)
-	{
-		if (*tmp == '\n')
-			*tmp = '\0';
-	}
-	while (*tmp)
-	{
-		if (ft_isdigit(*tmp)
-			|| *tmp == ',' || *tmp == 32
-			|| *tmp == '\t')
-		{
-			tmp++;
-		}
-		// if (*tmp == ')')
-		// 	if (!expect(tmp, '('))
-		// 		return (0);
-		// if (*tmp == '(')
-		// {
-		// 	if (!expect(tmp, ')'))
-		// 		return (0);
-		// }
-		else
-		{
-			// printf("here [%c]", *tmp);
-			return (0);
-		}
-	}
-	return (1);
-}
-
 void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 {
-	if ((num > -1 && num < 256) && ft_strncmp(id, F_ID, 1))
+	// printf("idx: %d\n", data->i); //debug
+	// printf("val num: %d\n", num); //debug
+	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1)
+		&& !data->c_rgb->full)
 	{
 		if (data->i == 0)
 			data->c_rgb->r = num;
@@ -71,20 +38,24 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 			data->c_rgb->g = num;
 		if (data->i == 2)
 			data->c_rgb->b = num;
-		if (data->i == 3)
+		if (data->i == 2)
 		{
 			data->c_rgb->full = 1;
+			// printf("rgb C full: %d\n", data->c_rgb->full); //debug
+
 			return ;
 		}
-		data->i++;
 	}
 	else
-		error_texture_path(line, E_color, id, data);
+		error_texture_path(line, E_COLOR, id, data);
 }
 
 void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 {
-	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1))
+	// printf("idx: %d\n", data->i); //debug
+	// printf("val num: %d\n", num); //debug
+	if ((num > -1 && num < 256) && !ft_strncmp(id, F_ID, 1)
+		&& !data->f_rgb->full)
 	{
 		if (data->i == 0)
 			data->f_rgb->r = num;
@@ -92,15 +63,18 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 			data->f_rgb->g = num;
 		if (data->i == 2)
 			data->f_rgb->b = num;
-		if (data->i == 3)
+		if (data->i == 2)
 		{
 			data->f_rgb->full = 1;
+			// printf("rgb F full: %d\n", data->f_rgb->full); //debug
 			return ;
 		}
-		data->i++;
 	}
 	else
-		error_texture_path(line, E_color, id, data);
+	{
+		data->dups = 1;
+		error_texture_path(line, E_COLOR, id, data);
+	}
 }
 
 void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
@@ -112,20 +86,22 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 	i = 0;
 	while (tmp[i])
 		i++;
+	// printf("value of i after: %d\n", i); // debug
 	if (i != 3)
-		error_texture_path(line, E_color, id, data);
+		error_texture_path(line, E_COLOR, id, data);
 	data->i = 0;
-	tmp = 0;
-	while (*tmp)
+	while (tmp[data->i])
 	{
-		num = ft_atoi(*tmp);
+		num = ft_atoi(tmp[data->i]);
 		if (!ft_strncmp(id, F_ID, 1))
 			fill_f_rgb(data, line, id, num);
 		if (!ft_strncmp(id, C_ID, 1))
 			fill_c_rgb(data, line, id, num);
-		printf("color value: %d\n", num);
-		tmp++;
+		data->i++;
+		// printf("color value: %d\n", num); // debug
 	}
+	// printf("value f: %d,%d,%d\n", data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
+	// printf("value c: %d,%d,%d\n", data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
 }
 
 void	colors_rgb(char *line, char *id, t_cub *data)
@@ -134,21 +110,17 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	char	*p;
 
 	p = ft_strdup(line);
-	printf("here!!\n");
 	if (!valid_rgb(p))
 	{
-		printf("return code [%d]\n", valid_rgb(p));
-		error_texture_path(line, E_color, id, data);
+		// printf("return code [%d]\n", valid_rgb(p)); // debug
+		error_texture_path(p, E_COLOR, id, data);
 	}
-	while (*p)
-	{
-		if (*p == '(' || *p == ')'
-			|| *p == ' ' || *p == '\t')
-			*p = ',';
-		p++;
-	}
-	tmp = ft_split(line, ',');
+	// printf("passed the valid_rgb: %s\n", p); // debug
+	clean_line(p);
+	tmp = ft_split(p, ',');
+	// printf("%s,""%s""%s\n", *tmp, tmp[1], tmp[2]); //debug
+	s_free(p);
 	valid_nums(tmp, data, id, line);
-	free(tmp);
+	s_array_free(tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/15 00:26:12 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/17 15:17:30 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # define KEY_LEFT 65361
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
+
+typedef struct s_flood
+{
+	bool	done;
+	bool	error;
+}	t_flood;
+
 
 // Para guardar cada textura en un puntero void con un flag de si ya se ha
 // cargado, va a cambiar
@@ -44,15 +51,10 @@ typedef struct s_rgb
 // Codidos de errores que uso para las texturas, va a cambiar
 typedef enum e_code
 {
-	E_texture,
-	E_color,
+	E_TEXTURE,
+	E_COLOR,
 	E_PARAM,
-	E_NO,
-	E_SO,
-	E_WE,
-	E_EA,
-	E_F,
-	E_C,
+	E_MAP
 }	t_ecode;
 
 // Estructura principal que usa punteros con punteros a otras estructuras
@@ -60,6 +62,7 @@ typedef struct s_cub
 {
 	int			params_cnt;
 	char		*map_path;
+	char		**map;
 	void		*ptr_mlx;
 	void		*win_ptr;
 	t_texture	*no_texture;
@@ -68,9 +71,15 @@ typedef struct s_cub
 	t_texture	*ea_texture;
 	t_rgb		*f_rgb;
 	t_rgb		*c_rgb;
+	int			params_full;
 	int			img_h;
 	int			img_w;
 	int			i;
+	int			fd;
+	char		*line;
+	int			dups;
+	int			x_p;
+	int			y_p;
 }	t_cub;
 
 /* a modo sugerencia para el parsing del mapa...

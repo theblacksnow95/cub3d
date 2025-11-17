@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/15 00:09:25 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/17 15:18:11 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <math.h>
 # include <string.h>
 # include <errno.h>
-# include "libft.h"
 # include <ctype.h>
+# include <stdbool.h>
+# include "libft.h"
 # include "mlx.h"
 # include "structs.h"
 
@@ -57,6 +58,7 @@ int		check_data_map(char *file_name, t_cub *data);
 int		ft_isspace(int s);
 void	*s_malloc(size_t bytes);
 void	free_struct(t_cub *data);
+void	print_array(char **arr);
 
 
 // init
@@ -65,9 +67,17 @@ void	process_params(char *line, t_cub *data, char *id);
 void	colors_rgb(char *line, char *id, t_cub *data);
 int		check_for_params(char *map_path, t_cub *data);
 void	colors_f_c(char *line, t_cub *data, char *id);
+int		valid_rgb(char *s);
+void	clean_line(char *s);
+void	read_map(t_cub *data, char *line, int fd);
+int		locate_player(t_cub *data);
+int		map_validation(char **map, int y, int x);
+
+
 
 // error handling and frees
 void	s_free(void *ptr);
+void	s_array_free(char **s);
 void	error_map_param(char *line, int fd, t_ecode code);
 void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
 
