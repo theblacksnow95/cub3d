@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 15:49:17 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:50:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	clean_line(char *s);
 void	read_map(t_cub *data, char *line, int fd);
 int		locate_player(t_cub *data);
 int		map_validation(char **map, int y, int x);
+void 	validate_map(t_cub *data);
 
 
 

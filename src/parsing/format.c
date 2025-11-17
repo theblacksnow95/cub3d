@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 22:28:31 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:42:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ static int	first_word(char *line)
 	return (ret);
 }
 
+int	not_id_present(char *line, int	len, t_cub *data)
+{
+	if (!ft_strncmp(line, NO_ID, len)
+		|| !ft_strncmp(line, SO_ID, len)
+		|| !ft_strncmp(line, WE_ID, len)
+		|| !ft_strncmp(line, EA_ID, len)
+		|| !ft_strncmp(line, F_ID, len)
+		|| !ft_strncmp(line, C_ID, len))
+		return (0);
+	else
+	{
+		data->dups = 1;
+		return (1);
+	}
+}
+
 int	id_validation(t_cub *data, char *line)
 {
 	int	len_id;
@@ -58,6 +74,8 @@ int	id_validation(t_cub *data, char *line)
 		colors_f_c(line, data, F_ID);
 	if (!ft_strncmp(line, C_ID, len_id))
 		colors_f_c(line, data, C_ID);
+	else if (not_id_present(line, len_id, data))
+		return (0);
 	return (1);
 }
 

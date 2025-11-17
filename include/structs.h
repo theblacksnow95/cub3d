@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 16:20:36 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:44:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_cub
 	int			dups;
 	int			x_p;
 	int			y_p;
+	int			ply;
 }	t_cub;
 
 #endif

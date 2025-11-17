@@ -6,11 +6,22 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 17:30:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:50:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	empty_line(char *s)
+{
+	while (*s != '\n')
+	{
+		if (*s != ' ' && *s != '\n'  && *s != '\t')
+			return (0);
+		s++;
+	}
+	return (1);
+}
 
 void	print_array(char **arr)
 {
@@ -46,6 +57,8 @@ char	*advance_to_start(char *line, int fd)
 	{
 		s_free(line);
 		line = get_next_line(fd);
+		if (!line)
+			return (NULL);
 	}
 	return (line);
 }
@@ -58,9 +71,11 @@ void	read_map(t_cub *data, char *line, int fd)
 	map_str = ft_strdup("");
 	line = get_next_line(fd);
 	line = advance_to_start(line, fd);
+	if (!line)
+		close_read(map_str, line, data, fd);
 	while (line)
 	{
-		if (line[0] == '\n')
+		if (empty_line(line))
 			close_read(map_str, line, data, fd);
 		buf = map_str;
 		map_str = ft_strjoin(map_str, line);
@@ -73,6 +88,7 @@ void	read_map(t_cub *data, char *line, int fd)
 	free(map_str);
 	print_array(data->map);
 	// add a link to flood fill
-	// locate_player(data);
+	locate_player(data);
+	validate_map(data);
 	// map_validation(data->map, data->y_p, data->x_p);
 }
