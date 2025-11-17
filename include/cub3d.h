@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:18:11 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/17 23:25:26 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
 int		game_loop(t_game *game);
 int     close_windows(t_game *game);
 int     key_press(int keycode, t_game *game);
-
+void	init_player(t_game *game);
 
 // dibujo
 void	draw_pixel(t_mlx *mlx, int x, int y, int color);
 int		draw_map(t_game *game);
 void	clear_window(t_mlx *mlx, int color);
+int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 //	utils
 void	destroy(t_game *game);

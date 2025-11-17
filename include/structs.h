@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:17:30 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/17 22:12:02 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,6 @@ typedef struct s_cub
 	int			x_p;
 	int			y_p;
 }	t_cub;
-
-/* a modo sugerencia para el parsing del mapa...
-// for map_parser.c
-typedef struct s_map {
-    char	**grid;
-    int		width;
-    int		height;
-    int		player_x;
-    int		player_y;
-    char	player_dir;
-} 			t_map;*/
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player

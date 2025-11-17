@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:05:59 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/15 00:20:23 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/17 23:04:48 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,12 @@ void	destroy(t_game *game)
 		mlx_destroy_display(game->mlx.mlx);
 		free(game->mlx.mlx);
 	}
+}
+
+/*  funcion para cerrar la ventana con escape */
+int	close_windows(t_game *game)
+{
+	destroy(game);
+    exit(0);
+    return (0);
 }

@@ -8,7 +8,8 @@ NAME        = cub3D
 SRC         = src/main.c \
 			  src/events/game_start.c \
 			  src/render/draw_map.c \
-			  src/utils/free_and_destroy.c
+			  src/utils/free_and_destroy.c \
+			  src/render/player.c
 
 # Directories
 INC         = include
