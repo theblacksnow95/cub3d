@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 22:10:56 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/15 00:09:25 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ int     key_press(int keycode, t_game *game);
 void	draw_pixel(t_mlx *mlx, int x, int y, int color);
 int		draw_map(t_game *game);
 void	clear_window(t_mlx *mlx, int color);
+
+//	utils
+void	destroy(t_game *game);
+
 
 /*A MODO SUGERENCIA ...
 
