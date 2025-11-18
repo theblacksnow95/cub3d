@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 11:31:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:06:18 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	read_map(t_cub *data, char *line, int fd)
 	close(fd);
 	data->map = ft_split(map_str, '\n');
 	free(map_str);
-	print_array(data->map);
+	// print_array(data->map); // debug
 	// add a link to flood fill
 	validate_map(data);
 	// map_validation(data->map, data->y_p, data->x_p);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 13:12:23 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:03:39 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	id_validation(t_cub *data, char *line)
 	int	len_id;
 
 	if (!line)
+		return (0);
+	if (*line == '\n')
 		return (0);
 	while (ft_isspace(*line) && line++)
 	{

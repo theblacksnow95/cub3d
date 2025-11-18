@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 11:48:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:06:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	validate_map(t_cub *data)
 		error_handler(data->line, E_MAP, NO_ID, data);
 		free_exit(data);
 	}
+	ft_printf(CLR_GRN"MAP <%s> CORRECT\n"RST_ALL, data->map_path);
 }
