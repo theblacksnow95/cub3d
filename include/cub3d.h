@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:50:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:12:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define EA_ID          "EA"
 # define F_ID           "F"
 # define C_ID           "C"
+# define EMPTY_ID          ""
 
 # define EXTENSION_LEN   4
 
@@ -62,8 +63,8 @@ int		valid_rgb(char *s);
 void	clean_line(char *s);
 void	read_map(t_cub *data, char *line, int fd);
 int		locate_player(t_cub *data);
-int		map_validation(char **map, int y, int x);
-void 	validate_map(t_cub *data);
+int		fill_validation(char **map, int y, int x);
+void	validate_map(t_cub *data);
 
 
 
@@ -72,8 +73,8 @@ void 	validate_map(t_cub *data);
 void	s_free(void *ptr);
 void	s_array_free(char **s);
 void	error_map_param(char *line, int fd, t_ecode code);
-void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data);
+void	error_handler(char *line, t_ecode code, char *id, t_cub *data);
 void	error_map(t_cub *data);
-
+void	free_exit(t_cub *data);
 
 #endif

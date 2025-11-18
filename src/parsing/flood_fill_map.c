@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   depurate_map.c                                     :+:      :+:    :+:   */
+/*   flood_fill_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 12:42:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 11:53:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	**copy_map(char **map)
+static char	**copy_map(char **map)
 {
 	int		i;
 	char	**map_copy;
@@ -40,11 +40,11 @@ char	**copy_map(char **map)
 	return (map_copy);
 }
 
-void	flood(char **map, int y, int x, t_flood *fill)
+static void	flood(char **map, int y, int x, t_flood *fill)
 {
 	if (fill->error == true)
-		return;
-	if (y < 0 || x < 0 || !map[y]|| !map[y][x])
+		return ;
+	if (y < 0 || x < 0 || !map[y] || !map[y][x])
 	{
 		fill->error = true;
 		return ;
@@ -58,27 +58,21 @@ void	flood(char **map, int y, int x, t_flood *fill)
 	flood(map, y, x + 1, fill);
 }
 
-int	map_validation(char **map, int y, int x)
+int	fill_validation(char **map, int y, int x)
 {
-	int			i;
 	char		**map_copy;
 	t_flood		fill;
-
-	i = 0;
 
 	fill.error = false;
 	map_copy = copy_map(map);
 	if (!map_copy)
 		return (1);
 	flood(map_copy, y, x, &fill);
+	printf("Flag floof_fill: [%d]\n", fill.error); // debug
 	print_array(map_copy);
-	printf("fill: [%d]\n", fill.error); //debug
-	while (map_copy[i])
-	{
-		free(map_copy[i]);
-		i++;
-	}
-	free(map_copy);
-	return (1);
+	s_array_free(map_copy);
+	if (fill.error)
+		return (1);
+	return (0);
 }
 

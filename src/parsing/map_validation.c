@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_map.c                                        :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 16:10:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 11:48:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_exit(t_cub *data)
+{
+	if (data)
+	{
+		free_struct(data);
+		data = NULL;
+		exit (1);
+	}
+}
 
 int	is_valid_char(char c, t_cub *data)
 {
@@ -32,7 +42,7 @@ int	valid_chars(t_cub *data, char **map, int y, int x)
 		x = 0;
 		while (map[y][x])
 		{
-			if (!is_valid_char(map[y][x], data) && data->ply > 1)
+			if (!is_valid_char(map[y][x], data) || data->ply > 1)
 				return (ft_printf("Error\nInvalid map\n"), 0); //debug
 			x++;
 		}
@@ -50,7 +60,13 @@ void	validate_map(t_cub *data)
 	x = 0;
 	if (!valid_chars(data, data->map, y, x))
 	{
-		free_struct(data);
+		free_exit(data);
 		return ;
+	}
+	locate_player(data);
+	if (fill_validation(data->map, data->y_p, data->x_p))
+	{
+		error_handler(data->line, E_MAP, NO_ID, data);
+		free_exit(data);
 	}
 }

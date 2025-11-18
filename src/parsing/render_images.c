@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 18:00:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:13:46 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ void	colors_f_c(char *line, t_cub *data, char *id)
 static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 {
 
-	printf("line: [%s]\n", line); // debug
+	// printf("line: [%s]\n", line); // debug
 	if (!t->id_texture || !t->full)
 		t->id_texture = mlx_xpm_file_to_image
 			(data->ptr_mlx, line, &data->img_w, &data->img_h);
 	if (!t->id_texture || t->full)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
-		error_texture_path(line, E_TEXTURE, id, data);
+		error_handler(line, E_TEXTURE, id, data);
 		data->dups = 1;
 	}
 	if (t->id_texture)
 		t->full = 1;
 	printf("Img Id <%s> full: [%d]\n", id, t->full); // debug
-	printf("img: %p\n", t->id_texture); //debug
+	// // printf("img: %p\n", t->id_texture); //debug
 }
 
 void	process_params(char *line, t_cub *data, char *id)

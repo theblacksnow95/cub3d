@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:44:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:09:56 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef enum e_code
 	E_TEXTURE,
 	E_COLOR,
 	E_PARAM,
-	E_MAP
+	E_MAP,
+	E_NO_ID
 }	t_ecode;
 
 // Estructura principal que usa punteros con punteros a otras estructuras

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:50:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 11:31:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	empty_line(char *s)
 {
 	while (*s != '\n')
 	{
-		if (*s != ' ' && *s != '\n'  && *s != '\t')
+		if (*s != ' ' && *s != '\n' && *s != '\t')
 			return (0);
 		s++;
 	}
@@ -88,7 +88,6 @@ void	read_map(t_cub *data, char *line, int fd)
 	free(map_str);
 	print_array(data->map);
 	// add a link to flood fill
-	locate_player(data);
 	validate_map(data);
 	// map_validation(data->map, data->y_p, data->x_p);
 }

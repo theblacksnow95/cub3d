@@ -7,8 +7,8 @@ CC = gcc
 
 SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
 		src/parsing/render_images.c src/parsing/init_var.c src/parsing/color_rgb.c src/parsing/format.c \
-		src/parsing/tools_rgb.c src/parsing/read_map.c src/parsing/map_tools.c src/parsing/depurate_map.c \
-		src/parsing/clean_map.c
+		src/parsing/tools_rgb.c src/parsing/read_map.c src/parsing/map_tools.c src/parsing/flood_fill_map.c \
+		src/parsing/map_validation.c
 
 # ================== DIRECTORIES ========================================================================
 
@@ -96,7 +96,7 @@ test: all
 	@./bin/cub3d map1.cub
 
 valgrind: all
-	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log -s ./bin/cub3d map1.cub
+	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-fds=yes -s ./bin/cub3d map1.cub
 re: clean all
 
 .SILENT:
