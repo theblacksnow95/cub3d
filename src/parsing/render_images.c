@@ -6,11 +6,13 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 13:13:46 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:27:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
 
 static char	*move_line_to_path(char *line, char *id)
 {
@@ -52,7 +54,7 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 	}
 	if (t->id_texture)
 		t->full = 1;
-	printf("Img Id <%s> full: [%d]\n", id, t->full); // debug
+	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full); // debug
 	// // printf("img: %p\n", t->id_texture); //debug
 }
 

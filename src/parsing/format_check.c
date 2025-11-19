@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 14:57:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:30:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_file_format_n_extention(char *file)
 		close(fd);
 		return (0);
 	}
-	ft_printf(CLR_GRN"Extention is correct\n"RST_ALL);
+	ft_printf(CLR_GRN"Extention is correct\n\n"RST_ALL);
 	close(fd);
 	return (1);
 }

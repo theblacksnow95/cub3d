@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 16:03:39 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:14:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	not_id_present(char *line, int len, t_cub *data)
 		|| !ft_strncmp(line, WE_ID, len)
 		|| !ft_strncmp(line, EA_ID, len)
 		|| !ft_strncmp(line, F_ID, len)
-		|| !ft_strncmp(line, C_ID, len))
+		|| !ft_strncmp(line, C_ID, len)
+		|| empty_line(line))
 		return (0);
 	else
 	{
@@ -59,7 +60,7 @@ int	id_validation(t_cub *data, char *line)
 
 	if (!line)
 		return (0);
-	if (*line == '\n')
+	if (empty_line(line))
 		return (0);
 	while (ft_isspace(*line) && line++)
 	{

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 16:06:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:26:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_array(char **arr)
 		return ;
 	while (*arr)
 	{
-		printf("%s\n", *arr);
+		ft_printf(CLR_BLUE"%s\n"RST_ALL, *arr);
 		arr++;
 	}
 	printf("\n");
@@ -37,7 +37,8 @@ void	print_array(char **arr)
 
 void	close_read(char *map_str, char *line, t_cub *data, int fd)
 {
-	ft_printf("Error\n Map not valid.\n");
+	printf("trigger close_read()\n");
+	error_handler(NULL, E_MAP, EMPTY_ID, data);
 	s_free(map_str);
 	s_free(line);
 	// if (buf)
@@ -53,7 +54,7 @@ void	close_read(char *map_str, char *line, t_cub *data, int fd)
 
 char	*advance_to_start(char *line, int fd)
 {
-	while (*line == '\n')
+	while (empty_line(line))
 	{
 		s_free(line);
 		line = get_next_line(fd);

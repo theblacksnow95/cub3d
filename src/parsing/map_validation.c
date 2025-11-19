@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 16:06:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:23:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	valid_chars(t_cub *data, char **map, int y, int x)
 		while (map[y][x])
 		{
 			if (!is_valid_char(map[y][x], data) || data->ply > 1)
-				return (ft_printf("Error\nInvalid map\n"), 0); //debug
+				return (error_handler(NULL, E_MAP, EMPTY_ID, data), 0);
 			x++;
 		}
 		y++;

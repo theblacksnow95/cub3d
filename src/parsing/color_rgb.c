@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 11:57:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:30:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 	}
 	if (data->c_rgb->full && data->f_rgb->full)
 	{
-		printf("value f: %d,%d,%d\n", data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
-		printf("value c: %d,%d,%d\n", data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
+		printf(CLR_BLUE"value f: %d,%d,%d\n"RST_ALL, data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
+		printf(CLR_BLUE"value c: %d,%d,%d\n\n"RST_ALL, data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
 	}
 }
 
