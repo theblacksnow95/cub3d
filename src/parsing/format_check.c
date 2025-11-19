@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:30:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:44:01 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_file_format_n_extention(char *file)
 	fd = open(file, O_RDWR);
 	if (fd == -1)
 	{
-		ft_printf(CLR_RED "Error: \n%s\n" RST_ALL, strerror(errno));
+		ft_printf(CLR_RED "Error: %s\n%s\n" RST_ALL, file, strerror(errno));
 		return (0);
 	}
 	file = file + (ft_strlen(file) - EXTENSION_LEN);
