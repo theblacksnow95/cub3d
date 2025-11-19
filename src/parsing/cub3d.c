@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:38:26 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 13:08:35 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:42:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 	data.map_path = av[1];
 	if (!check_for_params(data.map_path, &data))
 	{
-		printf("flag 1\n"); //debug
+		error_handler(NULL, E_MAP, EMPTY_ID, &data);
 		free_struct(&data);
 		return (1);
 	}
