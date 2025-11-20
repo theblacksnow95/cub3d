@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 11:55:09 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 14:08:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*s_malloc(size_t bytes)
 
 static void	clear_textures(t_cub *data)
 {
-	if (data->no_texture->id_texture)
+	if (data->no_texture->full)
 		mlx_destroy_image(data->ptr_mlx, data->no_texture->id_texture);
 	if (data->so_texture->full)
 		mlx_destroy_image(data->ptr_mlx, data->so_texture->id_texture);
@@ -72,11 +72,14 @@ static void	clear_textures(t_cub *data)
 
 void	free_struct(t_cub *data)
 {
-	if (!data)
+	if (data == NULL)
 		return ;
 	clear_textures(data);
 	if (data->map)
 		s_array_free(data->map);
+	if (data->fd != -1)
+		close(data->fd);
 	if (data->ptr_mlx)
 		s_free(data->ptr_mlx);
+	data = NULL;
 }

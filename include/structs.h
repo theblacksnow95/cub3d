@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 22:12:02 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 21:27:50 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef enum e_code
 	E_TEXTURE,
 	E_COLOR,
 	E_PARAM,
-	E_MAP
+	E_MAP,
+	E_NO_ID
 }	t_ecode;
 
 // Estructura principal que usa punteros con punteros a otras estructuras
@@ -80,6 +81,7 @@ typedef struct s_cub
 	int			dups;
 	int			x_p;
 	int			y_p;
+	int			ply;
 }	t_cub;
 
 /*datos del jugador, posicion, direccion donde mira...*/

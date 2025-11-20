@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:15:21 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 21:28:18 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 		}
 	}
 	else
-		error_texture_path(line, E_COLOR, id, data);
+		error_handler(line, E_COLOR, id, data);
 }
 
 void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
@@ -73,7 +73,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 	else
 	{
 		data->dups = 1;
-		error_texture_path(line, E_COLOR, id, data);
+		error_handler(line, E_COLOR, id, data);
 	}
 }
 
@@ -88,7 +88,7 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		i++;
 	// printf("value of i after: %d\n", i); // debug
 	if (i != 3)
-		error_texture_path(line, E_COLOR, id, data);
+		error_handler(line, E_COLOR, id, data);
 	data->i = 0;
 	while (tmp[data->i])
 	{
@@ -100,8 +100,11 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		data->i++;
 		// printf("color value: %d\n", num); // debug
 	}
-	// printf("value f: %d,%d,%d\n", data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
-	// printf("value c: %d,%d,%d\n", data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
+	if (data->c_rgb->full && data->f_rgb->full)
+	{
+		printf(CLR_BLUE"value f: %d,%d,%d\n"RST_ALL, data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
+		printf(CLR_BLUE"value c: %d,%d,%d\n\n"RST_ALL, data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
+	}
 }
 
 void	colors_rgb(char *line, char *id, t_cub *data)
@@ -113,7 +116,7 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	if (!valid_rgb(p))
 	{
 		// printf("return code [%d]\n", valid_rgb(p)); // debug
-		error_texture_path(p, E_COLOR, id, data);
+		error_handler(p, E_COLOR, id, data);
 	}
 	// printf("passed the valid_rgb: %s\n", p); // debug
 	clean_line(p);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 16:43:23 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:44:01 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,20 @@ int	check_file_format_n_extention(char *file)
 	if (!file)
 		return (0);
 	fd = open(file, O_RDWR);
-	if (fd <= 1)
+	if (fd == -1)
 	{
-		ft_printf(CLR_RED "Error: \n%s\n" RST_ALL, strerror(errno));
+		ft_printf(CLR_RED "Error: %s\n%s\n" RST_ALL, file, strerror(errno));
 		return (0);
 	}
-	if (fd)
+	file = file + (ft_strlen(file) - EXTENSION_LEN);
+	if (ft_strncmp(file, ".cub", EXTENSION_LEN))
 	{
-		file = file + (ft_strlen(file) - EXTENSION_LEN);
-		if (ft_strncmp(file, ".cub", EXTENSION_LEN))
-		{
-			ft_printf(CLR_RED"Error:\nIncorrect format [.cub] [KO]..\n"RST_ALL);
-			return (0);
-		}
-		else
-			return (ft_printf(CLR_GRN"Extention is correct\n"RST_ALL), 1);
+		ft_printf(CLR_RED"Error:\nIncorrect format [.cub] [KO]..\n"RST_ALL);
+		close(fd);
+		return (0);
 	}
-	close (fd);
+	ft_printf(CLR_GRN"Extention is correct\n\n"RST_ALL);
+	close(fd);
 	return (1);
 }
 

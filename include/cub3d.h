@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/20 21:20:51 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 21:25:06 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ int		valid_rgb(char *s);
 void	clean_line(char *s);
 void	read_map(t_cub *data, char *line, int fd);
 int		locate_player(t_cub *data);
-int		map_validation(char **map, int y, int x);
-
+int		fill_validation(char **map, int y, int x);
+void	validate_map(t_cub *data);
+int		empty_line(char *s);
 
 
 // error handling and frees

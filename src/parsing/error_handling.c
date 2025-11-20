@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 16:22:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:17:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	error_map_param(char *line, int fd, t_ecode code)
 	}
 }
 
-void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
+void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
 {
 	if (code == E_TEXTURE)
 	{
@@ -42,16 +42,12 @@ void	error_texture_path(char *line, t_ecode code, char *id, t_cub *data)
 	}
 	if (code == E_MAP)
 	{
-		ft_printf(RST_ALL"Erro\nIncorrect map: %s\n", data->map_path);
+		ft_printf(RST_ALL"Error\n: %s\n", data->map_path);
+		ft_printf(CLR_RED"Incorrect map\n"RST_ALL);
 	}
-	// while (data->line)
-	// {
-	// 	data->line = get_next_line(data->fd);
-	// 	printf("check line after: %s\n", data->line);
-	// 	s_free(data->line);
-	// }
-	// error_map_param(data->line, data->fd, E_PARAM);
-	printf("check for line: [%s]\n", line);
-	// free_struct(data);
-	// exit(1);
+	if (code == E_NO_ID)
+	{
+		ft_printf(RST_ALL"Error\n: %s\n", data->map_path);
+		ft_printf(CLR_RED"Missing ID in :%s \n"RST_ALL, line);
+	}
 }

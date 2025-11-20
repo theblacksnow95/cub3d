@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/12 17:51:50 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:44:24 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_cub	*init_variables(t_cub *data)
 	data->params_cnt = 0;
 	data->fd = 0;
 	data->dups = 0;
+	data->ply = 0;
 	data->ptr_mlx = mlx_init();
 	return (data);
 }

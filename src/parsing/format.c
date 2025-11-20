@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:21:03 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 21:28:38 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,31 @@ static int	first_word(char *line)
 	return (ret);
 }
 
+int	not_id_present(char *line, int len, t_cub *data)
+{
+	if (!ft_strncmp(line, NO_ID, len)
+		|| !ft_strncmp(line, SO_ID, len)
+		|| !ft_strncmp(line, WE_ID, len)
+		|| !ft_strncmp(line, EA_ID, len)
+		|| !ft_strncmp(line, F_ID, len)
+		|| !ft_strncmp(line, C_ID, len)
+		|| empty_line(line))
+		return (0);
+	else
+	{
+		data->dups = 1;
+		error_handler(data->line, E_NO_ID, EMPTY_ID, data);
+		return (1);
+	}
+}
+
 int	id_validation(t_cub *data, char *line)
 {
 	int	len_id;
 
 	if (!line)
+		return (0);
+	if (empty_line(line))
 		return (0);
 	while (ft_isspace(*line) && line++)
 	{
@@ -58,6 +78,8 @@ int	id_validation(t_cub *data, char *line)
 		colors_f_c(line, data, F_ID);
 	if (!ft_strncmp(line, C_ID, len_id))
 		colors_f_c(line, data, C_ID);
+	else if (not_id_present(line, len_id, data))
+		return (0);
 	return (1);
 }
 
@@ -79,7 +101,7 @@ int	check_for_params(char *map_path, t_cub *data)
 				s_free(data->line);
 				data->line = get_next_line(data->fd);
 			}
-			return (1);
+			return (0);
 		}
 		if (data->line)
 			s_free(data->line);

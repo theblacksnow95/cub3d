@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:22:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/14 16:25:46 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:49:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	locate_player(t_cub *data)
 			{
 				data->x_p = x;
 				data->y_p = y;
-				printf("Player position: map[%d][%d]\n", data->y_p, data->x_p); // debug
+				printf(CLR_YLLW"Player position: map[%d][%d]\n"RST_ALL, data->y_p, data->x_p); // debug
 				return (1);
 			}
 			if (!is_valid(data->map[y][x]))

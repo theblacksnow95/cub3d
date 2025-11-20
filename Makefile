@@ -4,12 +4,12 @@
 
 NAME        = cub3D
 
-# Source files
-SRC         = src/main.c \
-			  src/events/game_start.c \
-			  src/render/draw_map.c \
-			  src/utils/free_and_destroy.c \
-			  src/render/player.c
+# ================== SOURCES ============================================================================
+
+SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
+		src/parsing/render_images.c src/parsing/init_var.c src/parsing/color_rgb.c src/parsing/format.c \
+		src/parsing/tools_rgb.c src/parsing/read_map.c src/parsing/map_tools.c src/parsing/flood_fill_map.c \
+		src/parsing/map_validation.c
 
 # Directories
 INC         = include
@@ -41,18 +41,20 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "$(RED)Deleting$(RESET) $(YELLOW)BINARY$(RESET)"
+	@echo "$(RED)Deleting$(RESET) $(YELLOW)LIBRARIES$(RESET)"
+	@rm -rf $(BIN)/$(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) -s fclean
 
-re: fclean all
+test: all
+	@echo "$(YELLOW)Running test with map1 example...$(RESET)" && sleep 1
+	@echo "\n"
+	@./bin/cub3d map1.cub
 
-# ======================
-# 🧱 Libraries
-# ======================
+valgrind: all
+	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-fds=yes -s ./bin/cub3d map1.cub
+re: clean all
 
-libft:
-	@$(MAKE) -C $(LIBFT_DIR)
-
-mlx:
-	@$(MAKE) -C $(MLX_DIR)
+.SILENT:
 
 .PHONY: all clean fclean re libft mlx
