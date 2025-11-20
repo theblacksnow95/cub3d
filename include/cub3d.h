@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 23:25:26 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 21:20:51 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define CLR_YLLW		"\x1b[33m"
 # define CLR_BLUE		"\x1b[34m"
 
-# define WIN_W			900
-# define WIN_H			600
-# define TILE_SIZE		16
+# define WIN_W			1920
+# define WIN_H			1080
+# define TILE_SIZE		24
 
 # define LEFT			65361
 # define RIGHT			65363
