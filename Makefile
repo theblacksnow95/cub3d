@@ -1,44 +1,90 @@
-# ======================
-# 📦 Project configuration
-# ======================
+# ================== VARIABLES ==========================================================================
 
-NAME        = cub3D
+NAME = cub3d
+CC = gcc
 
 # ================== SOURCES ============================================================================
 
-SRCS = src/parsing/cub3d.c src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
+SRCS = src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
 		src/parsing/render_images.c src/parsing/init_var.c src/parsing/color_rgb.c src/parsing/format.c \
 		src/parsing/tools_rgb.c src/parsing/read_map.c src/parsing/map_tools.c src/parsing/flood_fill_map.c \
-		src/parsing/map_validation.c
+		src/parsing/map_validation.c\
+		src/events/game_start.c\
+		src/render/draw_map.c src/render/player.c\
+		src/utils/free_and_destroy.c\
+		src/main.c
 
-# Directories
-INC         = include
-LIBFT_DIR   = libraries/libft
-MLX_DIR     = minilibx/minilibx-linux
+# ================== DIRECTORIES ========================================================================
 
-# Compilation
-OBJ         = $(SRC:.c=.o)
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
-MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+INC = include
+LIBS = libraries
+LIBFT_DIR = $(LIBS)/libft
+MLX_DIR = $(LIBS)/ml_linux
+BIN = bin
+OBJECTS = obj
 
-# ======================
-# 🛠️ Rules
-# ======================
+# ================== FLAGS ==============================================================================
 
-all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "🔧 Linking $(NAME)..."
-	$(CC) $(OBJ) $(MLX_FLAGS) -o $(NAME)
+C_FLAGS = -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
+ML_FLAGS = -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lz -lm
 
-# Build object files
-%.o: %.c
-	@echo "🧩 Compiling $<..."
-	$(CC) $(CFLAGS) -c $< -o $@
+# =============== LIBRARIES =============================================================================
+
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+MLX_LIB = $(MLX_DIR)/libmlx.a
+
+# =============== OBJECTS COMPILATION ===================================================================
+
+OBJ_PARS = $(SRCS:src/%.c=$(OBJECTS)/%.o)
+
+#================= COLORS ===============================================================================
+
+#ANSI COLORS
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RED = \033[0;31m
+RESET = \033[0m
+
+
+#================= COMPILATION RULES ====================================================================
+
+all: $(BIN)/$(NAME)
+
+
+# main target NAME compilation rule
+$(BIN)/$(NAME): $(OBJ_PARS) $(LIBFT_LIB) $(MLX_LIB)
+	@echo "$(YELLOW)Compiling binary ...$(RESET)"
+	@$(CC) $(C_FLAGS) $(OBJ_PARS) -o $(BIN)/$(NAME) $(ML_FLAGS) 2> .error_log && \
+	(echo "$(YELLOW)Binary compiled: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Error compiling : $(RED) [KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
+
+#$(dir $@) - crea la estructura de subdirectorios en obj/ automáticamente
+#rule to compile the OBJECTS
+$(OBJECTS)/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(C_FLAGS) -c $< -o $@  2> .error_log && \
+	(echo "$(YELLOW)Compiling $<: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Error compiling $<: $(RED)[KO]$(RESET)" && cat .error_log && rm -rf .error_log && exit 1)
+
+#library compilation
+$(LIBFT_LIB):
+	@echo "$(YELLOW)Building $(RED)LIBFT$(RESET) $(YELLOW)library...$(RESET)"
+	@$(MAKE)  -C $(LIBFT_DIR)  2> error_log && \
+	(echo "$(YELLOW)Libft: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)Libft: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
+
+$(MLX_LIB):
+	@echo "$(YELLOW)Building $(RED)MLX_LINUX $(YELLOW)library..."
+	@$(MAKE) -C $(MLX_DIR) -s 2> .error_log && \
+	(echo "$(YELLOW)MLX: $(GREEN)[OK]$(RESET)") || \
+	(echo "$(YELLOW)MLX: $(RED)[KO]$(RESET)" && cat .error_log && rm -f .error_log && exit 1)
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJ_PARS)
+	@$(MAKE) -C $(LIBFT_DIR) -s clean
+	@$(MAKE) -C $(MLX_DIR) -s clean
+	@echo "$(YELLOW)CLEANING $(RED)OBJECTS$(RESET) $(YELLOW)FROM LIBS...$(RESET)"
 
 fclean: clean
 	@echo "$(RED)Deleting$(RESET) $(YELLOW)BINARY$(RESET)"
@@ -57,4 +103,4 @@ re: clean all
 
 .SILENT:
 
-.PHONY: all clean fclean re libft mlx
+.PHONY: all clean fclean re test valgrind

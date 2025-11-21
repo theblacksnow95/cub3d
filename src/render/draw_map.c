@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/17 23:24:58 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:27:38 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static int draw_square(t_mlx *mlx, int start_x, int start_y, int color)
 	por el momento borro toda la pantalla, talvez mas adelante
 	podria borrar solo las posiciones anteriores donde estaba el jugador
 */
-int	draw_map(t_game *game)
+int	draw_map(t_cub *game)
 {
 	int		y;
 	int		x;
@@ -112,18 +112,18 @@ int	draw_map(t_game *game)
 
 	clear_window(game->mlx.mlx, 0x000000);
 	y = 0;
-	while (y < game->map_height)
+	while (game->map[y])
 	{
 		x = 0;
-		while (x < game->map_width)
+		while (game->map[y][x])
 		{
 			cell = game->map[y][x];
-			if  (cell == '1')
+			if  (cell == '1' || cell == ' ')
 				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);//rojo
 			else if (cell == '0')
 				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808080);//gris
 			if (error)
-				return(perror("error drawing map"), 1);
+				return(free_exit(game), 1);
 			x++;
 		}
 		y++;

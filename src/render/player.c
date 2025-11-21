@@ -6,22 +6,24 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/17 23:26:03 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/21 15:25:15 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	find_player_position(t_game *game, int *x, int *y, char *dir)
+/*FUNCION PARA BUSCAR LA POSICION INICIAL DEL JUGADOR EN EL MAPA Y
+	ASIGNARLA A LA ESTRUCTURA PLAYER DEL JUEGO*/
+static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 {
 	int	i;
 	int	j;
 	
 	i = 0;
-	while (i < game->map_height)
+	while (game->map[i])
 	{
 		j = 0;
-		while (j < game->map_width)
+		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
@@ -29,28 +31,22 @@ static int	find_player_position(t_game *game, int *x, int *y, char *dir)
 				*x = j;
 				*y = i;
 				*dir = game->map[i][j];
-				return (0);			
 			}
 			j++;
 		}
 		i++;
 	}
-	return (1);
 }
 
-void	init_player(t_game *game)
+void	init_player(t_cub *game)
 {
 	int		start_x;
 	int		start_y;
 	char	direction;
 	
-	if (find_player_position(game, &start_x, &start_y, &direction))
-		return (perror("player not found"));
-	
-	// Posición inicial (centro de la celda + 0.5)
+	find_player_position(game, &start_x, &start_y, &direction);
 	game->player.x = start_x + 0.5;
 	game->player.y = start_y + 0.5;
-	
 	// Dirección inicial según caracter del mapa
 	if (direction == 'N') {
 		game->player.dir_x = 0;

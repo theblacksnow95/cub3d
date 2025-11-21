@@ -6,13 +6,13 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/17 23:18:34 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:40:01 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	rotate_player(t_game *game, double rot_speed)
+static void	rotate_player(t_cub *game, double rot_speed)
 {
 	double old_dir_x;
 	double old_plane_x;
@@ -40,21 +40,17 @@ static void	rotate_player(t_game *game, double rot_speed)
 	de la direccion donde mire
 	si el pixel siguiente es diferente de 0, hay colision
 	*/
-static int	is_wall(t_game *game, double x, double y)
+static int	is_wall(t_cub *game, double x, double y)
 {
 	int	map_x;
 	int	map_y;
 	
 	map_x = (int)x;
 	map_y = (int)y;
-	
-	if (map_x < 0 || map_x >= game->map_width ||
-		map_y < 0 || map_y >= game->map_height)
-		return (1);
-	return (game->map[map_y][map_x] == '1');
+	return (game->map[map_y][map_x] == '1' || game->map[map_y][map_x] == ' ');
 }
 
-static void move_player(t_game *game, double move_x, double move_y)
+static void move_player(t_cub *game, double move_x, double move_y)
 {
     double	new_x;
     double	new_y;
@@ -68,12 +64,12 @@ static void move_player(t_game *game, double move_x, double move_y)
 }
 
 /*   65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
-int key_press(int keycode, t_game *game)
+int key_press(int keycode, t_cub *game)
 {
     if (keycode == 65307)
     {
        	destroy(game);
-        exit(0);
+        free_exit(game);
     }
     if (keycode == KEY_W)
         move_player(game, game->player.dir_x * game->player.mov_speed,

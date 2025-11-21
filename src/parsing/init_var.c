@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:44:24 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:53:28 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ t_cub	*init_variables(t_cub *data)
 	data->fd = 0;
 	data->dups = 0;
 	data->ply = 0;
-	data->ptr_mlx = mlx_init();
+	data->mlx.mlx = mlx_init();
+	data->mlx.win = NULL;
+	data->mlx.img = NULL;
+	data->mlx.addr = NULL;
+	data->mlx.bpp = 0;
+	data->mlx.line_len = 0;
+	data->mlx.endian = 0;
 	return (data);
 }

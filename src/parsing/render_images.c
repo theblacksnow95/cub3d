@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/20 21:28:53 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/20 22:03:22 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 	// printf("line: [%s]\n", line); // debug
 	if (!t->id_texture || !t->full)
 		t->id_texture = mlx_xpm_file_to_image
-			(data->ptr_mlx, line, &data->img_w, &data->img_h);
+			(data->mlx.mlx, line, &data->img_w, &data->img_h);
 	if (!t->id_texture || t->full)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug

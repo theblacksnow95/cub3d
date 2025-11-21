@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/20 21:27:50 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/21 12:33:51 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,67 +22,6 @@
 # define KEY_LEFT 65361
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
-
-typedef struct s_flood
-{
-	bool	done;
-	bool	error;
-}	t_flood;
-
-
-// Para guardar cada textura en un puntero void con un flag de si ya se ha
-// cargado, va a cambiar
-typedef struct s_texture
-{
-	void		*id_texture;
-	int			*rendered;
-	int			full;
-}				t_texture;
-
-// Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-	int	full;
-}	t_rgb;
-
-// Codidos de errores que uso para las texturas, va a cambiar
-typedef enum e_code
-{
-	E_TEXTURE,
-	E_COLOR,
-	E_PARAM,
-	E_MAP,
-	E_NO_ID
-}	t_ecode;
-
-// Estructura principal que usa punteros con punteros a otras estructuras
-typedef struct s_cub
-{
-	int			params_cnt;
-	char		*map_path;
-	char		**map;
-	void		*ptr_mlx;
-	void		*win_ptr;
-	t_texture	*no_texture;
-	t_texture	*so_texture;
-	t_texture	*we_texture;
-	t_texture	*ea_texture;
-	t_rgb		*f_rgb;
-	t_rgb		*c_rgb;
-	int			params_full;
-	int			img_h;
-	int			img_w;
-	int			i;
-	int			fd;
-	char		*line;
-	int			dups;
-	int			x_p;
-	int			y_p;
-	int			ply;
-}	t_cub;
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player
@@ -114,15 +53,65 @@ typedef struct s_mlx
 	int		endian;
 }			t_mlx;
 
-/*	agrupa todo lo relacionado con MiniLibX,*/
-typedef struct s_game
+typedef struct s_flood
 {
+	bool	done;
+	bool	error;
+}	t_flood;
+
+
+// Para guardar cada textura en un puntero void con un flag de si ya se ha
+// cargado, va a cambiar
+typedef struct s_texture
+{
+	void	*id_texture;
+	int		*rendered;
+	int		full;
+}	t_texture;
+
+// Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+	int	full;
+}	t_rgb;
+
+// Codidos de errores que uso para las texturas, va a cambiar
+typedef enum e_code
+{
+	E_TEXTURE,
+	E_COLOR,
+	E_PARAM,
+	E_MAP,
+	E_NO_ID
+}	t_ecode;
+
+// Estructura principal que usa punteros con punteros a otras estructuras
+typedef struct s_cub
+{
+	int			params_cnt;
+	char		*map_path;
+	char		**map;
+	t_texture	*no_texture;
+	t_texture	*so_texture;
+	t_texture	*we_texture;
+	t_texture	*ea_texture;
+	t_rgb		*f_rgb;
+	t_rgb		*c_rgb;
+	int			params_full;
+	int			img_h;
+	int			img_w;
+	int			i;
+	int			fd;
+	char		*line;
+	int			dups;
+	int			x_p; // mover a player
+	int			y_p; // mover a player
+	int			ply;
 	t_mlx		mlx;
 	t_player	player;
-	char		**map;
-	int			map_width;
-	int			map_height;
-}				t_game;
+}				t_cub;
 
 #endif
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:22:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/18 15:49:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/21 12:37:31 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	locate_player(t_cub *data)
 		{
 			if (is_player(data->map[y][x]))
 			{
-				data->x_p = x;
-				data->y_p = y;
-				printf(CLR_YLLW"Player position: map[%d][%d]\n"RST_ALL, data->y_p, data->x_p); // debug
+				data->player.x = x;
+				data->player.y= y;
+				printf(CLR_YLLW"Player position: map[%f][%f]\n"RST_ALL, data->player.y, data->player.x); // debug
 				return (1);
 			}
 			if (!is_valid(data->map[y][x]))
