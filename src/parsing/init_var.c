@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_var.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 18:44:04 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/21 14:53:28 by antuel           ###   ########.fr       */
-/*                                                                            */
+/**/
+/*:::  ::::::::   */
+/*   init_var.c :+:  :+::+:   */
+/*+:+ +:+ +:+ */
+/*   By: antuel <antuel@student.42.fr>  +#+  +:+   +#+*/
+/*+#+#+#+#+#+   +#+   */
+/*   Created: 2025/10/14 18:44:04 by emurillo  #+##+# */
+/*   Updated: 2025/11/23 19:16:15 by antuel   ###   ########.fr   */
+/**/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -23,21 +23,28 @@ t_texture	*init_texture(t_texture *t)
 	return (t);
 }
 
-t_cub	*init_variables(t_cub *data)
+t_cub *init_variables(t_cub *data)
 {
-	data->no_texture = init_texture(data->no_texture);
-	data->so_texture = init_texture(data->so_texture);
-	data->we_texture = init_texture(data->we_texture);
-	data->ea_texture = init_texture(data->ea_texture);
+	ft_bzero(data, sizeof(t_cub));
+	data->no_texture = s_malloc(sizeof(t_texture));
+	data->so_texture = s_malloc(sizeof(t_texture));
+	data->we_texture = s_malloc(sizeof(t_texture));
+	data->ea_texture = s_malloc(sizeof(t_texture));
 	data->f_rgb = s_malloc(sizeof(t_rgb));
 	data->c_rgb = s_malloc(sizeof(t_rgb));
-	data->f_rgb->full = 0;
-	data->c_rgb->full = 0;
+	ft_bzero(data->no_texture, sizeof(t_texture));
+	ft_bzero(data->so_texture, sizeof(t_texture));
+	ft_bzero(data->we_texture, sizeof(t_texture));
+	ft_bzero(data->ea_texture, sizeof(t_texture));
+	ft_bzero(data->f_rgb, sizeof(t_rgb));
+	ft_bzero(data->c_rgb, sizeof(t_rgb));
 	data->params_cnt = 0;
-	data->fd = 0;
+	data->fd = -1;
 	data->dups = 0;
 	data->ply = 0;
 	data->mlx.mlx = mlx_init();
+	if (!data->mlx.mlx)
+		return (NULL);
 	data->mlx.win = NULL;
 	data->mlx.img = NULL;
 	data->mlx.addr = NULL;

@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/21 11:20:58 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/23 19:30:19 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define CLR_YLLW         "\x1b[33m"
 # define CLR_BLUE         "\x1b[34m"
 
-# define WIN_W			1920
-# define WIN_H			1080
-# define TILE_SIZE		24
+# define WIN_W			1000
+# define WIN_H			800
+# define TILE_SIZE		16
 
 # define NO_ID          "NO"
 # define SO_ID          "SO"
@@ -51,7 +51,6 @@ int		check_data_map(char *file_name, t_cub *data);
 // simple tools
 int		ft_isspace(int s);
 void	*s_malloc(size_t bytes);
-void	free_struct(t_cub *data);
 void	print_array(char **arr);
 
 
@@ -76,12 +75,10 @@ void	s_array_free(char **s);
 void	error_map_param(char *line, int fd, t_ecode code);
 void	error_handler(char *line, t_ecode code, char *id, t_cub *data);
 void	error_map(t_cub *data);
-void	free_exit(t_cub *data);
 
 // loop principal
 int		game_loop(t_cub *game);
-int     close_windows(t_cub *game);
-int     key_press(int keycode, t_cub *game);
+int		key_press(int keycode, t_cub *game);
 void	init_player(t_cub *game);
 
 // dibujo
@@ -91,6 +88,6 @@ void	clear_window(t_mlx *mlx, int color);
 int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 //	utils
-void	destroy(t_cub *game);
+int		close_windows(t_cub *game);
 
 #endif

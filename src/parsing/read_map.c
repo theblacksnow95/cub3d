@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:26:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:54:03 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,12 @@ void	close_read(char *map_str, char *line, t_cub *data, int fd)
 	error_handler(NULL, E_MAP, EMPTY_ID, data);
 	s_free(map_str);
 	s_free(line);
-	// if (buf)
-	// 	free(buf);
-	free_struct(data);
 	while (line)
 	{
 		line = get_next_line(fd);
 		free(line);
 	}
-	exit(1);
+	close_windows(data);
 }
 
 char	*advance_to_start(char *line, int fd)

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:23:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:53:56 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_exit(t_cub *data)
-{
-	if (data)
-	{
-		free_struct(data);
-		data = NULL;
-		exit (1);
-	}
-}
 
 int	is_valid_char(char c, t_cub *data)
 {
@@ -59,15 +49,12 @@ void	validate_map(t_cub *data)
 	y = 0;
 	x = 0;
 	if (!valid_chars(data, data->map, y, x))
-	{
-		free_exit(data);
-		return ;
-	}
+		close_windows(data);
 	locate_player(data);
 	if (fill_validation(data->map, data->y_p, data->x_p))
 	{
 		error_handler(data->line, E_MAP, NO_ID, data);
-		free_exit(data);
+		close_windows(data);
 	}
 	ft_printf(CLR_GRN"MAP <%s> CORRECT\n"RST_ALL, data->map_path);
 }

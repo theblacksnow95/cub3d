@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/21 12:40:01 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/23 18:53:44 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ static void move_player(t_cub *game, double move_x, double move_y)
 int key_press(int keycode, t_cub *game)
 {
     if (keycode == 65307)
-    {
-       	destroy(game);
-        free_exit(game);
-    }
+        close_windows(game);
     if (keycode == KEY_W)
         move_player(game, game->player.dir_x * game->player.mov_speed,
 			game->player.mov_speed * game->player.dir_y);

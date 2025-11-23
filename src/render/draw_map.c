@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/21 12:27:38 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/23 19:27:00 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,13 @@ static int draw_square(t_mlx *mlx, int start_x, int start_y, int color)
 	y = 0;
 	while(y < TILE_SIZE)
 	{
+		if (start_y + y >= WIN_H)
+			break ;
 		x = 0;
 		while (x < TILE_SIZE)
 		{
+			if (start_x + x >= WIN_W)
+				break ;
 			if (my_mlx_pixel_put(mlx, start_x + x, start_y + y, color))
 				return (1);
 			x++;
@@ -123,7 +127,7 @@ int	draw_map(t_cub *game)
 			else if (cell == '0')
 				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808080);//gris
 			if (error)
-				return(free_exit(game), 1);
+				close_windows(game);
 			x++;
 		}
 		y++;
