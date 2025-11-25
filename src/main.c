@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/23 19:06:19 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:04:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	init_game(t_cub *game)
 		return (perror("image error"), 1);
 	game->mlx.addr = NULL;
 	game->mlx.addr = mlx_get_data_addr(game->mlx.img, &game->mlx.bpp,
-		&game->mlx.line_len, &game->mlx.endian);
+			&game->mlx.line_len, &game->mlx.endian);
 	if (!game->mlx.addr)
 		return (perror("address error"), 1);
 	return (0);

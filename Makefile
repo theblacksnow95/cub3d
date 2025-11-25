@@ -98,7 +98,7 @@ test: all
 	@./bin/cub3d map1.cub
 
 valgrind: all
-	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-fds=yes -s ./bin/cub3d map1.cub
+	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-origins=yes -s ./bin/cub3d map1.cub
 re: clean all
 
 .SILENT:

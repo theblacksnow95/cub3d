@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/23 19:27:00 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:52:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	clear_window(t_mlx *mlx, int color)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (y < WIN_H)
 	{
@@ -36,14 +36,14 @@ static int	draw_player(t_mlx *mlx, double x, double y, int color)
 	int	j;
 	int	radius;
 
-	radius = 3;
+	radius = 5;
 	i = -radius;
 	while (i <= radius)
 	{
 		j = -radius;
 		while (j <= radius)
 		{
-			if (i*i + j*j <= radius * radius)
+			if (i * i + j * j <= radius * radius)
 			{
 				if (my_mlx_pixel_put(mlx, (int)x + j, (int)y + i, color))
 					return (1);
@@ -58,29 +58,29 @@ static int	draw_player(t_mlx *mlx, double x, double y, int color)
 /*
 	my_mlx_pixel_put es mejor porque es
 	SOLO 1 llamada al sistema para TODOS los píxeles
-	
+
 	desplazamiento de la celda para poner el color:
 	dst= mlx->addr + (y * mlx->line_len + x * (mlx->bpp/8));
 */
-int my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return (1);
-	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp/8));
-	*(unsigned int*)dst = color;
+	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
+	*(unsigned int *)dst = color;
 	return (0);
 }
 
 /*funcion para dibujar un cuadrado*/
-static int draw_square(t_mlx *mlx, int start_x, int start_y, int color)
+static int	draw_square(t_mlx *mlx, int start_x, int start_y, int color)
 {
 	int		x;
 	int		y;
-	
+
 	y = 0;
-	while(y < TILE_SIZE)
+	while (y < TILE_SIZE)
 	{
 		if (start_y + y >= WIN_H)
 			break ;
@@ -101,7 +101,7 @@ static int draw_square(t_mlx *mlx, int start_x, int start_y, int color)
 /*
 	recorre el mapa pixel por pixel
 	dependiendo del valor 0, 1 etc... le agrega el color
-	
+
 	le agrego:
 	clear_window(game->mlx.mlx, 0x000000);
 	por el momento borro toda la pantalla, talvez mas adelante
@@ -122,16 +122,16 @@ int	draw_map(t_cub *game)
 		while (game->map[y][x])
 		{
 			cell = game->map[y][x];
-			if  (cell == '1' || cell == ' ')
-				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0xFF0000);//rojo
-			else if (cell == '0')
-				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808080);//gris
+			if (cell == '1' || cell == ' ')
+				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0xFFFFFF);//rojo
+			else
+				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808880);//gris
 			if (error)
 				close_windows(game);
 			x++;
 		}
 		y++;
 	}
-	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x00FF00);
+	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
 	return (0);
 }
