@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/25 12:04:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:39:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	main(int ac, char **av)
 	draw_map(&game);
 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win, game.mlx.img, 0, 0);
 	mlx_hook(game.mlx.win, 17, 0, close_windows, &game);
-	mlx_key_hook(game.mlx.win, key_press, &game);
+	mlx_hook(game.mlx.win, 2, 1L << 0, key_press, &game);
+	// mlx_key_hook(game.mlx.win, key_press, &game);
 	mlx_loop(game.mlx.mlx);
 	return (0);
 }

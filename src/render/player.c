@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/21 15:25:15 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/25 14:23:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (game->map[i])
 	{
@@ -43,7 +43,7 @@ void	init_player(t_cub *game)
 	int		start_x;
 	int		start_y;
 	char	direction;
-	
+
 	find_player_position(game, &start_x, &start_y, &direction);
 	game->player.x = start_x + 0.5;
 	game->player.y = start_y + 0.5;
@@ -72,7 +72,7 @@ void	init_player(t_cub *game)
 		game->player.plane_x = 0;
 		game->player.plane_y = -0.66;
 	}
-	
+
 	game->player.mov_speed = 0.1;
 	game->player.rot_speed = 0.1;
 }
