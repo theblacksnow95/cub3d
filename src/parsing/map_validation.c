@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/23 18:53:56 by antuel           ###   ########.fr       */
+/*   Updated: 2025/11/26 16:32:06 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	validate_map(t_cub *data)
 	if (!valid_chars(data, data->map, y, x))
 		close_windows(data);
 	locate_player(data);
-	if (fill_validation(data->map, data->y_p, data->x_p))
+	if (fill_validation(data->map, data->player.y, data->player.x))
 	{
 		error_handler(data->line, E_MAP, NO_ID, data);
 		close_windows(data);
