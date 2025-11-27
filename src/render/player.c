@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/25 14:23:36 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 13:44:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void	init_player(t_cub *game)
 	}
 
 	game->player.mov_speed = 0.1;
-	game->player.rot_speed = 0.1;
+	game->player.rot_speed = 0.2;
 }

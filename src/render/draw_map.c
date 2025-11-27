@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/26 15:27:45 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 10:45:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	draw_map(t_cub *game)
 		{
 			cell = game->map[y][x];
 			if (cell == '1' || cell == ' ')
-				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0xFFFFFF);// blanco
+				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x00FFFF);// blanco
 			else
 				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808080);//gris
 			if (error)

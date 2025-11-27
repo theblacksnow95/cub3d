@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/26 16:10:44 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 14:09:17 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	double	old_plane_x;
 
 	// Rotar vector dirección
+	printf("OLD dirX: %f\n", game->player.dir_x);
 	old_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
-		- game->player.dir_x * sin(rot_speed);
+		- game->player.dir_y * sin(rot_speed);
+
+		
 	game->player.dir_y = old_dir_x * sin(rot_speed)
 		+ game->player.dir_y * cos(rot_speed);
-	printf("OLD dir_x: %f\t || \t NEW dir_x: %f\n", old_dir_x, game->player.dir_x);
+	printf("NEW dir_x: %f", game->player.dir_x);
 	printf("\t NEW dir_y: %f\n", game->player.dir_y);
 	// Rotar plano de cámara
 	old_plane_x = game->player.plane_x;
@@ -41,11 +44,20 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	de la direccion donde mire
 	si el pixel siguiente es diferente de 0, hay colision
 	*/
-static bool	is_wall(t_cub *game, double x, double y)
+static bool	is_wall(t_cub *game, double x, double y, int keycode)
 {
 	printf("Entering with x:%f y:%f\n", x, y);
+	// if (keycode == KEY_W)
+	// 	y -= 0.20;
+	// else if (keycode == KEY_S)
+	// 	y += 0.20;
+	// else if (keycode == KEY_A)
+	// 	x -= 0.18;
+	// else if (keycode == KEY_D)
+	// 	x += 0.18;
+	(void)keycode;
 	if (game->map[(int)y][(int)x] == '1' || game->map[(int)y][(int)x] == ' ')
-		return (true);
+			return (true);
 	return (false);
 }
 
@@ -64,17 +76,17 @@ static bool	is_wall(t_cub *game, double x, double y)
 // 	return (false);
 // }
 
-static void	move_player(t_cub *game, double move_x, double move_y)
+static void	move_player(t_cub *game, double move_x, double move_y, int keycode)
 {
 	double	new_x;
 	double	new_y;
-
+	
 	new_x = game->player.x + move_x;
 	new_y = game->player.y + move_y;
-	// printf("player pos: y=%f, x=%f\n", game->player.y, game->player.x);
-	if (!is_wall(game, new_x, game->player.y))
+	// printf("player pos: y=%f, x=%f\n", gamze->player.y, game->player.x);
+	if (!is_wall(game, new_x, game->player.y, keycode))
 		game->player.x = new_x;
-	if (!is_wall(game, game->player.x, new_y))
+	if (!is_wall(game, game->player.x, new_y, keycode))
 		game->player.y = new_y;
 	return ;
 }
@@ -87,22 +99,30 @@ int	key_press(int keycode, t_cub *game)
 	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x808080);
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
-			game->player.mov_speed * game->player.dir_y);
+			game->player.mov_speed * game->player.dir_y, KEY_W);
 	else if (keycode == KEY_S) // S - Atrás
 		move_player(game, -game->player.dir_x * game->player.mov_speed,
-			-game->player.dir_y * game->player.mov_speed );
+			-game->player.dir_y * game->player.mov_speed, KEY_S);
+
+
+			
 	else if (keycode == KEY_A) // A - Izquierda (strafe)
-		move_player(game, game->player.dir_y * game->player.mov_speed ,
-			game->player.dir_x * game->player.mov_speed );
+		move_player(game, game->player.dir_y * game->player.mov_speed,
+			-game->player.dir_x * game->player.mov_speed, KEY_A);
 	else if (keycode == KEY_D) // D - Derecha (strafe)
 		move_player(game, -game->player.dir_y * game->player.mov_speed ,
-			-game->player.dir_x * game->player.mov_speed);
+			game->player.dir_x * game->player.mov_speed, KEY_D);
+
+
+
+			
 	else if (keycode == KEY_LEFT) // Flecha izquierda - Rotar izquierda
-		rotate_player(game, game->player.rot_speed);
-	else if (keycode == KEY_RIGHT) // Flecha derecha - Rotar derecha
 		rotate_player(game, -game->player.rot_speed);
+	else if (keycode == KEY_RIGHT) // Flecha derecha - Rotar derecha
+		rotate_player(game, game->player.rot_speed);
 
 	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
+	// draw_map(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
 	return (0);
 }
