@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 15:27:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 22:47:20 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return (1);
 	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = (unsigned int)color;
 	return (0);
 }
 

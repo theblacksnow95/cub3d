@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/27 15:55:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 22:37:31 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	main(int ac, char **av)
 			CLR_YLLW"./bin/cub3d '[*file*.cub]'"RST_ALL);
 		return (1);
 	}
-	ft_bzero(&game, sizeof(t_cub));
 	init_variables(&game);
 	game.map_path = av[1];
 	if (!check_for_params(game.map_path, &game))
