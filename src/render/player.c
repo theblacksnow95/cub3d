@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 13:44:15 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:33:04 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,8 @@ static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 		i++;
 	}
 }
-
-void	init_player(t_cub *game)
+void	init_positions(t_cub *game, char direction)
 {
-	int		start_x;
-	int		start_y;
-	char	direction;
-
-	find_player_position(game, &start_x, &start_y, &direction);
-	game->player.x = start_x + 0.5;
-	game->player.y = start_y + 0.5;
-	// Dirección inicial según caracter del mapa
 	if (direction == 'N') {
 		game->player.dir_x = 0;
 		game->player.dir_y = -1;
@@ -72,7 +63,20 @@ void	init_player(t_cub *game)
 		game->player.plane_x = 0;
 		game->player.plane_y = -0.66;
 	}
+}
 
+
+void	init_player(t_cub *game)
+{
+	int		start_x;
+	int		start_y;
+	char	direction;
+
+	find_player_position(game, &start_x, &start_y, &direction);
+	game->player.x = start_x + 0.5;
+	game->player.y = start_y + 0.5;
+	// Dirección inicial según caracter del mapa
+	init_positions(game, direction);
 	game->player.mov_speed = 0.1;
 	game->player.rot_speed = 0.2;
 }

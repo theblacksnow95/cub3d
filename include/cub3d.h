@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/27 14:04:43 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:28:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define CLR_YLLW         "\x1b[33m"
 # define CLR_BLUE         "\x1b[34m"
 
-# define WIN_W			1080
-# define WIN_H			940
-# define TILE_SIZE		16
+# define WIN_W			1920
+# define WIN_H			1080
+# define TILE_SIZE		12
 
 # define NO_ID          "NO"
 # define SO_ID          "SO"
@@ -41,7 +41,9 @@
 # define C_ID           "C"
 # define EMPTY_ID          ""
 
-# define EXTENSION_LEN   4
+# define EXTENSION_LEN	4
+# define COLLITION_RAD	0.25
+# define PLAYER_RAD		3
 
 
 int		check_file_format_n_extention(char *file);

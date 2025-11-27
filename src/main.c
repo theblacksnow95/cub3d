@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/27 13:38:50 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:55:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ static int	init_game(t_cub *game)
 	return (0);
 }
 
+void render_minimap(t_cub *game)
+{
+	void *win;
+	void *img;
+	
+	win = game->mlx.win;
+	img = game->mlx.img;
+	draw_map(game);
+	mlx_put_image_to_window(game->mlx.mlx, win, img, 100, 0);
+	mlx_hook(win, 17, 0, close_windows, game);
+	mlx_hook(win, 2, 1L << 0, key_press, game);
+	// mlx_key_hook(game.mlx.win, key_press, &game);
+}
+
 /*	mlx_hook 17 = X presionada
 	mlx_hook_key corresponde a la reaccion de la ventana con las teclas
 	en este caso es para cerrar con escape(key_press)*/
@@ -58,11 +72,7 @@ int	main(int ac, char **av)
 	init_player(&game);
 	if (init_game(&game))
 		close_windows(&game);
-	draw_map(&game);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win, game.mlx.img, 0, 0);
-	mlx_hook(game.mlx.win, 17, 0, close_windows, &game);
-	mlx_hook(game.mlx.win, 2, 1L << 0, key_press, &game);
-	// mlx_key_hook(game.mlx.win, key_press, &game);
+	render_minimap(&game);
 	mlx_loop(game.mlx.mlx);
 	return (0);
 }

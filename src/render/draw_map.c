@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 10:45:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:27:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	draw_player(t_mlx *mlx, double x, double y, int color)
 	int	j;
 	int	radius;
 
-	radius = 5;
+	radius = 3;
 	i = -radius;
 	while (i <= radius)
 	{

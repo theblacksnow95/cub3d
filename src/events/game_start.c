@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 14:09:17 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:57:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	old_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
 		- game->player.dir_y * sin(rot_speed);
-
-		
 	game->player.dir_y = old_dir_x * sin(rot_speed)
 		+ game->player.dir_y * cos(rot_speed);
 	printf("NEW dir_x: %f", game->player.dir_x);
@@ -43,40 +41,43 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	mas adelante haré el calculo con el pixel siguiente dependiendo
 	de la direccion donde mire
 	si el pixel siguiente es diferente de 0, hay colision
-	*/
-static bool	is_wall(t_cub *game, double x, double y, int keycode)
-{
-	printf("Entering with x:%f y:%f\n", x, y);
-	// if (keycode == KEY_W)
-	// 	y -= 0.20;
-	// else if (keycode == KEY_S)
-	// 	y += 0.20;
-	// else if (keycode == KEY_A)
-	// 	x -= 0.18;
-	// else if (keycode == KEY_D)
-	// 	x += 0.18;
-	(void)keycode;
-	if (game->map[(int)y][(int)x] == '1' || game->map[(int)y][(int)x] == ' ')
+*/
+static bool	is_wall(t_cub *game, double x, double y)
+{	
+	int	map_x;
+	int	map_y;
+	map_x = (int)x;
+	map_y = (int)y;
+	if (game->map[map_y][map_x] == '1' || game->map[map_y][map_x] == ' ')
 			return (true);
 	return (false);
 }
 
-// static bool	is_wall(t_cub *game, double x, double y)
-// {
-// 	int	map_x;
-// 	int	map_y;
+static bool wall_collition(t_cub *game, double new_x, double new_y)
+{
+	double r;
 
-// 	map_x = (int)(x + 0.40);
-// 	map_y = (int)(y + 0.80);
-// 	printf("player pos: y=%d, x=%d\n", map_y, map_x);
-// 	if (game->map[map_y][map_x] == 1)
-// 		return (true);
-// 	if (game->map[map_y][map_x] == ' ')
-// 		return (true);
-// 	return (false);
-// }
+	r = COLLITION_RAD;
+	if (is_wall(game, new_x + r, new_y))
+		return (true);
+	if (is_wall(game, new_x - r, new_y))
+		return (true);
+	if (is_wall(game, new_x , new_y + r))
+		return (true);
+	if (is_wall(game, new_x , new_y - r))
+		return (true);
+	if (is_wall(game, new_x + r, new_y + r))
+		return (true);
+	if (is_wall(game, new_x + r, new_y - r))
+		return (true);
+	if (is_wall(game, new_x - r, new_y - r))
+		return (true);
+	if (is_wall(game, new_x - r, new_y + r))
+		return (true);
+	return (false);
+}
 
-static void	move_player(t_cub *game, double move_x, double move_y, int keycode)
+static void	move_player(t_cub *game, double move_x, double move_y)
 {
 	double	new_x;
 	double	new_y;
@@ -84,9 +85,9 @@ static void	move_player(t_cub *game, double move_x, double move_y, int keycode)
 	new_x = game->player.x + move_x;
 	new_y = game->player.y + move_y;
 	// printf("player pos: y=%f, x=%f\n", gamze->player.y, game->player.x);
-	if (!is_wall(game, new_x, game->player.y, keycode))
+	if (!wall_collition(game, new_x, game->player.y))
 		game->player.x = new_x;
-	if (!is_wall(game, game->player.x, new_y, keycode))
+	if (!wall_collition(game, game->player.x, new_y))
 		game->player.y = new_y;
 	return ;
 }
@@ -99,23 +100,16 @@ int	key_press(int keycode, t_cub *game)
 	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x808080);
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
-			game->player.mov_speed * game->player.dir_y, KEY_W);
+			game->player.mov_speed * game->player.dir_y);
 	else if (keycode == KEY_S) // S - Atrás
 		move_player(game, -game->player.dir_x * game->player.mov_speed,
-			-game->player.dir_y * game->player.mov_speed, KEY_S);
-
-
-			
+			-game->player.dir_y * game->player.mov_speed);			
 	else if (keycode == KEY_A) // A - Izquierda (strafe)
 		move_player(game, game->player.dir_y * game->player.mov_speed,
-			-game->player.dir_x * game->player.mov_speed, KEY_A);
+			-game->player.dir_x * game->player.mov_speed);
 	else if (keycode == KEY_D) // D - Derecha (strafe)
 		move_player(game, -game->player.dir_y * game->player.mov_speed ,
-			game->player.dir_x * game->player.mov_speed, KEY_D);
-
-
-
-			
+			game->player.dir_x * game->player.mov_speed);
 	else if (keycode == KEY_LEFT) // Flecha izquierda - Rotar izquierda
 		rotate_player(game, -game->player.rot_speed);
 	else if (keycode == KEY_RIGHT) // Flecha derecha - Rotar derecha
@@ -123,6 +117,6 @@ int	key_press(int keycode, t_cub *game)
 
 	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
 	// draw_map(game);
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 100, 0);
 	return (0);
 }

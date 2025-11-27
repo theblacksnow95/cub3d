@@ -1,59 +1,87 @@
-==112877== Memcheck, a memory error detector
-==112877== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==112877== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==112877== Command: ./bin/cub3d map1.cub
-==112877== Parent PID: 112876
-==112877== 
-==112877== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==112877==    at 0x4BFB6D0: writev (writev.c:26)
-==112877==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x113F9B: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x113CBB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x1118CF: init_game (main.c:22)
-==112877==    by 0x111A83: main (main.c:59)
-==112877==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
-==112877==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==112877==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x113A87: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x11183B: init_variables (init_var.c:45)
-==112877==    by 0x111A2F: main (main.c:51)
-==112877==  Uninitialised value was created by a stack allocation
-==112877==    at 0x113EB0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877== 
-==112877== 
-==112877== HEAP SUMMARY:
-==112877==     in use at exit: 0 bytes in 0 blocks
-==112877==   total heap usage: 2,826 allocs, 2,826 frees, 1,211,085 bytes allocated
-==112877== 
-==112877== All heap blocks were freed -- no leaks are possible
-==112877== 
-==112877== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==112877== 
-==112877== 1 errors in context 1 of 1:
-==112877== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==112877==    at 0x4BFB6D0: writev (writev.c:26)
-==112877==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==112877==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x113F9B: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x113CBB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x1118CF: init_game (main.c:22)
-==112877==    by 0x111A83: main (main.c:59)
-==112877==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
-==112877==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==112877==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==112877==    by 0x113A87: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877==    by 0x11183B: init_variables (init_var.c:45)
-==112877==    by 0x111A2F: main (main.c:51)
-==112877==  Uninitialised value was created by a stack allocation
-==112877==    at 0x113EB0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==112877== 
-==112877== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==125573== Memcheck, a memory error detector
+==125573== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==125573== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==125573== Command: ./bin/cub3d map1.cub
+==125573== Parent PID: 125554
+==125573== 
+==125573== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==125573==    at 0x4BFB6D0: writev (writev.c:26)
+==125573==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x1141DB: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x113EFB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111AE7: init_game (main.c:22)
+==125573==    by 0x111D27: main (main.c:73)
+==125573==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
+==125573==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==125573==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111A53: init_variables (init_var.c:45)
+==125573==    by 0x111CD3: main (main.c:65)
+==125573==  Uninitialised value was created by a stack allocation
+==125573==    at 0x1140F0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573== 
+==125573== Invalid write of size 4
+==125573==    at 0x111080: my_mlx_pixel_put (draw_map.c:72)
+==125573==    by 0x110EB3: clear_window (draw_map.c:26)
+==125573==    by 0x111183: draw_map (draw_map.c:117)
+==125573==    by 0x111BFF: render_minimap (main.c:44)
+==125573==    by 0x111D3F: main (main.c:75)
+==125573==  Address 0x4df06a0 is 0 bytes after a block of size 7,168 alloc'd
+==125573==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==125573==    by 0x49308F3: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111A53: init_variables (init_var.c:45)
+==125573==    by 0x111CD3: main (main.c:65)
+==125573== 
+==125573== 
+==125573== HEAP SUMMARY:
+==125573==     in use at exit: 0 bytes in 0 blocks
+==125573==   total heap usage: 4,315 allocs, 4,315 frees, 1,249,243 bytes allocated
+==125573== 
+==125573== All heap blocks were freed -- no leaks are possible
+==125573== 
+==125573== ERROR SUMMARY: 17281 errors from 2 contexts (suppressed: 0 from 0)
+==125573== 
+==125573== 1 errors in context 1 of 2:
+==125573== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==125573==    at 0x4BFB6D0: writev (writev.c:26)
+==125573==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
+==125573==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x1141DB: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x113EFB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111AE7: init_game (main.c:22)
+==125573==    by 0x111D27: main (main.c:73)
+==125573==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
+==125573==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==125573==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111A53: init_variables (init_var.c:45)
+==125573==    by 0x111CD3: main (main.c:65)
+==125573==  Uninitialised value was created by a stack allocation
+==125573==    at 0x1140F0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573== 
+==125573== 
+==125573== 17280 errors in context 2 of 2:
+==125573== Invalid write of size 4
+==125573==    at 0x111080: my_mlx_pixel_put (draw_map.c:72)
+==125573==    by 0x110EB3: clear_window (draw_map.c:26)
+==125573==    by 0x111183: draw_map (draw_map.c:117)
+==125573==    by 0x111BFF: render_minimap (main.c:44)
+==125573==    by 0x111D3F: main (main.c:75)
+==125573==  Address 0x4df06a0 is 0 bytes after a block of size 7,168 alloc'd
+==125573==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==125573==    by 0x49308F3: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
+==125573==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
+==125573==    by 0x111A53: init_variables (init_var.c:45)
+==125573==    by 0x111CD3: main (main.c:65)
+==125573== 
+==125573== ERROR SUMMARY: 17281 errors from 2 contexts (suppressed: 0 from 0)
