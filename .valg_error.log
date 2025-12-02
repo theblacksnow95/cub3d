@@ -1,59 +1,18 @@
-==11387== Memcheck, a memory error detector
-==11387== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==11387== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==11387== Command: ./bin/cub3d map1.cub
-==11387== Parent PID: 11386
-==11387== 
-==11387== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==11387==    at 0x4BFB6D0: writev (writev.c:26)
-==11387==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x1141DB: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x113EFB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x111AE7: init_game (main.c:22)
-==11387==    by 0x111D27: main (main.c:73)
-==11387==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
-==11387==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==11387==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x111A53: init_variables (init_var.c:45)
-==11387==    by 0x111CD3: main (main.c:65)
-==11387==  Uninitialised value was created by a stack allocation
-==11387==    at 0x1140F0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387== 
-==11387== 
-==11387== HEAP SUMMARY:
-==11387==     in use at exit: 0 bytes in 0 blocks
-==11387==   total heap usage: 1,514 allocs, 1,514 frees, 1,176,782 bytes allocated
-==11387== 
-==11387== All heap blocks were freed -- no leaks are possible
-==11387== 
-==11387== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==11387== 
-==11387== 1 errors in context 1 of 1:
-==11387== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==11387==    at 0x4BFB6D0: writev (writev.c:26)
-==11387==    by 0x4CDC51B: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4CDC6D3: ??? (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4CDD88F: xcb_writev (in /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0)
-==11387==    by 0x4941B1F: _XSend (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x494676F: _XReadEvents (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x4946A8F: XWindowEvent (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x1141DB: mlx_int_wait_first_expose (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x113EFB: mlx_new_window (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x111AE7: init_game (main.c:22)
-==11387==    by 0x111D27: main (main.c:73)
-==11387==  Address 0x4dea72c is 28 bytes inside a block of size 16,384 alloc'd
-==11387==    at 0x488C0AC: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==11387==    by 0x4930617: XOpenDisplay (in /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0)
-==11387==    by 0x113CC7: mlx_init (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387==    by 0x111A53: init_variables (init_var.c:45)
-==11387==    by 0x111CD3: main (main.c:65)
-==11387==  Uninitialised value was created by a stack allocation
-==11387==    at 0x1140F0: mlx_int_anti_resize_win (in /home/emurillo/Documents/Cursus/cub3d/bin/cub3d)
-==11387== 
-==11387== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==1956266== Memcheck, a memory error detector
+==1956266== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1956266== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1956266== Command: ./bin/cub3d map1.cub
+==1956266== Parent PID: 1956265
+==1956266== 
+==1956266== 
+==1956266== HEAP SUMMARY:
+==1956266==     in use at exit: 0 bytes in 0 blocks
+==1956266==   total heap usage: 3,145 allocs, 3,145 frees, 1,247,628 bytes allocated
+==1956266== 
+==1956266== All heap blocks were freed -- no leaks are possible
+==1956266== 
+==1956266== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+--1956266-- 
+--1956266-- used_suppression:      1 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
+==1956266== 
+==1956266== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
