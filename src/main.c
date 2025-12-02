@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/11/27 15:55:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/02 11:41:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static int	init_game(t_cub *game)
 	return (0);
 }
 
-void render_minimap(t_cub *game)
+void	render_minimap(t_cub *game)
 {
-	void *win;
-	void *img;
-	
+	void	*win;
+	void	*img;
+
 	win = game->mlx.win;
 	img = game->mlx.img;
 	draw_map(game);

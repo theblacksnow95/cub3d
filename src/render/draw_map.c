@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 15:27:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/02 11:49:29 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-		return (1);
+	// if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
+	// 	return (1);
 	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
 	return (0);
@@ -82,12 +82,12 @@ static int	draw_square(t_mlx *mlx, int start_x, int start_y, int color)
 	y = 0;
 	while (y < TILE_SIZE)
 	{
-		if (start_y + y >= WIN_H)
+		if (start_y + y >= WIN_H || start_y + y < 0)
 			break ;
 		x = 0;
 		while (x < TILE_SIZE)
 		{
-			if (start_x + x >= WIN_W)
+			if (start_x + x >= WIN_W || start_x + x < 0)
 				break ;
 			if (my_mlx_pixel_put(mlx, start_x + x, start_y + y, color))
 				return (1);
@@ -114,7 +114,7 @@ int	draw_map(t_cub *game)
 	int		error;
 	char	cell;
 
-	clear_window(game->mlx.mlx, 0x000000);
+	// clear_window(game->mlx.mlx, 0x000000);
 	y = 0;
 	while (game->map[y])
 	{
