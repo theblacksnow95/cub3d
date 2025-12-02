@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/02 20:52:44 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/02 21:04:00 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,12 @@ static int	init_game(t_cub *game)
         Quitar dibujado “manual” en key_press.
 */
 int game_loop(t_cub *game) {
-    // Limpia la imagen
+    //	 Limpia la imagen
     clear_window(&game->mlx, 0x000000);
 
-    // Render 3D
- //   cast_all_rays(game);
-
-    // Overlay minimapa: si querés mantenerlo, dibuja el mapa luego.
-    // O bien dibuja el minimapa en una segunda imagen y haz put_image en otra posición.
     draw_map(game);
-
+	//		Render 3D
+ //	cast_all_rays(game);
     mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
     return 0;
 }
