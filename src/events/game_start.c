@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/01 23:08:12 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/02 20:32:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	key_press(int keycode, t_cub *game)
 {
 	if (keycode == 65307)
 		close_windows(game);
-	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x808080);
+	// draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x808080);
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
 			game->player.mov_speed * game->player.dir_y);

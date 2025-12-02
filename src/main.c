@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/02 21:04:00 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/02 20:33:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	init_game(t_cub *game)
 */
 int game_loop(t_cub *game) {
     //	 Limpia la imagen
-    clear_window(&game->mlx, 0x000000);
+    // clear_window(&game->mlx, 0x000000);
 
     draw_map(game);
 	//		Render 3D
