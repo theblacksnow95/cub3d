@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/25 11:42:52 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:40:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ typedef struct s_rgb
 	int	b;
 	int	full;
 }	t_rgb;
+
+
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	rayDir_x;
+	double	rayDir_y;
+}	t_ray;
 
 // Codidos de errores que uso para las texturas, va a cambiar
 typedef enum e_code

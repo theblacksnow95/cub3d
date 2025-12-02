@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/27 15:28:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:35:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define CLR_YLLW         "\x1b[33m"
 # define CLR_BLUE         "\x1b[34m"
 
-# define WIN_W			1920
-# define WIN_H			1080
+# define WIN_W			1080
+# define WIN_H			886
 # define TILE_SIZE		12
 
 # define NO_ID          "NO"
