@@ -6,15 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2025/12/04 00:36:21 by emurillo         ###   ########.fr       */
-=======
-/*   Updated: 2025/12/03 14:26:29 by emurillo         ###   ########.fr       */
->>>>>>> e94254c (cambios en el parsing errores de las texturas)
-=======
-/*   Updated: 2025/12/02 11:41:15 by emurillo         ###   ########.fr       */
->>>>>>> 1d83d89 (cambio de draw ma ahora va fluido con todo el maoa  a la vez)
+/*   Updated: 2025/12/04 10:45:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
