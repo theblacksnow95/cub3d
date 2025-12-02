@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 22:47:20 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/01 22:44:47 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	draw_map(t_cub *game)
 	int		error;
 	char	cell;
 
-	clear_window(game->mlx.mlx, 0x000000);
+	clear_window(&game->mlx, 0x000000);
 	y = 0;
 	while (game->map[y])
 	{

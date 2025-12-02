@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/11/27 15:57:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/01 23:08:12 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	double	old_plane_x;
 
 	// Rotar vector dirección
-	printf("OLD dirX: %f\n", game->player.dir_x);
 	old_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
 		- game->player.dir_y * sin(rot_speed);
 	game->player.dir_y = old_dir_x * sin(rot_speed)
 		+ game->player.dir_y * cos(rot_speed);
-	printf("NEW dir_x: %f", game->player.dir_x);
-	printf("\t NEW dir_y: %f\n", game->player.dir_y);
 	// Rotar plano de cámara
 	old_plane_x = game->player.plane_x;
 	game->player.plane_x = game->player.plane_x * cos(rot_speed)
@@ -101,22 +98,18 @@ int	key_press(int keycode, t_cub *game)
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
 			game->player.mov_speed * game->player.dir_y);
-	else if (keycode == KEY_S) // S - Atrás
+	else if (keycode == KEY_S)
 		move_player(game, -game->player.dir_x * game->player.mov_speed,
 			-game->player.dir_y * game->player.mov_speed);			
-	else if (keycode == KEY_A) // A - Izquierda (strafe)
+	else if (keycode == KEY_A)
 		move_player(game, game->player.dir_y * game->player.mov_speed,
 			-game->player.dir_x * game->player.mov_speed);
-	else if (keycode == KEY_D) // D - Derecha (strafe)
+	else if (keycode == KEY_D)
 		move_player(game, -game->player.dir_y * game->player.mov_speed ,
 			game->player.dir_x * game->player.mov_speed);
-	else if (keycode == KEY_LEFT) // Flecha izquierda - Rotar izquierda
+	else if (keycode == KEY_LEFT)
 		rotate_player(game, -game->player.rot_speed);
-	else if (keycode == KEY_RIGHT) // Flecha derecha - Rotar derecha
+	else if (keycode == KEY_RIGHT)
 		rotate_player(game, game->player.rot_speed);
-
-	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
-	// draw_map(game);
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 100, 0);
 	return (0);
 }
