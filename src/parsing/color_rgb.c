@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/20 21:28:18 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/03 14:29:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 		{
 			data->c_rgb->full = 1;
 			// printf("rgb C full: %d\n", data->c_rgb->full); //debug
-
 			return ;
 		}
 	}
 	else
+	{
 		error_handler(line, E_COLOR, id, data);
+	}
 }
 
 void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
@@ -63,7 +64,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 			data->f_rgb->g = num;
 		if (data->i == 2)
 			data->f_rgb->b = num;
-		if (data->i == 2)
+		if (data->i == 3)
 		{
 			data->f_rgb->full = 1;
 			// printf("rgb F full: %d\n", data->f_rgb->full); //debug
@@ -71,10 +72,7 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 		}
 	}
 	else
-	{
-		data->dups = 1;
 		error_handler(line, E_COLOR, id, data);
-	}
 }
 
 void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
@@ -88,10 +86,13 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		i++;
 	// printf("value of i after: %d\n", i); // debug
 	if (i != 3)
-		error_handler(line, E_COLOR, id, data);
-	data->i = 0;
-	while (tmp[data->i])
 	{
+		error_handler(line, E_COLOR, id, data);
+	}
+	data->i = 0;
+	while (tmp[data->i] && !data->dups)
+	{
+		// printf("heLLLO\n"); // debug
 		num = ft_atoi(tmp[data->i]);
 		if (!ft_strncmp(id, F_ID, 1))
 			fill_f_rgb(data, line, id, num);
@@ -100,11 +101,11 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 		data->i++;
 		// printf("color value: %d\n", num); // debug
 	}
-	if (data->c_rgb->full && data->f_rgb->full)
-	{
-		printf(CLR_BLUE"value f: %d,%d,%d\n"RST_ALL, data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
-		printf(CLR_BLUE"value c: %d,%d,%d\n\n"RST_ALL, data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
-	}
+	// if (data->c_rgb->full && data->f_rgb->full) //debug
+	// {
+	// 	printf(CLR_BLUE"value f: %d,%d,%d\n"RST_ALL, data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
+	// 	printf(CLR_BLUE"value c: %d,%d,%d\n\n"RST_ALL, data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
+	// }
 }
 
 void	colors_rgb(char *line, char *id, t_cub *data)
@@ -117,6 +118,8 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	{
 		// printf("return code [%d]\n", valid_rgb(p)); // debug
 		error_handler(p, E_COLOR, id, data);
+		s_free(p);
+		return ;
 	}
 	// printf("passed the valid_rgb: %s\n", p); // debug
 	clean_line(p);

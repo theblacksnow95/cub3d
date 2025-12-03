@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:17:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:16:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
 	{
 		ft_printf(RST_ALL"Error:\nIncorrect <%s> coordinates\n", id);
 		ft_printf(CLR_RED"%s\n"CLR_RED, line);
+		data->dups = 1;
 	}
 	if (code == E_MAP)
 	{
