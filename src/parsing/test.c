@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 09:30:57 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/05 10:41:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:58:32 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,32 @@ static int	valid_rgb(char *s);
 // 			return (1);
 // 		s++;
 // 	}
-// 	return (0);
+// // 	return (0);
+// // }
+
+// static int	valid_rgb(char *s)
+// {
+// 	char	*tmp;
+
+// 	tmp = s;
+// 	while (*s)
+// 	{
+// 		if (*s == ')')
+// 			if (!expect(tmp, '('))
+// 				return (0);
+// 		if (*s == '(')
+// 			if (!expect(tmp, ')'))
+// 				return (0);
+// 		if (ft_isdigit(*s)
+// 			|| *s == '(' || *s == ')'
+// 			|| *s == ',' || *s == ' '
+// 			|| *s == '\t')
+// 			s++;
+// 		else
+// 			return (0);
+// 	}
+// 	return (1);
 // }
-
-static int	valid_rgb(char *s)
-{
-	char	*tmp;
-
-	tmp = s;
-	while (*s)
-	{
-		if (*s == ')')
-			if (!expect(tmp, '('))
-				return (0);
-		if (*s == '(')
-			if (!expect(tmp, ')'))
-				return (0);
-		if (ft_isdigit(*s)
-			|| *s == '(' || *s == ')'
-			|| *s == ',' || *s == ' '
-			|| *s == '\t')
-			s++;
-		else
-			return (0);
-	}
-	return (1);
-}
 
 int	main(int ac, char **av)
 {
