@@ -136,7 +136,10 @@ static int	cast_single_ray(t_cub *game, int j)
 	lineh = (int)(WIN_H / perpdist);
 	draws = -lineh / 2 + WIN_H / 2;
 	drawe = lineh / 2 + WIN_H / 2;
-	return (draw_vertical_line(&game->mlx, j, draws, drawe, 0xFFFFFF));
+	if (ray.side == 0)
+		return (draw_vertical_line(&game->mlx, j, draws, drawe, 0xFF0000));
+	else
+		return (draw_vertical_line(&game->mlx, j, draws, drawe, 0x0000FF));
 }
 
 /*
