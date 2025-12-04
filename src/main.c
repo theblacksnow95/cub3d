@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/04 23:44:19 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:54:52 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static int	init_game(t_cub *game)
 }
 
 /*
-    Mover el dibujo al bucle de render y dejar key_press solo para actualizar estado
+    Mover el dibujo al bucle de render y dejar key_press solo para actualizar
+	estado
 
-    Objetivo: que el frame se repinte constantemente y key_press solo cambie posición/rotación. Evita inconsistencias y parpadeos.
+    Objetivo: que el frame se repinte constantemente y key_press solo cambie
+	posición/rotación. Evita inconsistencias y parpadeos.
     Acción:
         Añadir un game_loop y registrar mlx_loop_hook en main.
         Quitar dibujado “manual” en key_press.
