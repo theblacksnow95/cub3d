@@ -89,7 +89,7 @@ int		draw_map(t_cub *game);
 void	clear_window(t_mlx *mlx, int color);
 int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		draw_player(t_mlx *mlx, double x, double y, int color);
-//void	cast_all_rays(t_cub *game);
+int		cast_all_rays(t_cub *game);
 
 
 //	utils

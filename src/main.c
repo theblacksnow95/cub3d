@@ -43,7 +43,7 @@ static int	init_game(t_cub *game)
 */
 int game_loop(t_cub *game) {
     draw_map(game);
- //	cast_all_rays(game);
+	cast_all_rays(game);
     mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
     return 0;
 }
