@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/01 13:40:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:31:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ typedef struct s_flood
 typedef struct s_texture
 {
 	void	*id_texture;
-	int		*rendered;
+	int		text_w;
+	int		text_h;
 	int		full;
 }	t_texture;
 
@@ -90,6 +91,8 @@ typedef struct s_ray
 	double	plane_y;
 	double	rayDir_x;
 	double	rayDir_y;
+	double	side;
+	double  perpwalldist;
 }	t_ray;
 
 // Codidos de errores que uso para las texturas, va a cambiar
@@ -108,6 +111,7 @@ typedef struct s_cub
 	int			params_cnt;
 	char		*map_path;
 	char		**map;
+	t_ray		ray;
 	t_texture	*no_texture;
 	t_texture	*so_texture;
 	t_texture	*we_texture;
