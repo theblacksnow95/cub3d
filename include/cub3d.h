@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/02 20:52:23 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:13:00 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		draw_map(t_cub *game);
 void	clear_window(t_mlx *mlx, int color);
 int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		draw_player(t_mlx *mlx, double x, double y, int color);
-//void	cast_all_rays(t_cub *game);
+int		cast_all_rays(t_cub *game);
 
 
 //	utils
