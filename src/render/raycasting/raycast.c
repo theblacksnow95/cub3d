@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/04 23:12:47 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:34:39 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,16 @@ static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, 
 }
 
 /*
-	ray->cameraX = 2.0 * j / (double)WIN_W - 1.0;
-	ray->raydirX = game->player.dir_x + game->player.plane_x * ray->cameraX;
-	ray->raydirY = game->player.dir_y + game->player.plane_y * ray->cameraX;	
-	Convierte la columna de pantalla (j) en una coordenada normalizada que
-	va de -1 a +1. En otras palabras, para saber a donde apunta para poder
-	imprimir bien la columna
-	
-	cameraX: posicion normalizada en pantalla [-1, 1] para la columna j.
+	cameraX convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
+	Esto determina qué parte del plano de visión usa este rayo.
 
-	raydirX/Y: dirección del rayo en el mundo (dir + plane * cameraX).
+	raydirX/Y = dirección real del rayo en el mundo.
+	Es la dirección del jugador + una parte del plano de cámara.
 
-	mapX/Y: celda inicial del jugador (índice entero).
+	mapX/Y = celda actual donde está el jugador, convertido a índice entero.
 
-	deltaX/Y: cuánto "costo" (distancia) recorre el rayo para cruzar una
-	celda en X/Y. Si dir es 0 usamos 1e30 para evitar división por cero..
-
-	deltaX es la distancia que recorre el rayo para cruzar una celda en X,
-	Si raydirX es cero, no importa cuánto sumes, nunca cruzarás una pared en
-	X, entonces poner un número gigantesco (1e30) significa: “prácticamente
-	nunca cruzo X, siempre cruzo Y primero”.
+	deltaX/Y = cuánto debe avanzar el rayo para cruzar una celda entera en X o Y.
+	Si raydir es 0, usamos un número enorme (1e30) para representar “nunca cruzo”.
 */
 static void	ray_init(t_cub *game, t_ray *ray, int j)
 {
@@ -71,6 +61,20 @@ static void	ray_init(t_cub *game, t_ray *ray, int j)
 		ray->deltaY = fabs(1.0 / ray->raydirY);
 }
 
+
+/*
+	stepX/Y = hacia qué dirección avanza el rayo en la grilla.
+
+	sideX/Y = distancia desde la posición del jugador hasta la primera pared
+	vertical u horizontal que podría cruzar el rayo.
+
+	Si el rayo va hacia la izquierda:
+		sideX = (player.x - mapX)
+	Si va hacia la derecha:
+		sideX = (mapX + 1 - player.x)
+
+	Lo mismo para Y.
+*/
 static void	ray_step_init(t_cub *game, t_ray *ray)
 {
 	if (ray->raydirX < 0.0)
@@ -109,6 +113,7 @@ static int	cast_single_ray(t_cub *game, int j)
 	int		lineh;
 	int		draws;
 	int		drawe;
+	int		color;
 
 	ray_init(game, &ray, j);
 	ray_step_init(game, &ray);
@@ -136,11 +141,15 @@ static int	cast_single_ray(t_cub *game, int j)
 	lineh = (int)(WIN_H / perpdist);
 	draws = -lineh / 2 + WIN_H / 2;
 	drawe = lineh / 2 + WIN_H / 2;
-	return (draw_vertical_line(&game->mlx, j, draws, drawe, 0xFFFFFF));
+	if (ray.side == 0)
+		color = 0xFF0000;	// 🔴 paredes verticales (N/S)
+	else
+		color = 0x0000FF;	// 🔵 paredes horizontales (E/O)
+	return (draw_vertical_line(&game->mlx, j, draws, drawe, color));
 }
 
 /*
-	recorro todas las columnas
+	Recorro todas las columnas de la pantalla, tirando un rayo por cada una.
 */
 int	cast_all_rays(t_cub *game)
 {
