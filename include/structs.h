@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/25 11:42:52 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:36:09 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,22 @@ typedef enum e_code
 	E_MAP,
 	E_NO_ID
 }	t_ecode;
+
+typedef struct s_ray
+{
+	double	cameraX;
+	double	raydirX;
+	double	raydirY;
+	double	deltaX;
+	double	deltaY;
+	double	sideX;
+	double	sideY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+}			t_ray;
 
 // Estructura principal que usa punteros con punteros a otras estructuras
 typedef struct s_cub

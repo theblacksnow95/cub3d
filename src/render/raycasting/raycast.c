@@ -6,86 +6,152 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/01 23:13:16 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:01:52 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Dibuja una línea vertical desde drawStart a drawEnd en X = column */
-static void draw_vertical_line(t_mlx *mlx, int column, int drawStart, int drawEnd, int color)
+static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
 {
-    if (column < 0 || column >= WIN_W) return;
-    if (drawStart < 0) drawStart = 0;
-    if (drawEnd >= WIN_H) drawEnd = WIN_H - 1;
-    for (int y = drawStart; y <= drawEnd; y++)
-        my_mlx_pixel_put(mlx, column, y, color);
+	int j;
+
+	if (col < 0 || col >= WIN_W)
+		return (perror("printing vertical line"), 1);
+	if (drawstart < 0)
+		drawstart = 0;
+	if (drawend >= WIN_H)
+		drawend = WIN_H - 1;
+	j = drawstart;
+	while (j <= drawend)
+	{
+		if (my_mlx_pixel_put(mlx, col, j, color))
+			return (perror("vertical line - my pixel put"), 1);
+		j++;
+	}
+	return (0);
 }
 
-/* Esqueleto básico de DDA raycasting, sin texturas */
-void cast_all_rays(t_cub *game)
+/*
+	ray->cameraX = 2.0 * j / (double)WIN_W - 1.0;
+	ray->raydirX = game->player.dir_x + game->player.plane_x * ray->cameraX;
+	ray->raydirY = game->player.dir_y + game->player.plane_y * ray->cameraX;	
+	Convierte la columna de pantalla (j) en una coordenada normalizada que
+	va de -1 a +1. En otras palabras, para saber a donde apunta para poder
+	imprimir bien la columna
+	
+	cameraX: posicion normalizada en pantalla [-1, 1] para la columna j.
+
+	raydirX/Y: dirección del rayo en el mundo (dir + plane * cameraX).
+
+	mapX/Y: celda inicial del jugador (índice entero).
+
+	deltaX/Y: cuánto "costo" (distancia) recorre el rayo para cruzar una
+	celda en X/Y. Si dir es 0 usamos 1e30 para evitar división por cero..
+
+	deltaX es la distancia que recorre el rayo para cruzar una celda en X,
+	Si raydirX es cero, no importa cuánto sumes, nunca cruzarás una pared en
+	X, entonces poner un número gigantesco (1e30) significa: “prácticamente
+	nunca cruzo X, siempre cruzo Y primero”.
+*/
+static void	ray_init(t_cub *game, t_ray *ray, int j)
 {
-    for (int x = 0; x < WIN_W; x++) {
-        double cameraX = 2.0 * x / (double)WIN_W - 1.0;
-        double rayDirX = game->player.dir_x + game->player.plane_x * cameraX;
-        double rayDirY = game->player.dir_y + game->player.plane_y * cameraX;
+	ray->cameraX = 2.0 * j / (double)WIN_W - 1.0;
+	ray->raydirX = game->player.dir_x + game->player.plane_x * ray->cameraX;
+	ray->raydirY = game->player.dir_y + game->player.plane_y * ray->cameraX;
+	ray->mapX = (int)game->player.x;
+	ray->mapY = (int)game->player.y;
+	if (ray->raydirX == 0.0)
+		ray->deltaX = 1e30;
+	else
+		ray->deltaX = fabs(1.0 / ray->raydirX);
+	if (ray->raydirY == 0.0)
+		ray->deltaY = 1e30;
+	else
+		ray->deltaY = fabs(1.0 / ray->raydirY);
+}
 
-        int mapX = (int)game->player.x;
-        int mapY = (int)game->player.y;
+static void	ray_step_init(t_cub *game, t_ray *ray)
+{
+	if (ray->raydirX < 0.0)
+	{
+		ray->stepX = -1;
+		ray->sideX = (game->player.x - ray->mapX) * ray->deltaX;
+	}
+	else
+	{
+		ray->stepX = 1;
+		ray->sideX = (ray->mapX + 1.0 - game->player.x) * ray->deltaX;
+	}
+	if (ray->raydirY < 0.0)
+	{
+		ray->stepY = -1;
+		ray->sideY = (game->player.y - ray->mapY) * ray->deltaY;
+	}
+	else
+	{
+		ray->stepY = 1;
+		ray->sideY = (ray->mapY + 1.0 - game->player.y) * ray->deltaY;
+	}
+}
 
-        double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1.0 / rayDirX);
-        double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1.0 / rayDirY);
+/*
+	sidex ... si va hacia la izquierda
+	distancia en X = posición del jugador - X entero de la celda en la que está
+	Si va hacia la derecha
+	distancia en X	= (X entero de próxima celda) - posición del jugador
+               		= (mapX + 1) - jugador.x
+*/
+static int	cast_single_ray(t_cub *game, int j)
+{
+	t_ray	ray;
+	double	perpdist;
+	int		lineh;
+	int		draws;
+	int		drawe;
 
-        int stepX, stepY;
-        double sideDistX, sideDistY;
+	ray_init(game, &ray, j);
+	ray_step_init(game, &ray);
+	while (1)
+	{
+		if (ray.sideX < ray.sideY)
+		{
+			ray.sideX += ray.deltaX;
+			ray.mapX += ray.stepX;
+			ray.side = 0;
+		}
+		else
+		{
+			ray.sideY += ray.deltaY;
+			ray.mapY += ray.stepY;
+			ray.side = 1;
+		}
+		if (game->map[ray.mapY][ray.mapX] == '1')
+			break ;
+	}
+	if (ray.side == 0)
+		perpdist = (ray.sideX - ray.deltaX);
+	else
+		perpdist = (ray.sideY - ray.deltaY);
+	lineh = (int)(WIN_H / perpdist);
+	draws = -lineh / 2 + WIN_H / 2;
+	drawe = lineh / 2 + WIN_H / 2;
+	return (draw_vertical_line(&game->mlx, j, draws, drawe, 0xFFFFFF));
+}
 
-        if (rayDirX < 0) {
-            stepX = -1;
-            sideDistX = (game->player.x - mapX) * deltaDistX;
-        } else {
-            stepX = 1;
-            sideDistX = (mapX + 1.0 - game->player.x) * deltaDistX;
-        }
-        if (rayDirY < 0) {
-            stepY = -1;
-            sideDistY = (game->player.y - mapY) * deltaDistY;
-        } else {
-            stepY = 1;
-            sideDistY = (mapY + 1.0 - game->player.y) * deltaDistY;
-        }
+/*
+	recorro todas las columnas
+*/
+int	cast_all_rays(t_cub *game)
+{
+	int	j;
 
-        int hit = 0;
-        int side = 0; // 0: X, 1: Y
-
-        // DDA
-        while (!hit) {
-            if (sideDistX < sideDistY) {
-                sideDistX += deltaDistX;
-                mapX += stepX;
-                side = 0;
-            } else {
-                sideDistY += deltaDistY;
-                mapY += stepY;
-                side = 1;
-            }
-            char cell = game->map[mapY][mapX];
-            if (cell == '1' || cell == ' ') hit = 1;
-        }
-
-        // Distancia perpendicular para evitar fisheye
-        double perpWallDist;
-        if (side == 0)
-            perpWallDist = (sideDistX - deltaDistX);
-        else
-            perpWallDist = (sideDistY - deltaDistY);
-
-        // Altura de la línea en pantalla
-        int lineHeight = (int)(WIN_H / (perpWallDist > 1e-6 ? perpWallDist : 1e-6));
-        int drawStart = -lineHeight / 2 + WIN_H / 2;
-        int drawEnd = lineHeight / 2 + WIN_H / 2;
-
-        // Color simple (oscurecer si side == 1)
-        int color = (side == 1) ? 0x009900 : 0x00CC00;
-        draw_vertical_line(&game->mlx, x, drawStart, drawEnd, color);
-    }
+	j = 0;
+	while (j < WIN_W)
+	{
+		if (cast_single_ray(game, j))
+			return (perror("doing raycast"), 1);
+		j++;
+	}
+	return (0);
 }

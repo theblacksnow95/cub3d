@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/02 20:33:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:33:24 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	init_game(t_cub *game)
 }
 
 /*
-
     Mover el dibujo al bucle de render y dejar key_press solo para actualizar estado
 
     Objetivo: que el frame se repinte constantemente y key_press solo cambie posición/rotación. Evita inconsistencias y parpadeos.
@@ -43,11 +42,7 @@ static int	init_game(t_cub *game)
         Quitar dibujado “manual” en key_press.
 */
 int game_loop(t_cub *game) {
-    //	 Limpia la imagen
-    // clear_window(&game->mlx, 0x000000);
-
     draw_map(game);
-	//		Render 3D
  //	cast_all_rays(game);
     mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
     return 0;
@@ -56,12 +51,8 @@ int game_loop(t_cub *game) {
 void render_minimap(t_cub *game)
 {
 	void *win;
-	void *img;
 	
 	win = game->mlx.win;
-	img = game->mlx.img;
-	draw_map(game);
-	mlx_put_image_to_window(game->mlx.mlx, win, img, 100, 0);
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
