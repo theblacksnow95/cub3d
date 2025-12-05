@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/03 14:16:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:43:41 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
 	}
 	if (code == E_MAP)
 	{
+		data->dups = 1;
 		ft_printf(RST_ALL"Error\n: %s\n", data->map_path);
 		ft_printf(CLR_RED"Incorrect map\n"RST_ALL);
 	}
 	if (code == E_NO_ID)
 	{
-		ft_printf(RST_ALL"Error\n: %s\n", data->map_path);
-		ft_printf(CLR_RED"Missing ID in :%s \n"RST_ALL, line);
+		ft_printf(RST_ALL"Error\n: %s\n", data->map_path, CLR_RED"Missing ID in :%s \n"RST_ALL, line);
 	}
 }

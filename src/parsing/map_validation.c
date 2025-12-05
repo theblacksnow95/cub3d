@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:25:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/26 16:32:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:41:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	valid_chars(t_cub *data, char **map, int y, int x)
 		}
 		y++;
 	}
+	if (data->ply == 0)
+		return (error_handler(NULL, E_MAP, EMPTY_ID, data), 0);
 	return (1);
 }
 
