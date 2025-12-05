@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/05 13:15:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:22:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ int	key_press(int keycode, t_cub *game)
 			game->player.mov_speed * game->player.dir_y);
 	else if (keycode == KEY_S)
 		move_player(game, -game->player.dir_x * game->player.mov_speed,
-			-game->player.dir_y * game->player.mov_speed);
-	else if (keycode == KEY_A) // A - Izquierda (strafe)
 			-game->player.dir_y * game->player.mov_speed);
 	else if (keycode == KEY_A)
 		move_player(game, game->player.dir_y * game->player.mov_speed,
