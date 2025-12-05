@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/04 23:34:39 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:11:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ static int	cast_single_ray(t_cub *game, int j)
 			ray.mapY += ray.stepY;
 			ray.side = 1;
 		}
-		if (game->map[ray.mapY][ray.mapX] == '1')
+		if (game->map[ray.mapY][ray.mapX] == '1' || game->map[ray.mapY][ray.mapX] == ' ' )
 			break ;
 	}
 	if (ray.side == 0)

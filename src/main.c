@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/04 23:54:52 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/05 00:06:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ static int	init_game(t_cub *game)
 */
 int game_loop(t_cub *game) {
     clear_window(&game->mlx, 0x000000);
-	draw_map(game);
- 	cast_all_rays(game);
+	cast_all_rays(game);
     mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
-    return 0;
+    if (game->mini == true)
+		draw_map(game);
+	return 0;
 }
+
+
 
 void render_minimap(t_cub *game)
 {
@@ -59,6 +62,8 @@ void render_minimap(t_cub *game)
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
+	// mlx_hook(game->mlx.win, 2, 1L << 0, draw_minimap, game);
+
 }
 
 /*	mlx_hook 17 = X presionada

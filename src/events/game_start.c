@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/04 23:39:52 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/04 23:50:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,22 @@ static void	move_player(t_cub *game, double move_x, double move_y)
 	return ;
 }
 
+void	draw_minimap(t_cub *game)
+{
+	if (game->mini == false)
+		game->mini = true;
+	else
+		game->mini = false;
+}
+
 /*   65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
 int	key_press(int keycode, t_cub *game)
 {
+	printf("keycode: %d", keycode);
 	if (keycode == 65307)
 		close_windows(game);
+	if (keycode == 109)
+		draw_minimap(game);
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
 			game->player.mov_speed * game->player.dir_y);
