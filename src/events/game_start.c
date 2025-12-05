@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/04 23:50:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 12:00:29 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	rotate_player(t_cub *game, double rot_speed)
 	si el pixel siguiente es diferente de 0, hay colision
 */
 static bool	is_wall(t_cub *game, double x, double y)
-{	
+{
 	int	map_x;
 	int	map_y;
 	map_x = (int)x;
@@ -78,7 +78,7 @@ static void	move_player(t_cub *game, double move_x, double move_y)
 {
 	double	new_x;
 	double	new_y;
-	
+
 	new_x = game->player.x + move_x;
 	new_y = game->player.y + move_y;
 	// printf("player pos: y=%f, x=%f\n", gamze->player.y, game->player.x);
@@ -100,7 +100,7 @@ void	draw_minimap(t_cub *game)
 /*   65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
 int	key_press(int keycode, t_cub *game)
 {
-	printf("keycode: %d", keycode);
+	// printf("keycode: %d", keycode);
 	if (keycode == 65307)
 		close_windows(game);
 	if (keycode == 109)
@@ -110,7 +110,7 @@ int	key_press(int keycode, t_cub *game)
 			game->player.mov_speed * game->player.dir_y);
 	else if (keycode == KEY_S)
 		move_player(game, -game->player.dir_x * game->player.mov_speed,
-			-game->player.dir_y * game->player.mov_speed);			
+			-game->player.dir_y * game->player.mov_speed);
 	else if (keycode == KEY_A)
 		move_player(game, game->player.dir_y * game->player.mov_speed,
 			-game->player.dir_x * game->player.mov_speed);
