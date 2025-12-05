@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 13:14:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:14:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define EMPTY_ID          ""
 
 # define EXTENSION_LEN	4
-# define COLLITION_RAD	0.25
-# define PLAYER_RAD		3
+# define COLLITION_RAD	0.20
+# define PLAYER_RAD		2
 
 
 int		check_file_format_n_extention(char *file);

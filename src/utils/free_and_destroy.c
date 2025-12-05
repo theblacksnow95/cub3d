@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:05:59 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/05 13:17:07 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:42:30 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,4 @@ int	close_windows(t_cub *game)
 	if (game->fd != -1)
 		close(game->fd);
 	exit(0);
-	return (0);
 }

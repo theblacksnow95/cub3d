@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/05 13:14:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:39:46 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int	main(int ac, char **av)
 	if (!check_for_params(game.map_path, &game))
 	{
 		// printf("Error here in check_for_params\n"); // debug
-		error_handler(NULL, E_MAP, EMPTY_ID, &game);
+		// error_handler(NULL, E_MAP, EMPTY_ID, &game); // debug
 		close_windows(&game);
+		return (1);
 	}
 	init_player(&game);
 	if (init_game(&game))
