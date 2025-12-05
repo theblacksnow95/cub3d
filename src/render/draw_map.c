@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/02 11:49:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:16:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	// if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 	// 	return (1);
 	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = (unsigned int)color;
 	return (0);
 }
 
@@ -114,7 +114,6 @@ int	draw_map(t_cub *game)
 	int		error;
 	char	cell;
 
-	// clear_window(game->mlx.mlx, 0x000000);
 	y = 0;
 	while (game->map[y])
 	{

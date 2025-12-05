@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/04 10:45:13 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:14:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define CLR_BLUE         "\x1b[34m"
 
 # define WIN_W			1080
-# define WIN_H			886
-# define TILE_SIZE		12
+# define WIN_H			940
+# define TILE_SIZE		16
 
 # define NO_ID          "NO"
 # define SO_ID          "SO"
@@ -88,7 +88,8 @@ void	draw_pixel(t_mlx *mlx, int x, int y, int color);
 int		draw_map(t_cub *game);
 void	clear_window(t_mlx *mlx, int color);
 int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-int	draw_player(t_mlx *mlx, double x, double y, int color);
+int		draw_player(t_mlx *mlx, double x, double y, int color);
+int		cast_all_rays(t_cub *game);
 
 
 //	utils
