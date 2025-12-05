@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 14:43:32 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 15:52:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	error_map1(t_ecode code, t_cub *data)
 		if (data->ply > 1)
 			ft_printf(CLR_RED"Multiple player detected\n");
 		ft_printf(CLR_YLLW"[1, 0, ' ', N, S, W, E, are accepted]  "RST_ALL);
-		ft_printf(CLR_YLLW"[tabs {\\t} and other chars are not accepted]\n"RST_ALL);
+		ft_printf(CLR_YLLW"[tabs {\\t} & other chars not accepted]\n"RST_ALL);
 	}
 	if (code == E_CLOSEDM)
 	{

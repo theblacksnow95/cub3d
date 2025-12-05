@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 14:14:09 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:12:42 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ int		cast_all_rays(t_cub *game);
 
 //	utils
 int		close_windows(t_cub *game);
+bool	is_wall(t_cub *game, double x, double y);
+void	open_minimap(t_cub *game);
 
 #endif

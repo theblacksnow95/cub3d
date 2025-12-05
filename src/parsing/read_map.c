@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/23 18:54:03 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/05 16:12:59 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	empty_line(char *s)
 {
+	// if (*s == '\n')
+	// 	return (0);
 	while (*s != '\n')
 	{
 		if (*s != ' ' && *s != '\n' && *s != '\t')
@@ -84,8 +86,5 @@ void	read_map(t_cub *data, char *line, int fd)
 	close(fd);
 	data->map = ft_split(map_str, '\n');
 	free(map_str);
-	// print_array(data->map); // debug
-	// add a link to flood fill
 	validate_map(data);
-	// map_validation(data->map, data->y_p, data->x_p);
 }

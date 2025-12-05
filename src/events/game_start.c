@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/05 13:22:55 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:14:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	rotate_player(t_cub *game, double rot_speed)
 
 	// Rotar vector dirección
 	old_dir_x = game->player.dir_x;
-	game->player.dir_x = game->player.dir_x * cos(rot_speed)
-		- game->player.dir_y * sin(rot_speed);
-	game->player.dir_y = old_dir_x * sin(rot_speed)
-		+ game->player.dir_y * cos(rot_speed);
+	game->player.dir_x = (game->player.dir_x * cos(rot_speed))
+		- (game->player.dir_y * sin(rot_speed));
+	game->player.dir_y = (old_dir_x * sin(rot_speed))
+		+ (game->player.dir_y * cos(rot_speed));
 	// Rotar plano de cámara
 	old_plane_x = game->player.plane_x;
 	game->player.plane_x = game->player.plane_x * cos(rot_speed)
@@ -31,37 +31,20 @@ static void	rotate_player(t_cub *game, double rot_speed)
 		+ game->player.plane_y * cos(rot_speed);
 }
 
-/*	chequeo de la colision temporal - aca no tengo en cuenta
-	mapas desproporcionados
-	si esta entre los limites o si es 1 ... devuelve 1 sino 0
 
-	mas adelante haré el calculo con el pixel siguiente dependiendo
-	de la direccion donde mire
-	si el pixel siguiente es diferente de 0, hay colision
-*/
-static bool	is_wall(t_cub *game, double x, double y)
-{
-	int	map_x;
-	int	map_y;
-	map_x = (int)x;
-	map_y = (int)y;
-	if (game->map[map_y][map_x] == '1' || game->map[map_y][map_x] == ' ')
-			return (true);
-	return (false);
-}
 
-static bool wall_collition(t_cub *game, double new_x, double new_y)
+static bool	wall_collition(t_cub *game, double new_x, double new_y)
 {
-	double r;
+	double	r;
 
 	r = COLLITION_RAD;
 	if (is_wall(game, new_x + r, new_y))
 		return (true);
 	if (is_wall(game, new_x - r, new_y))
 		return (true);
-	if (is_wall(game, new_x , new_y + r))
+	if (is_wall(game, new_x, new_y + r))
 		return (true);
-	if (is_wall(game, new_x , new_y - r))
+	if (is_wall(game, new_x, new_y - r))
 		return (true);
 	if (is_wall(game, new_x + r, new_y + r))
 		return (true);
@@ -89,22 +72,13 @@ static void	move_player(t_cub *game, double move_x, double move_y)
 	return ;
 }
 
-void	draw_minimap(t_cub *game)
-{
-	if (game->mini == false)
-		game->mini = true;
-	else
-		game->mini = false;
-}
-
 /*   65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
 int	key_press(int keycode, t_cub *game)
 {
-	// printf("keycode: %d", keycode);
 	if (keycode == 65307)
 		close_windows(game);
-	if (keycode == 109)
-		draw_minimap(game);
+	if (keycode == KEY_M)
+		open_minimap(game);
 	if (keycode == KEY_W)
 		move_player(game, game->player.dir_x * game->player.mov_speed,
 			game->player.mov_speed * game->player.dir_y);
@@ -115,7 +89,7 @@ int	key_press(int keycode, t_cub *game)
 		move_player(game, game->player.dir_y * game->player.mov_speed,
 			-game->player.dir_x * game->player.mov_speed);
 	else if (keycode == KEY_D)
-		move_player(game, -game->player.dir_y * game->player.mov_speed ,
+		move_player(game, -game->player.dir_y * game->player.mov_speed,
 			game->player.dir_x * game->player.mov_speed);
 	else if (keycode == KEY_LEFT)
 		rotate_player(game, -game->player.rot_speed);

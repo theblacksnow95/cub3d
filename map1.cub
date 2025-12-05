@@ -4,6 +4,7 @@ WE ./images/TX-Tileset-Wall_resized.xpm
 EA ./images/TX-Tileset-Wall_resized.xpm
     F 255,  23  ,12
 	C 220,100,2
+
  1 1 1   1111111111111111111111111
  00 00  100000000011000 000000011
   000   10110000011100 0000000001

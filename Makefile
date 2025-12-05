@@ -13,7 +13,7 @@ SRCS = src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handli
 		src/render/draw_map.c src/render/player.c\
 		src/render/raycasting/raycast.c\
 		src/utils/free_and_destroy.c src/utils/init_var.c\
-		src/main.c
+		src/main.c src/events/movement_tools.c
 
 # ================== DIRECTORIES ========================================================================
 
