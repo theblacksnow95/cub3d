@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 18:30:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 18:52:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 	int		color;
 
 	y = game->draws;
+	// printf("value y: %d\n", game->draws);
 	step = (double)text->text_h / (double)game->ray.line_h;
 	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2) * step;
 	while (y < game->drawe)
@@ -54,6 +55,10 @@ int	put_v_texture(t_cub *game, t_texture *text, int j)
 		wallx = game->player.x + (game->ray.perpdist * game->ray.raydirx);
 	wallx -= floor(wallx);
 	game->ray.tex_x = (int)wallx * (double)text->text_w;
+	if (game->ray.tex_x < 0)
+		game->ray.tex_x = 0;
+	if (game->ray.tex_x >= text->text_w)
+		game->ray.tex_x = text->text_w - 1;
 	if (game->ray.side == 0 && game->ray.raydirx > 0)
 		game->ray.tex_x = text->text_w - game->ray.tex_x - 1;
 	if (game->ray.side == 1 && game->ray.raydiry < 0)
