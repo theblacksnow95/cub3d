@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/06 16:43:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:18:35 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,24 +108,23 @@ static void	ray_step_init(t_cub *game, t_ray *ray)
 */
 static int	cast_single_ray(t_cub *game, int j)
 {
-	double	perpdist;
-	int		lineh;
-	int		draws;
-	int		drawe;
-	int		color;
+	t_texture	*text;
+	int			color;
 
 	ray_init(game, &game->ray, j);
 	ray_step_init(game, &game->ray);
-	dda(game, game->ray);
+	dda(game, &game->ray);
 	if (game->ray.side == 0)
-		perpdist = (game->ray.sidex - game->ray.deltax);
+		game->ray.perpdist = (game->ray.sidex - game->ray.deltax);
 	else
-		perpdist = (game->ray.sidey - game->ray.deltay);
-	select_texture(game, &game->ray);
-	lineh = (int)(WIN_H / perpdist);
-	draws = -lineh / 2 + WIN_H / 2;
-	drawe = lineh / 2 + WIN_H / 2;
-	return (draw_vertical_line(&game->mlx, j, draws, drawe, color));
+		game->ray.perpdist = (game->ray.sidey - game->ray.deltay);
+	game->ray.line_h = (int)(WIN_H / game->ray.perpdist);
+	game->draws = -game->ray.line_h / 2 + WIN_H / 2;
+	game->drawe = game->ray.line_h / 2 + WIN_H / 2;
+	text = select_texture(game, &game->ray);
+	if (put_v_texture(game, text, j))
+		return (1);
+	return (0);
 }
 
 /*

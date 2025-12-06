@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 16:38:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:15:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ typedef struct s_cub
 	int			y_p; // mover a player
 	int			ply;
 	bool		mini;
+	int			draws;
+	int			drawe;
 	t_mlx		mlx;
 	t_player	player;
 }				t_cub;
