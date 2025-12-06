@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 17:06:59 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:07:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:56:06 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,27 @@ t_texture	*select_texture(t_cub *game, t_ray *ray)
 
 
 
-void	dda(t_cub *game, t_ray ray)
+void	dda(t_cub *game, t_ray *ray)
 {
 	int	hit;
 
 	hit = 0;
 	while (!hit)
 	{
-		if (ray.sidex < ray.sidey)
+		if (ray->sidex < ray->sidey)
 		{
-			ray.sidex += ray.deltax;
-			ray.mapx += ray.stepx;
-			ray.side = 0;
+			ray->sidex += ray->deltax;
+			ray->mapx += ray->stepx;
+			ray->side = 0;
 		}
 		else
 		{
-			ray.sidey += ray.deltay;
-			ray.mapy += ray.stepy;
-			ray.side = 1;
+			ray->sidey += ray->deltay;
+			ray->mapy += ray->stepy;
+			ray->side = 1;
 		}
-		if (game->map[ray.mapy][ray.mapx] == '1'
-			|| game->map[ray.mapy][ray.mapx] == ' ' )
+		if (game->map[ray->mapy][ray->mapx] == '1'
+			|| game->map[ray->mapy][ray->mapx] == ' ' )
 			hit = 1;
 	}
 }

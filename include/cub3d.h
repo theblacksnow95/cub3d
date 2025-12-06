@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 16:48:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:53:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			draw_player(t_mlx *mlx, double x, double y, int color);
 int			cast_all_rays(t_cub *game);
 void		dda(t_cub *game, t_ray *ray);
 t_texture	*select_texture(t_cub *game, t_ray *ray);
+int			put_v_texture(t_cub *game, t_texture *text, int j);
 
 //	utils
 int			close_windows(t_cub *game);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:15:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:32:49 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_ray
 	double	dir_y;
 	int		line_h;
 	double	step;
+	int		tex_x;
 }			t_ray;
 
 // Estructura principal que usa punteros con punteros a otras estructuras

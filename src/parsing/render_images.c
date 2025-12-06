@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 16:38:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 18:03:37 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,16 @@ void	colors_f_c(char *line, t_cub *data, char *id)
 	colors_rgb(line, id, data);
 }
 
-void	load_data(t_cub *data, t_texture *t, char *path)
+
+static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 {
 	int	w;
 	int	h;
 
-	t->id_texture = mlx_xpm_file_to_image(data->mlx.mlx, path, &w, &h);
-	if (!t->id_texture)
-		return ;
-	t->addr = mlx_get_data_addr
-		(t->id_texture, &t->bpp, &t->line_len, &t->endian);
-	t->text_w = w;
-	t->text_h = h;
-}
-
-static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
-{
-
 	// printf("line: [%s]\n", line); // debug
 	if (!t->id_texture || !t->full)
-		load_data(data, t, line);
+			t->id_texture = mlx_xpm_file_to_image
+				(data->mlx.mlx, line, &w, &h);
 	if (!t->id_texture || t->full)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
@@ -66,7 +56,13 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		data->dups = 1;
 	}
 	if (t->id_texture)
+	{
 		t->full = 1;
+		t->addr = mlx_get_data_addr
+			(t->id_texture, &t->bpp, &t->line_len, &t->endian);
+		t->text_w = w;
+		t->text_h = h;
+	}
 	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full); // debug
 	// // printf("img: %p\n", t->id_texture); //debug
 }

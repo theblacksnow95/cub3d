@@ -6,13 +6,13 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:18:35 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:54:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
+int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
 {
 	int	j;
 
@@ -109,7 +109,6 @@ static void	ray_step_init(t_cub *game, t_ray *ray)
 static int	cast_single_ray(t_cub *game, int j)
 {
 	t_texture	*text;
-	int			color;
 
 	ray_init(game, &game->ray, j);
 	ray_step_init(game, &game->ray);
