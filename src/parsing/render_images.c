@@ -51,8 +51,16 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		t->id_texture = mlx_xpm_file_to_image
 			(data->mlx.mlx, line, &t->width, &t->height);
 		if (t->id_texture)
+		{
 			t->rendered = (int *)mlx_get_data_addr(t->id_texture,
 				&bpp, &line_len, &endian);
+			if (!t->rendered || bpp != 32)
+			{
+				printf(CLR_YLLW"Invalid texture format (expected 32bpp)\n"RST_ALL);
+				error_handler(line, E_TEXTURE, id, data);
+				data->dups = 1;
+			}
+		}
 	}
 	if (!t->id_texture || t->full)
 	{

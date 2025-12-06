@@ -31,10 +31,7 @@ static int draw_vertical_line(t_mlx *mlx, int col, int drawstart, int drawend,
 	{
 		d = j * 256 - WIN_H * 128 + lineHeight * 128;
 		texY = ((d * tex->height) / lineHeight) / 256;
-		if (texY < 0)
-			texY = 0;
-		if (texY >= tex->height)
-			texY = tex->height - 1;
+		texY = (texY < 0) ? 0 : ((texY >= tex->height) ? tex->height - 1 : texY);
 		color = tex->rendered[tex->width * texY + texX];
 		if (my_mlx_pixel_put(mlx, col, j, color))
 			return (perror("vertical line - my pixel put"), 1);
@@ -172,6 +169,7 @@ static int	cast_single_ray(t_cub *game, int j)
 	if ((ray.side == 0 && ray.raydirX > 0)
 		|| (ray.side == 1 && ray.raydirY < 0))
 		texX = tex->width - texX - 1;
+	texX = (texX < 0) ? 0 : ((texX >= tex->width) ? tex->width - 1 : texX);
 	return (draw_vertical_line(&game->mlx, j, draws, drawe, tex, texX, lineh));
 }
 
