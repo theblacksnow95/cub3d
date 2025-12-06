@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 17:06:59 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:56:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:52:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ t_texture	*select_texture(t_cub *game, t_ray *ray)
 	else
 	{
 		if (ray->raydiry > 0)
-			return (game->no_texture);
-		else
 			return (game->so_texture);
+		else
+			return (game->no_texture);
 	}
 }
 

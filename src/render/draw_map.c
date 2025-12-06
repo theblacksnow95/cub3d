@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/05 13:16:23 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 22:48:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	// if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-	// 	return (1);
+	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
+	{
+		printf("x: %d, y: %d, ", x, y);
+		exit(1);
+	}
 	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = (unsigned int)color;
 	return (0);
