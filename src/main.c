@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/05 16:07:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 18:21:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ static int	init_game(t_cub *game)
         Añadir un game_loop y registrar mlx_loop_hook en main.
         Quitar dibujado “manual” en key_press.
 */
-int game_loop(t_cub *game) {
-    clear_window(&game->mlx, 0x000000);
+int	game_loop(t_cub *game) {
+	clear_window(&game->mlx, 0x000000);
 	cast_all_rays(game);
-    mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
-    if (game->mini == true)
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
+	if (game->mini == true)
 		draw_map(game);
-	return 0;
+	return (0);
 }
 
 
 
-void render_minimap(t_cub *game)
+void	render_minimap(t_cub *game)
 {
-	void *win;
+	void	*win;
 
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
