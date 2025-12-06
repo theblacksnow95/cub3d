@@ -41,11 +41,19 @@ void	colors_f_c(char *line, t_cub *data, char *id)
 
 static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 {
+	int	bpp;
+	int	line_len;
+	int	endian;
 
 	// printf("line: [%s]\n", line); // debug
 	if (!t->id_texture || !t->full)
+	{
 		t->id_texture = mlx_xpm_file_to_image
-			(data->mlx.mlx, line, &data->img_w, &data->img_h);
+			(data->mlx.mlx, line, &t->width, &t->height);
+		if (t->id_texture)
+			t->rendered = (int *)mlx_get_data_addr(t->id_texture,
+				&bpp, &line_len, &endian);
+	}
 	if (!t->id_texture || t->full)
 	{
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug

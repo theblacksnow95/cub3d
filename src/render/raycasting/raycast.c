@@ -12,9 +12,13 @@
 
 #include "cub3d.h"
 
-static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
+static int draw_vertical_line(t_mlx *mlx, int col, int drawstart, int drawend,
+	t_texture *tex, int texX, int lineHeight)
 {
-	int j;
+	int	j;
+	int	texY;
+	int	color;
+	int	d;
 
 	if (col < 0 || col >= WIN_W)
 		return (perror("printing vertical line"), 1);
@@ -25,6 +29,13 @@ static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, 
 	j = drawstart;
 	while (j <= drawend)
 	{
+		d = j * 256 - WIN_H * 128 + lineHeight * 128;
+		texY = ((d * tex->height) / lineHeight) / 256;
+		if (texY < 0)
+			texY = 0;
+		if (texY >= tex->height)
+			texY = tex->height - 1;
+		color = tex->rendered[tex->width * texY + texX];
 		if (my_mlx_pixel_put(mlx, col, j, color))
 			return (perror("vertical line - my pixel put"), 1);
 		j++;
@@ -102,13 +113,28 @@ static void	ray_step_init(t_cub *game, t_ray *ray)
 	distancia en X	= (X entero de próxima celda) - posición del jugador
                		= (mapX + 1) - jugador.x
 */
+static t_texture	*select_texture(t_cub *game, t_ray *ray)
+{
+	if (ray->side == 0 && ray->raydirX > 0)
+		return (game->ea_texture);
+	else if (ray->side == 0)
+		return (game->we_texture);
+	else if (ray->side == 1 && ray->raydirY > 0)
+		return (game->so_texture);
+	else
+		return (game->no_texture);
+}
+
 static int	cast_single_ray(t_cub *game, int j)
 {
-	t_ray	ray;
-	double	perpdist;
-	int		lineh;
-	int		draws;
-	int		drawe;
+	t_ray		ray;
+	double		perpdist;
+	int			lineh;
+	int			draws;
+	int			drawe;
+	double		wallX;
+	int			texX;
+	t_texture	*tex;
 
 	ray_init(game, &ray, j);
 	ray_step_init(game, &ray);
@@ -137,9 +163,16 @@ static int	cast_single_ray(t_cub *game, int j)
 	draws = -lineh / 2 + WIN_H / 2;
 	drawe = lineh / 2 + WIN_H / 2;
 	if (ray.side == 0)
-		return (draw_vertical_line(&game->mlx, j, draws, drawe, 0xFF0000));
+		wallX = game->player.y + perpdist * ray.raydirY;
 	else
-		return (draw_vertical_line(&game->mlx, j, draws, drawe, 0x0000FF));
+		wallX = game->player.x + perpdist * ray.raydirX;
+	wallX -= floor(wallX);
+	tex = select_texture(game, &ray);
+	texX = (int)(wallX * (double)tex->width);
+	if ((ray.side == 0 && ray.raydirX > 0)
+		|| (ray.side == 1 && ray.raydirY < 0))
+		texX = tex->width - texX - 1;
+	return (draw_vertical_line(&game->mlx, j, draws, drawe, tex, texX, lineh));
 }
 
 /*

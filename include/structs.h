@@ -67,6 +67,8 @@ typedef struct s_texture
 	void	*id_texture;
 	int		*rendered;
 	int		full;
+	int		width;
+	int		height;
 }	t_texture;
 
 // Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
