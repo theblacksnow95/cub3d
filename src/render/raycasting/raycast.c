@@ -6,15 +6,15 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/05 13:16:38 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 16:43:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
+static int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
 {
-	int j;
+	int	j;
 
 	if (col < 0 || col >= WIN_W)
 		return (perror("printing vertical line"), 1);
@@ -33,69 +33,69 @@ static int draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, 
 }
 
 /*
-	cameraX convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
+	camerax convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
 	Esto determina qué parte del plano de visión usa este rayo.
 
-	raydirX/Y = dirección real del rayo en el mundo.
+	raydirx/Y = dirección real del rayo en el mundo.
 	Es la dirección del jugador + una parte del plano de cámara.
 
-	mapX/Y = celda actual donde está el jugador, convertido a índice entero.
+	mapx/Y = celda actual donde está el jugador, convertido a índice entero.
 
-	deltaX/Y = cuánto debe avanzar el rayo para cruzar una celda entera en X o Y.
+	deltax/Y = cuánto debe avanzar el rayo para cruzar una celda entera en X o Y.
 	Si raydir es 0, usamos un número enorme (1e30) para representar “nunca cruzo”.
 */
 static void	ray_init(t_cub *game, t_ray *ray, int j)
 {
-	ray->cameraX = 2.0 * j / (double)WIN_W - 1.0;
-	ray->raydirX = game->player.dir_x + game->player.plane_x * ray->cameraX;
-	ray->raydirY = game->player.dir_y + game->player.plane_y * ray->cameraX;
-	ray->mapX = (int)game->player.x;
-	ray->mapY = (int)game->player.y;
-	if (ray->raydirX == 0.0)
-		ray->deltaX = 1e30;
+	ray->camerax = 2.0 * j / (double)WIN_W - 1.0;
+	ray->raydirx = game->player.dir_x + game->player.plane_x * ray->camerax;
+	ray->raydiry = game->player.dir_y + game->player.plane_y * ray->camerax;
+	ray->mapx = (int)game->player.x;
+	ray->mapy = (int)game->player.y;
+	if (ray->raydirx == 0.0)
+		ray->deltax = 1e30;
 	else
-		ray->deltaX = fabs(1.0 / ray->raydirX);
-	if (ray->raydirY == 0.0)
-		ray->deltaY = 1e30;
+		ray->deltax = fabs(1.0 / ray->raydirx);
+	if (ray->raydiry == 0.0)
+		ray->deltay = 1e30;
 	else
-		ray->deltaY = fabs(1.0 / ray->raydirY);
+		ray->deltay = fabs(1.0 / ray->raydiry);
 }
 
 
 /*
-	stepX/Y = hacia qué dirección avanza el rayo en la grilla.
+	stepx/Y = hacia qué dirección avanza el rayo en la grilla.
 
-	sideX/Y = distancia desde la posición del jugador hasta la primera pared
+	sidex/Y = distancia desde la posición del jugador hasta la primera pared
 	vertical u horizontal que podría cruzar el rayo.
 
 	Si el rayo va hacia la izquierda:
-		sideX = (player.x - mapX)
+		sidex = (player.x - mapx)
 	Si va hacia la derecha:
-		sideX = (mapX + 1 - player.x)
+		sidex = (mapx + 1 - player.x)
 
 	Lo mismo para Y.
 */
 static void	ray_step_init(t_cub *game, t_ray *ray)
 {
-	if (ray->raydirX < 0.0)
+	if (ray->raydirx < 0.0)
 	{
-		ray->stepX = -1;
-		ray->sideX = (game->player.x - ray->mapX) * ray->deltaX;
+		ray->stepx = -1;
+		ray->sidex = (game->player.x - ray->mapx) * ray->deltax;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideX = (ray->mapX + 1.0 - game->player.x) * ray->deltaX;
+		ray->stepx = 1;
+		ray->sidex = (ray->mapx + 1.0 - game->player.x) * ray->deltax;
 	}
-	if (ray->raydirY < 0.0)
+	if (ray->raydiry < 0.0)
 	{
-		ray->stepY = -1;
-		ray->sideY = (game->player.y - ray->mapY) * ray->deltaY;
+		ray->stepy = -1;
+		ray->sidey = (game->player.y - ray->mapy) * ray->deltay;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideY = (ray->mapY + 1.0 - game->player.y) * ray->deltaY;
+		ray->stepy = 1;
+		ray->sidey = (ray->mapy + 1.0 - game->player.y) * ray->deltay;
 	}
 }
 
@@ -104,47 +104,27 @@ static void	ray_step_init(t_cub *game, t_ray *ray)
 	distancia en X = posición del jugador - X entero de la celda en la que está
 	Si va hacia la derecha
 	distancia en X	= (X entero de próxima celda) - posición del jugador
-               		= (mapX + 1) - jugador.x
+               		= (mapx + 1) - jugador.x
 */
 static int	cast_single_ray(t_cub *game, int j)
 {
-	t_ray	ray;
 	double	perpdist;
 	int		lineh;
 	int		draws;
 	int		drawe;
 	int		color;
 
-	ray_init(game, &ray, j);
-	ray_step_init(game, &ray);
-	while (1)
-	{
-		if (ray.sideX < ray.sideY)
-		{
-			ray.sideX += ray.deltaX;
-			ray.mapX += ray.stepX;
-			ray.side = 0;
-		}
-		else
-		{
-			ray.sideY += ray.deltaY;
-			ray.mapY += ray.stepY;
-			ray.side = 1;
-		}
-		if (game->map[ray.mapY][ray.mapX] == '1' || game->map[ray.mapY][ray.mapX] == ' ' )
-			break ;
-	}
-	if (ray.side == 0)
-		perpdist = (ray.sideX - ray.deltaX);
+	ray_init(game, &game->ray, j);
+	ray_step_init(game, &game->ray);
+	dda(game, game->ray);
+	if (game->ray.side == 0)
+		perpdist = (game->ray.sidex - game->ray.deltax);
 	else
-		perpdist = (ray.sideY - ray.deltaY);
+		perpdist = (game->ray.sidey - game->ray.deltay);
+	select_texture(game, &game->ray);
 	lineh = (int)(WIN_H / perpdist);
 	draws = -lineh / 2 + WIN_H / 2;
 	drawe = lineh / 2 + WIN_H / 2;
-	if (ray.side == 0)
-		color = 0xFF0000;	// 🔴 paredes verticales (N/S)
-	else
-		color = 0x0000FF;	// 🔵 paredes horizontales (E/O)
 	return (draw_vertical_line(&game->mlx, j, draws, drawe, color));
 }
 

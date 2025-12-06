@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 16:09:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 16:38:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_flood
 	bool	error;
 }	t_flood;
 
-
 // Para guardar cada textura en un puntero void con un flag de si ya se ha
 // cargado, va a cambiar
 typedef struct s_texture
@@ -69,6 +68,10 @@ typedef struct s_texture
 	int		text_w;
 	int		text_h;
 	int		full;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_texture;
 
 // Para guardar los colores rgb y un flag cuando se hayan acabado de cargar
@@ -79,7 +82,6 @@ typedef struct s_rgb
 	int	b;
 	int	full;
 }	t_rgb;
-
 
 // typedef struct s_ray
 // {
@@ -110,21 +112,23 @@ typedef enum e_code
 
 typedef struct s_ray
 {
-	double	cameraX;
-	double	raydirX;
-	double	raydirY;
-	double	deltaX;
-	double	deltaY;
-	double	sideX;
-	double	sideY;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	deltax;
+	double	deltay;
+	double	sidex;
+	double	sidey;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
 	int		side;
-	double	perpwalldist;
+	double	perpdist;
 	double	dir_x;
 	double	dir_y;
+	int		line_h;
+	double	step;
 }			t_ray;
 
 // Estructura principal que usa punteros con punteros a otras estructuras

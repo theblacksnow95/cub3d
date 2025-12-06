@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 16:12:42 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/06 16:16:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,53 @@
 # define COLLITION_RAD	0.20
 # define PLAYER_RAD		2
 
-
-int		check_file_format_n_extention(char *file);
-int		check_data_map(char *file_name, t_cub *data);
-
+int			check_file_format_n_extention(char *file);
+int			check_data_map(char *file_name, t_cub *data);
 
 // simple tools
-int		ft_isspace(int s);
-void	*s_malloc(size_t bytes);
-void	print_array(char **arr);
-
+int			ft_isspace(int s);
+void		*s_malloc(size_t bytes);
+void		print_array(char **arr);
 
 // init
-t_cub	*init_variables(t_cub *data);
-void	process_params(char *line, t_cub *data, char *id);
-void	colors_rgb(char *line, char *id, t_cub *data);
-int		check_for_params(char *map_path, t_cub *data);
-void	colors_f_c(char *line, t_cub *data, char *id);
-int		valid_rgb(char *s);
-void	clean_line(char *s);
-void	read_map(t_cub *data, char *line, int fd);
-int		locate_player(t_cub *data);
-int		fill_validation(char **map, int y, int x);
-void	validate_map(t_cub *data);
-int		empty_line(char *s);
-
+t_cub		*init_variables(t_cub *data);
+void		process_params(char *line, t_cub *data, char *id);
+void		colors_rgb(char *line, char *id, t_cub *data);
+int			check_for_params(char *map_path, t_cub *data);
+void		colors_f_c(char *line, t_cub *data, char *id);
+int			valid_rgb(char *s);
+void		clean_line(char *s);
+void		read_map(t_cub *data, char *line, int fd);
+int			locate_player(t_cub *data);
+int			fill_validation(char **map, int y, int x);
+void		validate_map(t_cub *data);
+int			empty_line(char *s);
 
 // error handling and frees
-void	s_free(void *ptr);
-void	s_array_free(char **s);
-void	error_map_param(char *line, int fd, t_ecode code);
-void	error_handler(char *line, t_ecode code, char *id, t_cub *data);
-void	error_map(t_cub *data);
+void		s_free(void *ptr);
+void		s_array_free(char **s);
+void		error_map_param(char *line, int fd, t_ecode code);
+void		error_handler(char *line, t_ecode code, char *id, t_cub *data);
+void		error_map(t_cub *data);
 
 // loop principal
-int		game_loop(t_cub *game);
-int		key_press(int keycode, t_cub *game);
-void	init_player(t_cub *game);
+int			game_loop(t_cub *game);
+int			key_press(int keycode, t_cub *game);
+void		init_player(t_cub *game);
 
 // dibujo
-void	draw_pixel(t_mlx *mlx, int x, int y, int color);
-int		draw_map(t_cub *game);
-void	clear_window(t_mlx *mlx, int color);
-int		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-int		draw_player(t_mlx *mlx, double x, double y, int color);
-int		cast_all_rays(t_cub *game);
-
+void		draw_pixel(t_mlx *mlx, int x, int y, int color);
+int			draw_map(t_cub *game);
+void		clear_window(t_mlx *mlx, int color);
+int			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+int			draw_player(t_mlx *mlx, double x, double y, int color);
+int			cast_all_rays(t_cub *game);
+void		dda(t_cub *game, t_ray ray);
+t_texture	*select_texture(t_cub *game, t_ray *ray);
 
 //	utils
-int		close_windows(t_cub *game);
-bool	is_wall(t_cub *game, double x, double y);
-void	open_minimap(t_cub *game);
+int			close_windows(t_cub *game);
+bool		is_wall(t_cub *game, double x, double y);
+void		open_minimap(t_cub *game);
 
 #endif

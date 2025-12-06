@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_textures.c                                  :+:      :+:    :+:   */
+/*   raycastis_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 16:25:11 by emurillo         ###   ########.fr       */
+/*   Created: 2025/12/06 16:08:35 by emurillo          #+#    #+#             */
+/*   Updated: 2025/12/06 16:42:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,27 @@ t_texture	*select_texture(t_cub *game, t_ray *ray)
 
 
 
-
-void	render_textures(t_cub *game, t_player *player, double start, double end)
+void	dda(t_cub *game, t_ray ray)
 {
-	t_texture	*text;
-	double		wallx;
-	double		textx;
+	int	hit;
 
-	text = select_texture(game, &game->ray);
-	if (game->ray.side == 0)
-		wallx = game->player.y + (game->ray.perpdist * game->ray.raydiry);
-	else
-		wallx = game->player.x + (game->ray.perpdist * game->ray.raydiry);
-	wallx = -floor(wallx);
-	textx = (int)wallx * (double)text->text_w;
-	if (game->ray.side == 0 && game->ray.raydirx > 0)
-		textX = text->text_w - textX - 1;
-	if (game->ray.side == 1 && game->ray.raydiry < 0)
-		textX = text->text_w - textX - 1;
+	hit = 0;
+	while (!hit)
+	{
+		if (ray.sidex < ray.sidey)
+		{
+			ray.sidex += ray.deltax;
+			ray.mapx += ray.stepx;
+			ray.side = 0;
+		}
+		else
+		{
+			ray.sidey += ray.deltay;
+			ray.mapy += ray.stepy;
+			ray.side = 1;
+		}
+		if (game->map[ray.mapy][ray.mapx] == '1'
+			|| game->map[ray.mapy][ray.mapx] == ' ' )
+			hit = 1;
+	}
 }
