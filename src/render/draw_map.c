@@ -6,14 +6,14 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/07 16:42:24 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:35:08 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-	si selections es 1, es el norte, sino es el sur
+	si selections es 1, es el ceiling, sino es floor
 */
 void	clear_window_select(t_mlx *mlx, int color, bool selection)
 {
