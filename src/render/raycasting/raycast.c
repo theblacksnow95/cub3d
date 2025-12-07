@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:53:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:19:39 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
+/*static int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
 {
 	int	j;
 
@@ -30,7 +30,7 @@ int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int col
 		j++;
 	}
 	return (0);
-}
+}*/
 
 /*
 	camerax convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
