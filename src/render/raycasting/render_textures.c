@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 22:56:17 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 14:50:19 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,20 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 	int		color;
 
 	y = game->draws;
-	// printf("value y: %d\n", game->draws);
-	step = (double)text->text_h / (double)game->ray.line_h;
-	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2) * step;
+	printf("y = [%d]\n", game->draws);
+	step = (double)text->text_h / game->ray.line_h;
+	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2 )* step;
 	while (y < game->drawe)
 	{
-		texy = (int)textpos & (text->text_h - 1);
+		texy = (int)textpos;
+		if (texy < 0)
+    		texy = 0;
+		if (texy >= text->text_h)
+			texy = text->text_h - 1;	
 		textpos += step;
 		color = get_color(text, game->ray.tex_x, texy);
+		if (game->ray.side == 0)
+			color = (color >> 1) & 8355711;
 		if (my_mlx_pixel_put(&game->mlx, x, y, color))
 			return (1);
 		y++;
@@ -66,7 +72,7 @@ int	put_v_texture(t_cub *game, t_texture *text, int j)
 	else
 		wallx = game->player.x + (game->ray.perpdist * game->ray.raydirx);
 	wallx -= floor(wallx);
-	game->ray.tex_x = (int)wallx * (double)text->text_w;
+	game->ray.tex_x = (int)(wallx * (double)text->text_w);
 	if (game->ray.tex_x < 0)
 		game->ray.tex_x = 0;
 	if (game->ray.tex_x >= text->text_w)
@@ -75,7 +81,7 @@ int	put_v_texture(t_cub *game, t_texture *text, int j)
 		game->ray.tex_x = text->text_w - game->ray.tex_x - 1;
 	if (game->ray.side == 1 && game->ray.raydiry < 0)
 		game->ray.tex_x = text->text_w - game->ray.tex_x - 1;
-	textpos = game->draws - WIN_H / 2 + game->ray.line_h / 2
-		* (double)text->text_h / (double)game->ray.line_h;
+	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2)
+		* ((double)text->text_h / (double)game->ray.line_h);
 	return (draw_texture_line(game, text, j, textpos));
 }

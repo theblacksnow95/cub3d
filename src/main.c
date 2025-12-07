@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 13:26:50 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 14:52:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	render_minimap(t_cub *game)
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
-	game_loop(game);
-	// mlx_loop_hook(game->mlx.mlx, game_loop, game);
+	// game_loop(game);
+	mlx_loop_hook(game->mlx.mlx, game_loop, game);
 	// mlx_hook(game->mlx.win, 2, 1L << 0, draw_minimap, game);
 
 }

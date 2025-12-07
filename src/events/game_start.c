@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/07 13:26:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 14:53:01 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int	key_press(int keycode, t_cub *game)
 		rotate_player(game, -game->player.rot_speed);
 	else if (keycode == KEY_RIGHT)
 		rotate_player(game, game->player.rot_speed);
-	game_loop(game);
+	// game_loop(game);
 	return (0);
 }
