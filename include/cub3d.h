@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:53:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:41:25 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,15 @@ void		init_player(t_cub *game);
 // dibujo
 void		draw_pixel(t_mlx *mlx, int x, int y, int color);
 int			draw_map(t_cub *game);
-void		clear_window(t_mlx *mlx, int color);
+void		clear_window_select(t_mlx *mlx, int color, bool selection);
 int			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int			draw_player(t_mlx *mlx, double x, double y, int color);
 int			cast_all_rays(t_cub *game);
 void		dda(t_cub *game, t_ray *ray);
 t_texture	*select_texture(t_cub *game, t_ray *ray);
 int			put_v_texture(t_cub *game, t_texture *text, int j);
+void		draw_player_arrow(t_cub *game);
+
 
 //	utils
 int			close_windows(t_cub *game);

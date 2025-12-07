@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:32:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:23:25 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
 # define KEY_M 109
+
+/*
+	STRUCT para el dibujo de la flecha que representa la direccion del jugador
+	en el minimapa
+*/
+typedef struct s_line_print_dir
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	color;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}		t_line_print_dir;
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player
@@ -58,7 +77,7 @@ typedef struct s_flood
 {
 	bool	done;
 	bool	error;
-}	t_flood;
+}			t_flood;
 
 // Para guardar cada textura en un puntero void con un flag de si ya se ha
 // cargado, va a cambiar
@@ -80,8 +99,10 @@ typedef struct s_rgb
 	int	r;
 	int	g;
 	int	b;
+	int	floor;
+	int	ceiling;
 	int	full;
-}	t_rgb;
+}		t_rgb;
 
 // typedef struct s_ray
 // {

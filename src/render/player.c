@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/01 13:26:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:03:27 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 		i++;
 	}
 }
+
 void	init_positions(t_cub *game, char direction)
 {
 	if (direction == 'N') {

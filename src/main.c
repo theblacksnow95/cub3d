@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:52:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:26:10 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	rgb_to_int(int r, int g, int b)
+{
+	int	color;
+	
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (0x000000);
+	color = (r << 16) | (g << 8) | b;
+	return (color);
+}
 
 /*	mlx_init ... inicializa el puntero necesario para el resto de parametros
 	de minilibx, si falla devuelve null.
@@ -44,7 +54,8 @@ static int	init_game(t_cub *game)
         Quitar dibujado “manual” en key_press.
 */
 int	game_loop(t_cub *game) {
-	clear_window(&game->mlx, 0x000000);
+	clear_window_select(&game->mlx, game->c_rgb->ceiling, 1);
+	clear_window_select(&game->mlx, game->f_rgb->floor, 0);
 	cast_all_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
 	if (game->mini == true)
@@ -58,6 +69,8 @@ void	render_minimap(t_cub *game)
 {
 	void	*win;
 
+	game->f_rgb->floor = rgb_to_int(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
+	game->c_rgb->ceiling = rgb_to_int(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
