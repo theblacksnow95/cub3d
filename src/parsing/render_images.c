@@ -6,13 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:49:42 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:03:44 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 static char	*move_line_to_path(char *line, char *id)
 {
@@ -34,11 +32,9 @@ static char	*move_line_to_path(char *line, char *id)
 
 void	colors_f_c(char *line, t_cub *data, char *id)
 {
-	// printf("here!!\n");
 	line = move_line_to_path(line, id);
 	colors_rgb(line, id, data);
 }
-
 
 static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 {
@@ -62,10 +58,8 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 			(t->id_texture, &t->bpp, &t->line_len, &t->endian);
 		t->text_w = w;
 		t->text_h = h;
-		// printf("text_h: %d\n",t->text_h); // debug 
 	}
 	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full); // debug
-	// // printf("img: %p\n", t->id_texture); //debug
 }
 
 void	process_params(char *line, t_cub *data, char *id)

@@ -6,29 +6,14 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/03 14:29:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:50:56 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// static int	expect(char *s, char c)
-// {
-// 	while (*s)
-// 	{
-// 		if (*s == c)
-// 			return (1);
-// 		s++;
-// 		if (*s == '\n')
-// 			return (0);a
-// 	}
-// 	return (0);
-// }
-
 void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 {
-	// printf("idx: %d\n", data->i); //debug
-	// printf("val num: %d\n", num); //debug
 	if ((num > -1 && num < 256) && !ft_strncmp(id, C_ID, 1)
 		&& !data->c_rgb->full)
 	{
@@ -41,7 +26,6 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 		if (data->i == 2)
 		{
 			data->c_rgb->full = 1;
-			// printf("rgb C full: %d\n", data->c_rgb->full); //debug
 			return ;
 		}
 	}
@@ -53,8 +37,6 @@ void	fill_c_rgb(t_cub *data, char *line, char *id, int num)
 
 void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 {
-	// printf("idx: %d\n", data->i); //debug
-	// printf("val num: %d\n", num); //debug
 	if ((num > -1 && num < 256) && !ft_strncmp(id, F_ID, 1)
 		&& !data->f_rgb->full)
 	{
@@ -67,7 +49,6 @@ void	fill_f_rgb(t_cub *data, char *line, char *id, int num)
 		if (data->i == 3)
 		{
 			data->f_rgb->full = 1;
-			// printf("rgb F full: %d\n", data->f_rgb->full); //debug
 			return ;
 		}
 	}
@@ -84,7 +65,6 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 	i = 0;
 	while (tmp[i])
 		i++;
-	// printf("value of i after: %d\n", i); // debug
 	if (i != 3)
 	{
 		error_handler(line, E_COLOR, id, data);
@@ -92,20 +72,13 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 	data->i = 0;
 	while (tmp[data->i] && !data->dups)
 	{
-		// printf("heLLLO\n"); // debug
 		num = ft_atoi(tmp[data->i]);
 		if (!ft_strncmp(id, F_ID, 1))
 			fill_f_rgb(data, line, id, num);
 		if (!ft_strncmp(id, C_ID, 1))
 			fill_c_rgb(data, line, id, num);
 		data->i++;
-		// printf("color value: %d\n", num); // debug
 	}
-	// if (data->c_rgb->full && data->f_rgb->full) //debug
-	// {
-	// 	printf(CLR_BLUE"value f: %d,%d,%d\n"RST_ALL, data->f_rgb->r, data->f_rgb->g, data->f_rgb->b); //debug
-	// 	printf(CLR_BLUE"value c: %d,%d,%d\n\n"RST_ALL, data->c_rgb->r, data->c_rgb->g, data->c_rgb->b); //debug
-	// }
 }
 
 void	colors_rgb(char *line, char *id, t_cub *data)
@@ -116,17 +89,13 @@ void	colors_rgb(char *line, char *id, t_cub *data)
 	p = ft_strdup(line);
 	if (!valid_rgb(p))
 	{
-		// printf("return code [%d]\n", valid_rgb(p)); // debug
 		error_handler(p, E_COLOR, id, data);
 		s_free(p);
 		return ;
 	}
-	// printf("passed the valid_rgb: %s\n", p); // debug
 	clean_line(p);
 	tmp = ft_split(p, ',');
-	// printf("%s,""%s""%s\n", *tmp, tmp[1], tmp[2]); //debug
 	s_free(p);
 	valid_nums(tmp, data, id, line);
 	s_array_free(tmp);
 }
-

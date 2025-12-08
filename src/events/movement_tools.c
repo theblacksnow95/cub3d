@@ -6,11 +6,36 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:11:07 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 16:12:33 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:39:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
+
+
+bool	wall_collition(t_cub *game, double new_x, double new_y)
+{
+	double	r;
+
+	r = COLLITION_RAD;
+	if (is_wall(game, new_x + r, new_y))
+		return (true);
+	if (is_wall(game, new_x - r, new_y))
+		return (true);
+	if (is_wall(game, new_x, new_y + r))
+		return (true);
+	if (is_wall(game, new_x, new_y - r))
+		return (true);
+	if (is_wall(game, new_x + r, new_y + r))
+		return (true);
+	if (is_wall(game, new_x + r, new_y - r))
+		return (true);
+	if (is_wall(game, new_x - r, new_y - r))
+		return (true);
+	if (is_wall(game, new_x - r, new_y + r))
+		return (true);
+	return (false);
+}
 
 /*	chequeo de la colision temporal - aca no tengo en cuenta
 	mapas desproporcionados

@@ -6,23 +6,24 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:32:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 10:56:53 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_ESC 65307
-# define KEY_UP 65362
-# define KEY_LEFT 65361
-# define KEY_DOWN 65364
-# define KEY_RIGHT 65363
-# define KEY_M 109
+# define KEY_W		119
+# define KEY_A		97
+# define KEY_S		115
+# define KEY_D		100
+# define KEY_ESC	65307
+# define KEY_UP		65362
+# define KEY_LEFT	65361
+# define KEY_DOWN	65364
+# define KEY_UP		65362
+# define KEY_RIGHT	65363
+# define KEY_M		109
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player
@@ -60,8 +61,7 @@ typedef struct s_flood
 	bool	error;
 }	t_flood;
 
-// Para guardar cada textura en un puntero void con un flag de si ya se ha
-// cargado, va a cambiar
+// Para guardar cada textura en un puntero void, guarda la info de la texturay colores
 typedef struct s_texture
 {
 	void	*id_texture;
@@ -83,21 +83,19 @@ typedef struct s_rgb
 	int	full;
 }	t_rgb;
 
-// typedef struct s_ray
-// {
-// 	int		map_x;
-// 	int		map_y;
-// 	double	camera_x;
+typedef struct s_moves
+{
+	bool	move_up;
+	bool	move_down;
+	bool	move_left;
+	bool	move_right;
+	bool	rotate_l;
+	bool	rotate_r;
+}		t_moves;
 
-// 	double	plane_x;
-// 	double	plane_y;
-// 	double	rayDir_x;
-// 	double	rayDir_y;
-// 	double	side;
-// 	double  perpwalldist;
-// }	t_ray;
 
-// Codidos de errores que uso para las texturas, va a cambiar
+
+// Codidos de errores que uso para las texturas, se ampliaran con el tiempo
 typedef enum e_code
 {
 	E_TEXTURE,
@@ -110,6 +108,14 @@ typedef enum e_code
 	E_NO_ID
 }	t_ecode;
 
+typedef struct s_time
+{
+	double	time;
+	double	old_time;
+	double	frame_time;
+}		t_time;
+
+// Estructura para cada rayo del raycasting 
 typedef struct s_ray
 {
 	double	camerax;
@@ -158,8 +164,11 @@ typedef struct s_cub
 	bool		mini;
 	int			draws;
 	int			drawe;
+	int			start;
 	t_mlx		mlx;
 	t_player	player;
+	t_moves		moves;
+	t_time		tm;
 }				t_cub;
 
 #endif

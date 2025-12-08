@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 15:52:36 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:01:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	error_map_param(char *line, int fd, t_ecode code)
 		{
 			line = get_next_line(fd);
 			printf("check line after: %s\n", line);
-			free(line);
+			s_free(line);
 		}
 	}
 }

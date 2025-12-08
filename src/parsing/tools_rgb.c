@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:42:42 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/07 18:43:52 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:06:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	clean_line(char *s)
 		s++;
 	}
 }
-
 
 int	valid_rgb(char *s)
 {
@@ -48,4 +47,3 @@ int	valid_rgb(char *s)
 	}
 	return (1);
 }
-

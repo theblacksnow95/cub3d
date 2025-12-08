@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 15:07:05 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:08:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,42 @@ static int	init_game(t_cub *game)
 }
 
 /*
-    Mover el dibujo al bucle de render y dejar key_press solo para actualizar
+	Mover el dibujo al bucle de render y dejar key_press solo para actualizar
 	estado
 
-    Objetivo: que el frame se repinte constantemente y key_press solo cambie
+	Objetivo: que el frame se repinte constantemente y key_press solo cambie
 	posición/rotación. Evita inconsistencias y parpadeos.
-    Acción:
-        Añadir un game_loop y registrar mlx_loop_hook en main.
-        Quitar dibujado “manual” en key_press.
+	Acción:
+		Añadir un game_loop y registrar mlx_loop_hook en main.
+		Quitar dibujado “manual” en key_press.
 */
-int	game_loop(t_cub *game) {
+int	game_loop(t_cub *game) 
+{
+	double	now;
+
+	now = get_time_ms();
+	game->tm.frame_time = now - game->tm.old_time;
+	game->tm.old_time = now;
 	clear_window(&game->mlx, 0x000000);
 	// mlx_destroy_image(game->mlx.mlx, game->mlx.img);
 	mlx_clear_window(game->mlx.mlx, game->mlx.win);
 	cast_all_rays(game);
+	movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
 	if (game->mini == true)
 		draw_map(game);
 	return (0);
 }
 
-
-
-void	render_minimap(t_cub *game)
+void	render_game(t_cub *game)
 {
 	void	*win;
 
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
-	// game_loop(game);
+	mlx_hook(win, 3, 1L << 1, key_release, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
-	// mlx_hook(game->mlx.win, 2, 1L << 0, draw_minimap, game);
-
 }
 
 /*	mlx_hook 17 = X presionada
@@ -94,7 +97,7 @@ int	main(int ac, char **av)
 	init_player(&game);
 	if (init_game(&game))
 		close_windows(&game);
-	render_minimap(&game);
+	render_game(&game);
 	mlx_loop(game.mlx.mlx);
 	return (0);
 }

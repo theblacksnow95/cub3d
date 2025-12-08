@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:26:52 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:01:13 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static char	**copy_map(char **map)
 		if (!map_copy[i])
 		{
 			while (i-- > 0)
-				free(map_copy[i]);
-			free(map_copy);
+				s_free(map_copy[i]);
+			s_free(map_copy);
 			return (NULL);
 		}
 		i++;
@@ -68,11 +68,10 @@ int	fill_validation(char **map, int y, int x)
 	if (!map_copy)
 		return (1);
 	flood(map_copy, y, x, &fill);
-	printf(CLR_YLLW"Flag flood_fill: [%d]\n\n"RST_ALL, fill.error); // debug
+	// printf(CLR_YLLW"Flag flood_fill: [%d]\n\n"RST_ALL, fill.error); // debug
 	print_array(map_copy); // debug
 	s_array_free(map_copy);
 	if (fill.error)
 		return (1);
 	return (0);
 }
-

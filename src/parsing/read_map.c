@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/05 16:12:59 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:01:46 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	close_read(char *map_str, char *line, t_cub *data, int fd)
 	while (line)
 	{
 		line = get_next_line(fd);
-		free(line);
+		s_free(line);
 	}
 	close_windows(data);
 }
@@ -79,12 +79,12 @@ void	read_map(t_cub *data, char *line, int fd)
 			close_read(map_str, line, data, fd);
 		buf = map_str;
 		map_str = ft_strjoin(map_str, line);
-		free(line);
-		free(buf);
+		s_free(line);
+		s_free(buf);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	data->map = ft_split(map_str, '\n');
-	free(map_str);
+	s_free(map_str);
 	validate_map(data);
 }

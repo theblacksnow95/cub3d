@@ -6,11 +6,21 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/01 13:26:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:08:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+double	get_time_ms(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
+		return (0.0);
+	return (tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0);
+}
 
 /*FUNCION PARA BUSCAR LA POSICION INICIAL DEL JUGADOR EN EL MAPA Y
 	ASIGNARLA A LA ESTRUCTURA PLAYER DEL JUEGO*/
@@ -37,6 +47,7 @@ static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 		i++;
 	}
 }
+
 void	init_positions(t_cub *game, char direction)
 {
 	if (direction == 'N') {
@@ -65,6 +76,17 @@ void	init_positions(t_cub *game, char direction)
 	}
 }
 
+void	init_moves(t_cub *game)
+{
+	if (!game)
+		return ;
+	game->moves.move_down = false;
+	game->moves.move_left = false;
+	game->moves.move_right = false;
+	game->moves.move_right = false;
+	game->moves.rotate_l = false;
+	game->moves.rotate_r = false;
+}
 
 void	init_player(t_cub *game)
 {
@@ -72,11 +94,13 @@ void	init_player(t_cub *game)
 	int		start_y;
 	char	direction;
 
+	init_moves(game);
+	game->tm.old_time = get_time_ms();
 	find_player_position(game, &start_x, &start_y, &direction);
 	game->player.x = start_x + 0.5;
 	game->player.y = start_y + 0.5;
 	// Dirección inicial según caracter del mapa
 	init_positions(game, direction);
-	game->player.mov_speed = 0.1;
-	game->player.rot_speed = 0.2;
+	game->player.mov_speed = 4.1;
+	game->player.rot_speed = 3.0;
 }

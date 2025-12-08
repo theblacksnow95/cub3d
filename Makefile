@@ -5,15 +5,15 @@ CC = gcc
 
 # ================== SOURCES ============================================================================
 
-SRCS = src/parsing/format_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
+SRCS = src/parsing/extension_check.c src/parsing/p_tools.c src/parsing/error_handling.c\
 		src/parsing/render_images.c src/parsing/color_rgb.c src/parsing/format.c \
 		src/parsing/tools_rgb.c src/parsing/read_map.c src/parsing/map_tools.c src/parsing/flood_fill_map.c \
 		src/parsing/map_validation.c\
-		src/events/game_start.c\
+		src/events/game_start.c src/events/moves.c\
 		src/render/draw_map.c src/render/player.c\
 		src/render/raycasting/raycast.c src/render/raycasting/raycasting_tools.c  src/render/raycasting/render_textures.c\
 		src/utils/free_and_destroy.c src/utils/init_var.c\
-		src/main.c src/events/movement_tools.c
+		src/main.c src/events/movement_tools.c 
 
 # ================== DIRECTORIES ========================================================================
 

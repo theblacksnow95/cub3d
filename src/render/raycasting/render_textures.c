@@ -6,12 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/07 15:06:15 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:07:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 int	get_color(t_texture *text, int x, int y)
 {
@@ -39,14 +38,13 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 	int		color;
 
 	y = game->draws;
-	printf("y = [%d]\n", game->draws);
-	step = (double)text->text_h / game->ray.line_h;
-	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2 )* step;
-	while (y < game->drawe)
+	step = (double)text->text_h / (double)game->ray.line_h;
+	// textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2 )* step;
+	while (y <= game->drawe)
 	{
 		texy = (int)textpos;
 		if (texy < 0)
-    		texy = 0;
+			texy = 0;
 		if (texy >= text->text_h)
 			texy = text->text_h - 1;	
 		textpos += step;

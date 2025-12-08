@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:53:58 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:06:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	ray_init(t_cub *game, t_ray *ray, int j)
 	else
 		ray->deltay = fabs(1.0 / ray->raydiry);
 }
-
 
 /*
 	stepx/Y = hacia qué dirección avanza el rayo en la grilla.
@@ -117,14 +116,12 @@ static int	cast_single_ray(t_cub *game, int j)
 		game->ray.perpdist = (game->ray.sidex - game->ray.deltax);
 	else
 		game->ray.perpdist = (game->ray.sidey - game->ray.deltay);
-	game->ray.line_h = (int)(WIN_H / game->ray.perpdist);
 	if (game->ray.perpdist < 0.01)
-		game->ray.perpdist = 0.01;
-	// printf("perpdist: %f\n", game->ray.perpdist);
+			game->ray.perpdist = 0.01;
+	game->ray.line_h = (int)(WIN_H / game->ray.perpdist);
 	game->draws = -game->ray.line_h / 2 + WIN_H / 2;
 	if (game->draws < 0)
 		game->draws = 0;
-		// printf("draws: %d\n", game->draws); //debug
 	game->drawe = game->ray.line_h / 2 + WIN_H / 2;
 	if (game->drawe >= WIN_H)
 		game->drawe = WIN_H - 1;

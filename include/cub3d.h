@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/07 15:02:26 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:39:35 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <ctype.h>
 # include <stdbool.h>
+# include <sys/time.h>
 # include "libft.h"
 # include "structs.h"
 
@@ -89,6 +90,14 @@ int			cast_all_rays(t_cub *game);
 void		dda(t_cub *game, t_ray *ray);
 t_texture	*select_texture(t_cub *game, t_ray *ray);
 int			put_v_texture(t_cub *game, t_texture *text, int j);
+
+// moves
+int			key_press(int keycode, t_cub *game);
+int			key_release(int	keycode, t_cub *game);
+int			movements( t_cub *game);
+bool		wall_collition(t_cub *game, double new_x, double new_y);
+double		get_time_ms(void);
+
 
 //	utils
 int			close_windows(t_cub *game);

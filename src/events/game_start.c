@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 00:37:17 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/07 14:53:01 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:46:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,6 @@ static void	rotate_player(t_cub *game, double rot_speed)
 		+ game->player.plane_y * cos(rot_speed);
 }
 
-
-
-static bool	wall_collition(t_cub *game, double new_x, double new_y)
-{
-	double	r;
-
-	r = COLLITION_RAD;
-	if (is_wall(game, new_x + r, new_y))
-		return (true);
-	if (is_wall(game, new_x - r, new_y))
-		return (true);
-	if (is_wall(game, new_x, new_y + r))
-		return (true);
-	if (is_wall(game, new_x, new_y - r))
-		return (true);
-	if (is_wall(game, new_x + r, new_y + r))
-		return (true);
-	if (is_wall(game, new_x + r, new_y - r))
-		return (true);
-	if (is_wall(game, new_x - r, new_y - r))
-		return (true);
-	if (is_wall(game, new_x - r, new_y + r))
-		return (true);
-	return (false);
-}
-
 static void	move_player(t_cub *game, double move_x, double move_y)
 {
 	double	new_x;
@@ -64,7 +38,7 @@ static void	move_player(t_cub *game, double move_x, double move_y)
 
 	new_x = game->player.x + move_x;
 	new_y = game->player.y + move_y;
-	// printf("player pos: y=%f, x=%f\n", gamze->player.y, game->player.x);
+	// printf("player pos: y=%f, x=%f\n", gamze->player.y, game->player.x); //debug
 	if (!wall_collition(game, new_x, game->player.y))
 		game->player.x = new_x;
 	if (!wall_collition(game, game->player.x, new_y))
@@ -72,29 +46,33 @@ static void	move_player(t_cub *game, double move_x, double move_y)
 	return ;
 }
 
-/*   65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
-int	key_press(int keycode, t_cub *game)
+/*	65307 = tecla ESC en X11 --- es decir, cerramos la ventana*/
+int	movements( t_cub *game)
 {
-	if (keycode == 65307)
-		close_windows(game);
-	if (keycode == KEY_M)
-		open_minimap(game);
-	if (keycode == KEY_W)
-		move_player(game, game->player.dir_x * game->player.mov_speed,
-			game->player.mov_speed * game->player.dir_y);
-	else if (keycode == KEY_S)
-		move_player(game, -game->player.dir_x * game->player.mov_speed,
-			-game->player.dir_y * game->player.mov_speed);
-	else if (keycode == KEY_A)
-		move_player(game, game->player.dir_y * game->player.mov_speed,
-			-game->player.dir_x * game->player.mov_speed);
-	else if (keycode == KEY_D)
-		move_player(game, -game->player.dir_y * game->player.mov_speed,
-			game->player.dir_x * game->player.mov_speed);
-	else if (keycode == KEY_LEFT)
-		rotate_player(game, -game->player.rot_speed);
-	else if (keycode == KEY_RIGHT)
-		rotate_player(game, game->player.rot_speed);
-	// game_loop(game);
+	t_moves	move;
+	t_time	t;
+	double	move_speed;
+	double	rot_speed;
+	
+	move = game->moves;
+	t = game->tm;
+	move_speed = game->player.mov_speed * (t.frame_time / 1000.0) * 0.70;
+	rot_speed = game->player.rot_speed * (t.frame_time / 1000.0);
+	if (move.move_up)
+		move_player(game, game->player.dir_x * move_speed,
+			move_speed * game->player.dir_y);
+	if (move.move_down)
+		move_player(game, -game->player.dir_x * move_speed,
+			-game->player.dir_y * move_speed);
+	if (move.move_left)
+		move_player(game, game->player.dir_y * move_speed,
+			-game->player.dir_x * move_speed);
+	if (move.move_right)
+		move_player(game, -game->player.dir_y * move_speed,
+			game->player.dir_x * move_speed);
+	if (move.rotate_l)
+		rotate_player(game, -rot_speed);
+	if (move.rotate_r)
+		rotate_player(game, rot_speed);
 	return (0);
 }

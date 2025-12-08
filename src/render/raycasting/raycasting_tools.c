@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 17:06:59 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 22:52:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:08:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_texture	*select_texture(t_cub *game, t_ray *ray)
 			return (game->no_texture);
 	}
 }
-
-
 
 void	dda(t_cub *game, t_ray *ray)
 {
