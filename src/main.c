@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:52:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 15:07:05 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	init_game(t_cub *game)
 */
 int	game_loop(t_cub *game) {
 	clear_window(&game->mlx, 0x000000);
+	// mlx_destroy_image(game->mlx.mlx, game->mlx.img);
+	mlx_clear_window(game->mlx.mlx, game->mlx.win);
 	cast_all_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
 	if (game->mini == true)

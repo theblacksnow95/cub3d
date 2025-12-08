@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/06 17:53:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/07 15:02:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define EA_ID          "EA"
 # define F_ID           "F"
 # define C_ID           "C"
-# define EMPTY_ID          ""
+# define EMPTY_ID       ""
 
 # define EXTENSION_LEN	4
 # define COLLITION_RAD	0.20
