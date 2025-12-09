@@ -6,12 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 16:15:39 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:17:24 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	empty_newline(char *s)
 {
@@ -73,7 +72,6 @@ void	read_loop(t_cub *data, char *line, int fd, char **map_str)
 		line = get_next_line(fd);
 	}
 }
-
 
 void	read_map(t_cub *data, char *line, int fd)
 {

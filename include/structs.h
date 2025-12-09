@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 16:11:59 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:18:29 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ typedef struct s_flood
 	bool	error;
 }			t_flood;
 
-// Para guardar cada textura en un puntero void, guarda la info de la texturay colores
+// Para guardar cada textura en un puntero void,
+// guarda la info de la texturay colores
 typedef struct s_texture
 {
 	void	*id_texture;
@@ -113,8 +114,6 @@ typedef struct s_moves
 	bool	rotate_l;
 	bool	rotate_r;
 }		t_moves;
-
-
 
 // Codidos de errores que uso para las texturas, se ampliaran con el tiempo
 typedef enum e_code

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 16:10:17 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:11:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int			fill_validation(char **map, int y, int x);
 void		validate_map(t_cub *data);
 int			empty_line(char *s);
 
-
 // error handling and frees
 void		s_free(void *ptr);
 void		s_array_free(char **s);
@@ -99,7 +98,6 @@ int			key_release(int keycode, t_cub *game);
 int			movements( t_cub *game);
 bool		wall_collition(t_cub *game, double new_x, double new_y);
 double		get_time_ms(void);
-
 
 //	utils
 int			close_windows(t_cub *game);

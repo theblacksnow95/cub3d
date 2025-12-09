@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 12:59:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:29:43 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	*s_malloc(size_t bytes)
 	}
 	return (var);
 }
-
 
 int	empty_line(char *s)
 {

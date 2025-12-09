@@ -99,6 +99,11 @@ test: all
 	@echo "\n"
 	@./bin/cub3d map1.cub
 
+dk: all
+	@echo "$(YELLOW)Running test with a lovely lad...$(RESET)" && sleep 1
+	@echo "\n"
+	@./bin/cub3d DK_\<3.cub
+
 valgrind: all
 	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-origins=yes -s ./bin/cub3d map1.cub
 re: clean all
