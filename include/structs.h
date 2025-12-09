@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 14:33:12 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 14:39:49 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@
 # define KEY_UP		65362
 # define KEY_RIGHT	65363
 # define KEY_M		109
+
+/*
+	STRUCT para el dibujo de la flecha que representa la direccion del jugador
+	en el minimapa
+*/
+typedef struct s_line_print_dir
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	color;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}		t_line_print_dir;
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player

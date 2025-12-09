@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 14:33:53 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 14:51:20 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static int	init_game(t_cub *game)
 }
 
 /*
-	Mover el dibujo al bucle de render y dejar key_press solo para actualizar
+    Mover el dibujo al bucle de render y dejar key_press solo para actualizar
 	estado
 
-	Objetivo: que el frame se repinte constantemente y key_press solo cambie
+    Objetivo: que el frame se repinte constantemente y key_press solo cambie
 	posición/rotación. Evita inconsistencias y parpadeos.
-	Acción:
-		Añadir un game_loop y registrar mlx_loop_hook en main.
-		Quitar dibujado “manual” en key_press.
+    Acción:
+        Añadir un game_loop y registrar mlx_loop_hook en main.
+        Quitar dibujado “manual” en key_press.
 */
 int	game_loop(t_cub *game)
 {
@@ -60,9 +60,6 @@ int	game_loop(t_cub *game)
 	now = get_time_ms();
 	game->tm.frame_time = now - game->tm.old_time;
 	game->tm.old_time = now;
-	clear_window(&game->mlx, 0x000000);
-	// mlx_clear_window(game->mlx.mlx, game->mlx.win);
-int	game_loop(t_cub *game) {
 	clear_window_select(&game->mlx, game->c_rgb->ceiling, 1);
 	clear_window_select(&game->mlx, game->f_rgb->floor, 0);
 	cast_all_rays(game);
@@ -73,17 +70,19 @@ int	game_loop(t_cub *game) {
 	return (0);
 }
 
+
 void	render_game(t_cub *game)
 {
 	void	*win;
 
-	game->f_rgb->floor = rgb_to_int(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
-	game->c_rgb->ceiling = rgb_to_int(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
+	
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
 	mlx_hook(win, 3, 1L << 1, key_release, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
+ 	game->f_rgb->floor = rgb_to_int(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
+	game->c_rgb->ceiling = rgb_to_int(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
 }
 
 /*	mlx_hook 17 = X presionada
@@ -103,8 +102,6 @@ int	main(int ac, char **av)
 	game.map_path = av[1];
 	if (!check_for_params(game.map_path, &game))
 	{
-		// printf("Error here in check_for_params\n"); // debug
-		// error_handler(NULL, E_MAP, EMPTY_ID, &game); // debug
 		close_windows(&game);
 		return (1);
 	}
