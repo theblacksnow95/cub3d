@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 11:24:34 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:39:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int	main(int ac, char **av)
 
 	if (!check_file_format_n_extention(av[1]) || ac != 2)
 	{
-		perror(CLR_RED"Error:\nIncorrect # arguments:"
-			CLR_YLLW"./bin/cub3d '[*file*.cub]'"RST_ALL);
+		ft_printf(CLR_RED"Error:\nIncorrect # arguments:"
+			CLR_YLLW"./bin/cub3d '[*file*.cub]'\n"RST_ALL);
 		return (1);
 	}
 	init_variables(&game);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:01:46 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:50:42 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void	print_array(char **arr)
 
 void	close_read(char *map_str, char *line, t_cub *data, int fd)
 {
-	printf("trigger close_read()\n");
+	ft_printf("trigger close_read()\n");
 	error_handler(NULL, E_MAP, EMPTY_ID, data);
+	ft_printf(CLR_YLLW"Possible invalid chars or data\n"RST_ALL);
 	s_free(map_str);
 	s_free(line);
 	while (line)

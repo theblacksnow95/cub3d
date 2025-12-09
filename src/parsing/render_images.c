@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:03:44 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:42:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
 		error_handler(line, E_TEXTURE, id, data);
 		data->dups = 1;
+		if (data->dups == 1)
+			ft_printf(CLR_YLLW"Possible missing or duplicated data.\n"RST_ALL);
 	}
 	if (t->id_texture)
 	{

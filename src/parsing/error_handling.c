@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:01:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:49:14 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	error_map1(t_ecode code, t_cub *data)
 		ft_printf(CLR_RED"Map is not closed correctly\n"RST_ALL);
 	}
 	if (code == E_MAP)
-		ft_printf(CLR_RED"Incorrect map\n"RST_ALL);
+		ft_printf(CLR_RED"Incorrect map.\n"RST_ALL);
 }
 
 void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
