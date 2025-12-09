@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 14:51:20 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:30:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	rgb_to_int(int r, int g, int b)
 {
 	int	color;
-	
+
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (0x000000);
 	color = (r << 16) | (g << 8) | b;
@@ -44,14 +44,14 @@ static int	init_game(t_cub *game)
 }
 
 /*
-    Mover el dibujo al bucle de render y dejar key_press solo para actualizar
+	Mover el dibujo al bucle de render y dejar key_press solo para actualizar
 	estado
 
-    Objetivo: que el frame se repinte constantemente y key_press solo cambie
+	Objetivo: que el frame se repinte constantemente y key_press solo cambie
 	posición/rotación. Evita inconsistencias y parpadeos.
-    Acción:
-        Añadir un game_loop y registrar mlx_loop_hook en main.
-        Quitar dibujado “manual” en key_press.
+	Acción:
+		Añadir un game_loop y registrar mlx_loop_hook en main.
+		Quitar dibujado “manual” en key_press.
 */
 int	game_loop(t_cub *game)
 {
@@ -70,19 +70,19 @@ int	game_loop(t_cub *game)
 	return (0);
 }
 
-
 void	render_game(t_cub *game)
 {
 	void	*win;
 
-	
 	win = game->mlx.win;
 	mlx_hook(win, 17, 0, close_windows, game);
 	mlx_hook(win, 2, 1L << 0, key_press, game);
 	mlx_hook(win, 3, 1L << 1, key_release, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
- 	game->f_rgb->floor = rgb_to_int(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
-	game->c_rgb->ceiling = rgb_to_int(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
+	game->f_rgb->floor = rgb_to_int
+		(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
+	game->c_rgb->ceiling = rgb_to_int
+		(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
 }
 
 /*	mlx_hook 17 = X presionada

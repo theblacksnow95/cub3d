@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 14:32:20 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:35:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ void		dda(t_cub *game, t_ray *ray);
 t_texture	*select_texture(t_cub *game, t_ray *ray);
 int			put_v_texture(t_cub *game, t_texture *text, int j);
 void		draw_player_arrow(t_cub *game);
+void		init_sides(t_cub *game, char direction);
+void		init_positions(t_cub *game, char direction);
 
 
 // moves
 int			key_press(int keycode, t_cub *game);
-int			key_release(int	keycode, t_cub *game);
+int			key_release(int keycode, t_cub *game);
 int			movements( t_cub *game);
 bool		wall_collition(t_cub *game, double new_x, double new_y);
 double		get_time_ms(void);

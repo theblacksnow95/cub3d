@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/09 14:35:27 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:58:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 double	get_time_ms(void)
 {
@@ -48,35 +47,6 @@ static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 	}
 }
 
-
-void	init_positions(t_cub *game, char direction)
-{
-	if (direction == 'N') {
-		game->player.dir_x = 0;
-		game->player.dir_y = -1;
-		game->player.plane_x = 0.66;
-		game->player.plane_y = 0;
-	}
-	else if (direction == 'S') {
-		game->player.dir_x = 0;
-		game->player.dir_y = 1;
-		game->player.plane_x = -0.66;
-		game->player.plane_y = 0;
-	}
-	else if (direction == 'E') {
-		game->player.dir_x = 1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = 0.66;
-	}
-	else if (direction == 'W') {
-		game->player.dir_x = -1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = -0.66;
-	}
-}
-
 void	init_moves(t_cub *game)
 {
 	if (!game)
@@ -100,7 +70,6 @@ void	init_player(t_cub *game)
 	find_player_position(game, &start_x, &start_y, &direction);
 	game->player.x = start_x + 0.5;
 	game->player.y = start_y + 0.5;
-	// Dirección inicial según caracter del mapa
 	init_positions(game, direction);
 	game->player.mov_speed = 4.1;
 	game->player.rot_speed = 3.0;

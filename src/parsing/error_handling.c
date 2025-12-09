@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:01:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:51:19 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	error_map_param(char *line, int fd, t_ecode code)
 {
-
 	if (code == E_PARAM)
 	{
 		ft_printf(CLR_RED"Incorrect id check: %s\n"RST_ALL, line);
@@ -36,7 +35,6 @@ void	error_map1(t_ecode code, t_cub *data)
 		ft_printf(CLR_RED"No player in the map\n"RST_ALL);
 		ft_printf(CLR_YLLW"[N,S,W,E represent the player]\n"RST_ALL);
 	}
-
 	if (code == E_CHARS)
 	{
 		ft_printf(CLR_RED"Incorrect values in map\n"RST_ALL);

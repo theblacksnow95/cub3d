@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_arrow.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:02:55 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/07 17:04:05 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:58:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static void	draw_line_loop(t_mlx *mlx, t_line_print_dir *dir)
   4) En cada iteración pinta el pixel actual y ajusta err, x0 o y0 según sea
      necesario hasta que se alcanza el punto destino.
 - Notas:
-  - No hay variables locales adicionales aparte de la estructura pasada por valor,
+  - No hay variables locales adicionales aparte de la
+  	estructura pasada por valor,
     lo que facilita mantener la función corta y simple.
 */
 static void	draw_line(t_mlx *mlx, t_line_print_dir dir)

@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 14:36:04 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:58:59 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*static int	draw_vertical_line( t_mlx *mlx, int col, int drawstart, int drawend, int color)
-{
-	int	j;
-
-	if (col < 0 || col >= WIN_W)
-		return (perror("printing vertical line"), 1);
-	if (drawstart < 0)
-		drawstart = 0;
-	if (drawend >= WIN_H)
-		drawend = WIN_H - 1;
-	j = drawstart;
-	while (j <= drawend)
-	{
-		if (my_mlx_pixel_put(mlx, col, j, color))
-			return (perror("vertical line - my pixel put"), 1);
-		j++;
-	}
-	return (0);
-}*/
 
 /*
 	camerax convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
@@ -42,7 +22,8 @@
 	mapx/Y = celda actual donde está el jugador, convertido a índice entero.
 
 	deltax/Y = cuánto debe avanzar el rayo para cruzar una celda entera en X o Y.
-	Si raydir es 0, usamos un número enorme (1e30) para representar “nunca cruzo”.
+	Si raydir es 0, usamos un número enorme
+	(1e30) para representar “nunca cruzo”.
 */
 static void	ray_init(t_cub *game, t_ray *ray, int j)
 {
@@ -117,7 +98,7 @@ static int	cast_single_ray(t_cub *game, int j)
 	else
 		game->ray.perpdist = (game->ray.sidey - game->ray.deltay);
 	if (game->ray.perpdist < 0.01)
-			game->ray.perpdist = 0.01;
+		game->ray.perpdist = 0.01;
 	game->ray.line_h = (int)(WIN_H / game->ray.perpdist);
 	game->draws = -game->ray.line_h / 2 + WIN_H / 2;
 	if (game->draws < 0)

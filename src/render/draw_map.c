@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/09 14:34:43 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 15:48:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void	clear_window_select(t_mlx *mlx, int color, bool selection)
 {
 	int	x;
 	int	y;
-	int	divH;
-	int	divW;
+	int	divh;
+	int	divw;
 
 	y = 0;
-	divH = WIN_H;
-	divW = WIN_W;
+	divh = WIN_H;
+	divw = WIN_W;
 	if (selection)
-		divH -= WIN_H / 2;
+		divh -= WIN_H / 2;
 	else
 		y = WIN_H / 2;
-	while (y < divH)
+	while (y < divh)
 	{
 		x = 0;
-		while (x < divW)
+		while (x < divw)
 		{
 			my_mlx_pixel_put(mlx, x, y, color);
 			x++;
@@ -41,7 +41,7 @@ void	clear_window_select(t_mlx *mlx, int color, bool selection)
 	}
 }
 
-int	draw_player(t_mlx *mlx, double x, double y, int color)
+int	draw_player(t_mlx *mlx, double px, double py, int color)
 {
 	int	i;
 	int	j;
@@ -49,6 +49,8 @@ int	draw_player(t_mlx *mlx, double x, double y, int color)
 
 	radius = 3;
 	i = -radius;
+	px = px * TILE_SIZE;
+	py = py * TILE_SIZE;
 	while (i <= radius)
 	{
 		j = -radius;
@@ -56,7 +58,7 @@ int	draw_player(t_mlx *mlx, double x, double y, int color)
 		{
 			if (i * i + j * j <= radius * radius)
 			{
-				if (my_mlx_pixel_put(mlx, (int)x + j, (int)y + i, color))
+				if (my_mlx_pixel_put(mlx, (int)px + j, (int)py + i, color))
 					return (1);
 			}
 			j++;
@@ -85,12 +87,16 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 }
 
 /*funcion para dibujar un cuadrado*/
-static int	draw_square(t_mlx *mlx, int start_x, int start_y, int color)
+static int	draw_square(t_mlx *mlx, int w, int h, int color)
 {
 	int		x;
 	int		y;
+	int		start_y;
+	int		start_x;
 
 	y = 0;
+	start_y = h * TILE_SIZE;
+	start_x = w * TILE_SIZE;
 	while (y < TILE_SIZE)
 	{
 		if (start_y + y >= WIN_H || start_y + y < 0)
@@ -133,16 +139,16 @@ int	draw_map(t_cub *game)
 		{
 			cell = game->map[y][x];
 			if (cell == '1' || cell == ' ')
-				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x00FFFF);// blanco
+				error = draw_square(&game->mlx, x, y, 0x00FFFF);
 			else
-				error = draw_square(&game->mlx, x * TILE_SIZE, y * TILE_SIZE, 0x808080);//gris
+				error = draw_square(&game->mlx, x, y, 0x808080);
 			if (error)
 				close_windows(game);
 			x++;
 		}
 		y++;
 	}
-	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
+	draw_player(&game->mlx, game->player.x, game->player.y, 0x000FF0);
 	draw_player_arrow(game);
 	return (0);
 }
