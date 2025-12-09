@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 13:48:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:04:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*advance_to_start(char *line, int fd)
 	}
 	return (line);
 }
+
 void	read_loop(t_cub *data, char *line, int fd, char **map_str)
 {
 	char	*buf;
