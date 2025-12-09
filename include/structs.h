@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:10:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:15:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_cub
 	bool		mini;
 	int			draws;
 	int			drawe;
+	bool		end;
 	t_mlx		mlx;
 	t_player	player;
 	t_moves		moves;
