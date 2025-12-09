@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 17:11:02 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:22:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int			put_v_texture(t_cub *game, t_texture *text, int j);
 void		draw_player_arrow(t_cub *game);
 void		init_sides(t_cub *game, char direction);
 void		init_positions(t_cub *game, char direction);
-
 
 // moves
 int			key_press(int keycode, t_cub *game);
