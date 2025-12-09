@@ -6,11 +6,21 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 11:39:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:31:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	rgb_to_int(int r, int g, int b)
+{
+	int	color;
+
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (0x000000);
+	color = (r << 16) | (g << 8) | b;
+	return (color);
+}
 
 /*	mlx_init ... inicializa el puntero necesario para el resto de parametros
 	de minilibx, si falla devuelve null.
@@ -50,8 +60,8 @@ int	game_loop(t_cub *game)
 	now = get_time_ms();
 	game->tm.frame_time = now - game->tm.old_time;
 	game->tm.old_time = now;
-	clear_window(&game->mlx, 0x000000);
-	// mlx_clear_window(game->mlx.mlx, game->mlx.win);
+	clear_window_select(&game->mlx, game->c_rgb->ceiling, 1);
+	clear_window_select(&game->mlx, game->f_rgb->floor, 0);
 	cast_all_rays(game);
 	movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
@@ -69,6 +79,10 @@ void	render_game(t_cub *game)
 	mlx_hook(win, 2, 1L << 0, key_press, game);
 	mlx_hook(win, 3, 1L << 1, key_release, game);
 	mlx_loop_hook(game->mlx.mlx, game_loop, game);
+	game->f_rgb->floor = rgb_to_int
+		(game->f_rgb->r, game->f_rgb->g, game->f_rgb->b);
+	game->c_rgb->ceiling = rgb_to_int
+		(game->c_rgb->r, game->c_rgb->g, game->c_rgb->b);
 }
 
 /*	mlx_hook 17 = X presionada
@@ -88,8 +102,6 @@ int	main(int ac, char **av)
 	game.map_path = av[1];
 	if (!check_for_params(game.map_path, &game))
 	{
-		// printf("Error here in check_for_params\n"); // debug
-		// error_handler(NULL, E_MAP, EMPTY_ID, &game); // debug
 		close_windows(&game);
 		return (1);
 	}

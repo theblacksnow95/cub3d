@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 11:50:56 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:50:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 {
 	int	i;
 	int	num;
-
 
 	i = 0;
 	while (tmp[i])

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 11:39:35 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:22:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,13 @@
 # define COLLITION_RAD	0.20
 # define PLAYER_RAD		2
 
-int			check_file_format_n_extention(char *file);
-int			check_data_map(char *file_name, t_cub *data);
-
 // simple tools
 int			ft_isspace(int s);
 void		*s_malloc(size_t bytes);
 void		print_array(char **arr);
 
 // init
+int			check_file_format_n_extention(char *file);
 t_cub		*init_variables(t_cub *data);
 void		process_params(char *line, t_cub *data, char *id);
 void		colors_rgb(char *line, char *id, t_cub *data);
@@ -81,23 +79,24 @@ int			key_press(int keycode, t_cub *game);
 void		init_player(t_cub *game);
 
 // dibujo
-void		draw_pixel(t_mlx *mlx, int x, int y, int color);
 int			draw_map(t_cub *game);
-void		clear_window(t_mlx *mlx, int color);
+void		clear_window_select(t_mlx *mlx, int color, bool selection);
 int			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int			draw_player(t_mlx *mlx, double x, double y, int color);
 int			cast_all_rays(t_cub *game);
 void		dda(t_cub *game, t_ray *ray);
 t_texture	*select_texture(t_cub *game, t_ray *ray);
 int			put_v_texture(t_cub *game, t_texture *text, int j);
+void		draw_player_arrow(t_cub *game);
+void		init_sides(t_cub *game, char direction);
+void		init_positions(t_cub *game, char direction);
 
 // moves
 int			key_press(int keycode, t_cub *game);
-int			key_release(int	keycode, t_cub *game);
+int			key_release(int keycode, t_cub *game);
 int			movements( t_cub *game);
 bool		wall_collition(t_cub *game, double new_x, double new_y);
 double		get_time_ms(void);
-
 
 //	utils
 int			close_windows(t_cub *game);

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:23:23 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 11:40:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:31:59 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ft_isspace(int s)
 		return (1);
 	if ((s >= 9 && s <= 13) || s == 32)
 	{
-		// ft_printf("%c\n", s);
 		return (1);
 	}
 	return (0);

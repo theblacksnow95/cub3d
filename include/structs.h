@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:10:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:18:29 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@
 # define KEY_UP		65362
 # define KEY_RIGHT	65363
 # define KEY_M		109
+
+/*
+	STRUCT para el dibujo de la flecha que representa la direccion del jugador
+	en el minimapa
+*/
+typedef struct s_line_print_dir
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	color;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}		t_line_print_dir;
 
 /*datos del jugador, posicion, direccion donde mira...*/
 typedef struct s_player
@@ -59,9 +78,10 @@ typedef struct s_flood
 {
 	bool	done;
 	bool	error;
-}	t_flood;
+}			t_flood;
 
-// Para guardar cada textura en un puntero void, guarda la info de la texturay colores
+// Para guardar cada textura en un puntero void,
+// guarda la info de la texturay colores
 typedef struct s_texture
 {
 	void	*id_texture;
@@ -80,6 +100,8 @@ typedef struct s_rgb
 	int	r;
 	int	g;
 	int	b;
+	int	floor;
+	int	ceiling;
 	int	full;
 }	t_rgb;
 
@@ -92,8 +114,6 @@ typedef struct s_moves
 	bool	rotate_l;
 	bool	rotate_r;
 }		t_moves;
-
-
 
 // Codidos de errores que uso para las texturas, se ampliaran con el tiempo
 typedef enum e_code
@@ -115,7 +135,7 @@ typedef struct s_time
 	double	frame_time;
 }		t_time;
 
-// Estructura para cada rayo del raycasting 
+// Estructura para cada rayo del raycasting
 typedef struct s_ray
 {
 	double	camerax;
@@ -164,6 +184,7 @@ typedef struct s_cub
 	bool		mini;
 	int			draws;
 	int			drawe;
+	bool		end;
 	t_mlx		mlx;
 	t_player	player;
 	t_moves		moves;

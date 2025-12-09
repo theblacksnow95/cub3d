@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_tools.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 16:49:15 by emurillo          #+#    #+#             */
-/*   Updated: 2025/11/23 18:24:38 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 16:29:43 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,27 @@ void	*s_malloc(size_t bytes)
 		return (NULL);
 	}
 	return (var);
+}
+
+int	empty_line(char *s)
+{
+	while (*s != '\n')
+	{
+		if (*s != ' ' && *s != '\n' && *s != '\t')
+			return (0);
+		s++;
+	}
+	return (1);
+}
+
+void	print_array(char **arr)
+{
+	if (!arr || arr[0][0] == '\0')
+		return ;
+	while (*arr)
+	{
+		ft_printf(CLR_BLUE"%s\n"RST_ALL, *arr);
+		arr++;
+	}
+	printf("\n");
 }

@@ -12,8 +12,9 @@ SRCS = src/parsing/extension_check.c src/parsing/p_tools.c src/parsing/error_han
 		src/events/game_start.c src/events/moves.c\
 		src/render/draw_map.c src/render/player.c\
 		src/render/raycasting/raycast.c src/render/raycasting/raycasting_tools.c  src/render/raycasting/render_textures.c\
-		src/utils/free_and_destroy.c src/utils/init_var.c\
-		src/main.c src/events/movement_tools.c 
+		src/render/player_arrow.c\
+		src/utils/free_and_destroy.c src/utils/init_var.c src/render/position.c\
+		src/main.c src/events/movement_tools.c
 
 # ================== DIRECTORIES ========================================================================
 
@@ -97,6 +98,11 @@ test: all
 	@echo "$(YELLOW)Running test with map1 example...$(RESET)" && sleep 1
 	@echo "\n"
 	@./bin/cub3d map1.cub
+
+dk: all
+	@echo "$(YELLOW)Running test with a lovely lad...$(RESET)" && sleep 1
+	@echo "\n"
+	@./bin/cub3d DK_\<3.cub
 
 valgrind: all
 	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-origins=yes -s ./bin/cub3d map1.cub

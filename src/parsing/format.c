@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/03 14:31:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:51:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	id_validation(t_cub *data, char *line)
 
 int	check_for_params(char *map_path, t_cub *data)
 {
-
 	data->fd = open(map_path, O_RDONLY);
 	while (data->params_cnt < 6)
 	{

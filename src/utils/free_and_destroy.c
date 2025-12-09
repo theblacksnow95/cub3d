@@ -6,12 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 00:05:59 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/08 12:01:53 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:00:32 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static void	clear_textures(t_cub *data)
 {
