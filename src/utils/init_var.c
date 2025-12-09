@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-
 t_texture	*init_texture(t_texture *t)
 {
 	t_texture	*texture;
