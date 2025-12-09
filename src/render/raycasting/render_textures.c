@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:07:15 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:00:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 
 	y = game->draws;
 	step = (double)text->text_h / (double)game->ray.line_h;
-	// textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2 )* step;
 	while (y <= game->drawe)
 	{
 		texy = (int)textpos;
 		if (texy < 0)
 			texy = 0;
 		if (texy >= text->text_h)
-			texy = text->text_h - 1;	
+			texy = text->text_h - 1;
 		textpos += step;
 		color = get_color(text, game->ray.tex_x, texy);
 		if (game->ray.side == 0)

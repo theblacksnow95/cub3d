@@ -6,12 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:11:07 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 11:39:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:57:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
-
+#include "cub3d.h"
 
 bool	wall_collition(t_cub *game, double new_x, double new_y)
 {

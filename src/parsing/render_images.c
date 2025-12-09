@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:03:44 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:53:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 	int	w;
 	int	h;
 
-	// printf("line: [%s]\n", line); // debug
 	if (!t->id_texture || !t->full)
-			t->id_texture = mlx_xpm_file_to_image
-				(data->mlx.mlx, line, &w, &h);
+		t->id_texture = mlx_xpm_file_to_image
+			(data->mlx.mlx, line, &w, &h);
 	if (!t->id_texture || t->full)
 	{
-		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL); //debug
+		printf(CLR_YLLW"error triggered in f'(render_image)\n"RST_ALL);
 		error_handler(line, E_TEXTURE, id, data);
 		data->dups = 1;
 	}
@@ -59,7 +58,7 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		t->text_w = w;
 		t->text_h = h;
 	}
-	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full); // debug
+	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full);
 }
 
 void	process_params(char *line, t_cub *data, char *id)

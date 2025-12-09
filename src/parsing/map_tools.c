@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:22:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 13:20:44 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:14:19 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	locate_player(t_cub *data)
 			if (is_player(data->map[y][x]))
 			{
 				data->player.x = x;
-				data->player.y= y;
+				data->player.y = y;
 				return (1);
 			}
 			if (!is_valid(data->map[y][x]))

@@ -23,7 +23,21 @@ t_texture	*init_texture(t_texture *t)
 	return (t);
 }
 
-t_cub *init_variables(t_cub *data)
+void	init_flags(t_cub *data)
+{
+	data->params_cnt = 0;
+	data->fd = -1;
+	data->dups = 0;
+	data->ply = 0;
+	data->mlx.win = NULL;
+	data->mlx.img = NULL;
+	data->mlx.addr = NULL;
+	data->mlx.bpp = 0;
+	data->mlx.line_len = 0;
+	data->mlx.endian = 0;
+}
+
+t_cub	*init_variables(t_cub *data)
 {
 	ft_bzero(data, sizeof(t_cub));
 	data->no_texture = s_malloc(sizeof(t_texture));
@@ -38,18 +52,9 @@ t_cub *init_variables(t_cub *data)
 	ft_bzero(data->ea_texture, sizeof(t_texture));
 	ft_bzero(data->f_rgb, sizeof(t_rgb));
 	ft_bzero(data->c_rgb, sizeof(t_rgb));
-	data->params_cnt = 0;
-	data->fd = -1;
-	data->dups = 0;
-	data->ply = 0;
 	data->mlx.mlx = mlx_init();
 	if (!data->mlx.mlx)
 		return (NULL);
-	data->mlx.win = NULL;
-	data->mlx.img = NULL;
-	data->mlx.addr = NULL;
-	data->mlx.bpp = 0;
-	data->mlx.line_len = 0;
-	data->mlx.endian = 0;
+	init_flags(data);
 	return (data);
 }

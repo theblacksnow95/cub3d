@@ -6,16 +6,14 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 08:53:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 10:27:07 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:57:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-int	key_release(int	keycode, t_cub *game)
+int	key_release(int keycode, t_cub *game)
 {
-
 	if (KEY_W == keycode || KEY_UP == keycode)
 		game->moves.move_up = false;
 	if (KEY_S == keycode || KEY_DOWN == keycode)
@@ -39,7 +37,7 @@ int	key_press(int keycode, t_cub *game)
 		open_minimap(game);
 	if (keycode == KEY_W || keycode == KEY_UP)
 		game->moves.move_up = true;
-	if (keycode == KEY_S|| keycode == KEY_DOWN)
+	if (keycode == KEY_S || keycode == KEY_DOWN)
 		game->moves.move_down = true;
 	if (keycode == KEY_A)
 		game->moves.move_left = true;
