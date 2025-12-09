@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/07 14:50:19 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:08:57 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 	int		color;
 
 	y = game->draws;
-	printf("y = [%d]\n", game->draws);
 	step = (double)text->text_h / game->ray.line_h;
 	textpos = (game->draws - WIN_H / 2 + game->ray.line_h / 2 )* step;
 	while (y < game->drawe)

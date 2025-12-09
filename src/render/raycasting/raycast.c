@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/07 18:19:39 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/09 14:09:07 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,9 @@ static int	cast_single_ray(t_cub *game, int j)
 	game->ray.line_h = (int)(WIN_H / game->ray.perpdist);
 	if (game->ray.perpdist < 0.01)
 		game->ray.perpdist = 0.01;
-	// printf("perpdist: %f\n", game->ray.perpdist);
 	game->draws = -game->ray.line_h / 2 + WIN_H / 2;
 	if (game->draws < 0)
 		game->draws = 0;
-		// printf("draws: %d\n", game->draws); //debug
 	game->drawe = game->ray.line_h / 2 + WIN_H / 2;
 	if (game->drawe >= WIN_H)
 		game->drawe = WIN_H - 1;
