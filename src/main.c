@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:08:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:24:34 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	init_game(t_cub *game)
 		Añadir un game_loop y registrar mlx_loop_hook en main.
 		Quitar dibujado “manual” en key_press.
 */
-int	game_loop(t_cub *game) 
+int	game_loop(t_cub *game)
 {
 	double	now;
 
@@ -51,8 +51,7 @@ int	game_loop(t_cub *game)
 	game->tm.frame_time = now - game->tm.old_time;
 	game->tm.old_time = now;
 	clear_window(&game->mlx, 0x000000);
-	// mlx_destroy_image(game->mlx.mlx, game->mlx.img);
-	mlx_clear_window(game->mlx.mlx, game->mlx.win);
+	// mlx_clear_window(game->mlx.mlx, game->mlx.win);
 	cast_all_rays(game);
 	movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
