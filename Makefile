@@ -12,6 +12,7 @@ SRCS = src/parsing/extension_check.c src/parsing/p_tools.c src/parsing/error_han
 		src/events/game_start.c src/events/moves.c\
 		src/render/draw_map.c src/render/player.c\
 		src/render/raycasting/raycast.c src/render/raycasting/raycasting_tools.c  src/render/raycasting/render_textures.c\
+		src/render/player_arrow.c\
 		src/utils/free_and_destroy.c src/utils/init_var.c\
 		src/main.c src/events/movement_tools.c 
 

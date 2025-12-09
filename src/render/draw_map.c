@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/08 12:07:43 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:34:43 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clear_window(t_mlx *mlx, int color)
+/*
+	si selections es 1, es el ceiling, sino es floor
+*/
+void	clear_window_select(t_mlx *mlx, int color, bool selection)
 {
 	int	x;
 	int	y;
+	int	divH;
+	int	divW;
 
 	y = 0;
-	while (y < WIN_H)
+	divH = WIN_H;
+	divW = WIN_W;
+	if (selection)
+		divH -= WIN_H / 2;
+	else
+		y = WIN_H / 2;
+	while (y < divH)
 	{
 		x = 0;
-		while (x < WIN_W)
+		while (x < divW)
 		{
 			my_mlx_pixel_put(mlx, x, y, color);
 			x++;
@@ -67,9 +78,7 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-	{
-		return (0);
-	}
+		exit(1);
 	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = (unsigned int)color;
 	return (0);
@@ -134,5 +143,6 @@ int	draw_map(t_cub *game)
 		y++;
 	}
 	draw_player(&game->mlx, game->player.x * TILE_SIZE, game->player.y * TILE_SIZE, 0x000FF0);
+	draw_player_arrow(game);
 	return (0);
 }

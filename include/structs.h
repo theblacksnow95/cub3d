@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:10:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:33:12 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_flood
 {
 	bool	done;
 	bool	error;
-}	t_flood;
+}			t_flood;
 
 // Para guardar cada textura en un puntero void, guarda la info de la texturay colores
 typedef struct s_texture
@@ -80,6 +80,8 @@ typedef struct s_rgb
 	int	r;
 	int	g;
 	int	b;
+	int	floor;
+	int	ceiling;
 	int	full;
 }	t_rgb;
 
