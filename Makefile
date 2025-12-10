@@ -104,10 +104,16 @@ dk: all
 	@echo "\n"
 	@./bin/cub3d DK_\<3.cub
 
+small: all
+	@echo "$(YELLOW)Running test with a small_map.cub...$(RESET)" && sleep 1
+	@echo "\n"
+	@./bin/cub3d small_map.cub
+
+
 valgrind: all
 	@valgrind  --leak-check=full --show-leak-kinds=all --log-file=.valg_error.log --track-origins=yes -s ./bin/cub3d map1.cub
 re: clean all
 
 .SILENT:
 
-.PHONY: all clean fclean re test valgrind
+.PHONY: all clean fclean re test valgrind dk small

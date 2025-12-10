@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:51:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/10 11:43:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int	first_word(char *line)
 
 int	not_id_present(char *line, int len, t_cub *data)
 {
-	if (!ft_strncmp(line, NO_ID, len)
-		|| !ft_strncmp(line, SO_ID, len)
-		|| !ft_strncmp(line, WE_ID, len)
-		|| !ft_strncmp(line, EA_ID, len)
+	if ((!ft_strncmp(line, NO_ID, len) && !ft_strncmp(NO_ID, line, 2))
+		|| (!ft_strncmp(line, SO_ID, len) && !ft_strncmp(SO_ID, line, 2))
+		|| (!ft_strncmp(line, WE_ID, len) && !ft_strncmp(WE_ID, line, 2))
+		|| (!ft_strncmp(line, EA_ID, len) && !ft_strncmp(EA_ID, line, 2))
 		|| !ft_strncmp(line, F_ID, len)
 		|| !ft_strncmp(line, C_ID, len)
 		|| empty_line(line))
@@ -66,13 +66,13 @@ int	id_validation(t_cub *data, char *line)
 	{
 	}
 	len_id = first_word(line);
-	if (!ft_strncmp(line, NO_ID, len_id))
+	if (!ft_strncmp(line, NO_ID, len_id) && !ft_strncmp(NO_ID, line, 2))
 		process_params(line, data, NO_ID);
-	if (!ft_strncmp(line, SO_ID, len_id))
+	if (!ft_strncmp(line, SO_ID, len_id) && !ft_strncmp(SO_ID, line, 2))
 		process_params(line, data, SO_ID);
-	if (!ft_strncmp(line, WE_ID, len_id))
+	if (!ft_strncmp(line, WE_ID, len_id) && !ft_strncmp(WE_ID, line, 2))
 		process_params(line, data, WE_ID);
-	if (!ft_strncmp(line, EA_ID, len_id))
+	if (!ft_strncmp(line, EA_ID, len_id) && !ft_strncmp(EA_ID, line, 2))
 		process_params(line, data, EA_ID);
 	if (!ft_strncmp(line, F_ID, len_id))
 		colors_f_c(line, data, F_ID);
