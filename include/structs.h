@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 16:18:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/10 13:33:44 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef enum e_code
 	E_NOPLYR,
 	E_CHARS,
 	E_CLOSEDM,
+	E_NOMAP,
 	E_NO_ID
 }	t_ecode;
 

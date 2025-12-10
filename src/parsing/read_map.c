@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:13:50 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 17:32:15 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/10 13:58:22 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	empty_newline(char *s)
 void	close_read(char *map_str, char *line, t_cub *data, int fd)
 {
 	ft_printf("trigger close_read()\n");
-	error_handler(NULL, E_MAP, EMPTY_ID, data);
+	if (!line)
+		error_handler(NULL, E_NOMAP, EMPTY_ID, data);
+	else
+		error_handler(NULL, E_MAP, EMPTY_ID, data);
 	ft_printf(CLR_YLLW"Possible invalid chars or data\n"RST_ALL);
 	s_free(map_str);
 	s_free(line);
@@ -40,6 +43,8 @@ void	close_read(char *map_str, char *line, t_cub *data, int fd)
 
 char	*advance_to_start(char *line, int fd)
 {
+	if (!line)
+		return (NULL);
 	while (empty_line(line))
 	{
 		s_free(line);
@@ -80,7 +85,11 @@ void	read_map(t_cub *data, char *line, int fd)
 
 	map_str = ft_strdup("");
 	line = get_next_line(fd);
+	if (!line)
+		close_read(map_str, line, data, fd);
 	line = advance_to_start(line, fd);
+	if (!line)
+		close_read(map_str, line, data, fd);
 	data->end = false;
 	if (!line)
 		close_read(map_str, line, data, fd);

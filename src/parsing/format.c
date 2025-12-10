@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 14:19:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/10 11:43:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/10 13:26:17 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	check_for_params(char *map_path, t_cub *data)
 	{
 		data->line = get_next_line(data->fd);
 		if (!data->line)
-			return (0);
+			return (error_handler("Empty file", E_NO_ID, EMPTY_ID, data), 0);
 		if (id_validation(data, data->line))
 			data->params_cnt++;
 		if (data->dups)
