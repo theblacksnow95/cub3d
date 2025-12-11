@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/10 11:42:50 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 13:57:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static char	*move_line_to_path(char *line, char *id)
 
 	i = 0;
 	line = line + (int)ft_strlen(id);
-	while (ft_isspace(*line) && line++)
-	{
-	}
+	while (ft_isspace(*line) && *line != '\n' )
+		line++;
 	while (line[i])
 	{
 		if (line[i] == '\n')
@@ -60,7 +59,7 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		t->text_w = w;
 		t->text_h = h;
 	}
-	printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full);
+	// printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full);
 }
 
 void	process_params(char *line, t_cub *data, char *id)

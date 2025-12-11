@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:51:38 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 13:58:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	fill_validation(char **map, int y, int x)
 	if (!map_copy)
 		return (1);
 	flood(map_copy, y, x, &fill);
-	print_array(map_copy);
 	s_array_free(map_copy);
 	if (fill.error)
 		return (1);
