@@ -2,8 +2,8 @@
     SO		textures/lava512x512.xpm
 WE textures/lava512x512.xpm
 EA textures/lava512x512.xpm
-    C 225,250,0
-F 220,100,40
+    C 24,35,10
+F 10,10,01
 
 
   11111111111111111111111111111
