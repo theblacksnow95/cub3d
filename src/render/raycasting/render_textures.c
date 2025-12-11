@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 16:00:22 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 10:49:30 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	draw_texture_line(t_cub *game, t_texture *text, int x, double textpos)
 			texy = text->text_h - 1;
 		textpos += step;
 		color = get_color(text, game->ray.tex_x, texy);
-		if (game->ray.side == 0)
+		if (game->dark == true)
 			color = (color >> 1) & 8355711;
 		if (my_mlx_pixel_put(&game->mlx, x, y, color))
 			return (1);

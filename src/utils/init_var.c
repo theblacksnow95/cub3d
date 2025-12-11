@@ -35,6 +35,7 @@ void	init_flags(t_cub *data)
 	data->mlx.bpp = 0;
 	data->mlx.line_len = 0;
 	data->mlx.endian = 0;
+	data->dark = false;
 }
 
 t_cub	*init_variables(t_cub *data)

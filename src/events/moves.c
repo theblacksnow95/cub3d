@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 08:53:46 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:57:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 10:58:58 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ int	key_press(int keycode, t_cub *game)
 		close_windows(game);
 	if (keycode == KEY_M)
 		open_minimap(game);
+	if (keycode == KEY_DARK && !game->dark)
+		game->dark = true;
+	if (keycode == KEY_LIGHT && game->dark)
+		game->dark = false;
 	if (keycode == KEY_W || keycode == KEY_UP)
 		game->moves.move_up = true;
 	if (keycode == KEY_S || keycode == KEY_DOWN)

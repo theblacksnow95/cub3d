@@ -1,3 +1,0 @@
-/snap/core20/2669/etc/skel/.bashrc
-/snap/core20/2599/etc/skel/.bashrc
-/etc/skel/.bashrc

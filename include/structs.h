@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:56:24 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/10 13:33:44 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 10:55:30 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define KEY_UP		65362
 # define KEY_RIGHT	65363
 # define KEY_M		109
-
+# define KEY_DARK	112
+# define KEY_LIGHT	111
 /*
 	STRUCT para el dibujo de la flecha que representa la direccion del jugador
 	en el minimapa
@@ -186,6 +187,7 @@ typedef struct s_cub
 	int			draws;
 	int			drawe;
 	bool		end;
+	bool		dark;
 	t_mlx		mlx;
 	t_player	player;
 	t_moves		moves;
