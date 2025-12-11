@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 13:57:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:49:39 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,30 @@ static char	*move_line_to_path(char *line, char *id)
 	return (line);
 }
 
+int	is_empty_rgb(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if ((line[i] == 'F' || line[i] == 'C'))
+		i++;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (!line[i] || line[i] < '0' || line[i] > '9' || line[i] == '\n')
+		return (1);
+	return (0);
+}
+
 void	colors_f_c(char *line, t_cub *data, char *id)
 {
+	if (is_empty_rgb(line))
+	{
+		error_handler(line, E_COLOR, id, data);
+		data->dups = 1;
+		return ;
+	}
 	line = move_line_to_path(line, id);
 	colors_rgb(line, id, data);
 }

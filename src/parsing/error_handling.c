@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/10 13:59:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 14:48:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
 	if (code == E_TEXTURE)
 	{
 		ft_printf(RST_ALL"Error:\nTexture <%s> not correct\n", id);
-		ft_printf(CLR_RED"%s\n"CLR_RED, line);
+		ft_printf(CLR_RED"%s\n"RST_ALL, line);
 		data->dups = 1;
 	}
 	if (code == E_COLOR)
 	{
 		ft_printf(RST_ALL"Error:\nIncorrect <%s> coordinates\n", id);
-		ft_printf(CLR_RED"%s\n"CLR_RED, line);
+		ft_printf(CLR_RED"%s\n"RST_ALL, line);
 		data->dups = 1;
 	}
 	if (code == E_MAP || code == E_NOPLYR || code == E_CHARS
