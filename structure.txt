@@ -18,7 +18,7 @@ src/
     int main(int argc, char **argv)
 {
     t_game game;
-    
+
     // 1. Validar argumentos
     // 2. Parsear archivo .cub
     // 3. Inicializar MiniLibX
@@ -56,3 +56,20 @@ C 225,30,0
 101N01
 110001
 111111
+
+
+
+EJEMPLOS DE RESOLUCIONES:
+
+FULL HD: 1920x1080
+# define WIN_W			1920
+# define WIN_H			1080
+
+
+1440p QHD: 2560x1440
+# define WIN_W			2560
+# define WIN_H			1440
+
+4K (UHD): 3840x2160
+# define WIN_W			3840
+# define WIN_H			2160

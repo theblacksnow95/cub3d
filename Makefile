@@ -97,17 +97,17 @@ fclean: clean
 test: all
 	@echo "$(YELLOW)Running test with map1 example...$(RESET)" && sleep 1
 	@echo "\n"
-	@./bin/cub3d map1.cub
+	@./bin/cub3d maps/map1.cub
 
 dk: all
 	@echo "$(YELLOW)Running test with a lovely lad...$(RESET)" && sleep 1
 	@echo "\n"
-	@./bin/cub3d DK_\<3.cub
+	@./bin/cub3d maps/DK_\<3.cub
 
 small: all
 	@echo "$(YELLOW)Running test with a small_map.cub...$(RESET)" && sleep 1
 	@echo "\n"
-	@./bin/cub3d small_map.cub
+	@./bin/cub3d maps/small_map.cub
 
 
 valgrind: all
