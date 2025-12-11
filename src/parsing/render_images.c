@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 14:49:39 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:37:04 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	render_image(t_cub *data, char *line, char *id, t_texture *t)
 		t->text_w = w;
 		t->text_h = h;
 	}
-	// printf(CLR_BLUE"Img Id <%s> full: [%d]\n"RST_ALL, id, t->full);
 }
 
 void	process_params(char *line, t_cub *data, char *id)
