@@ -3,27 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:33:32 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:58:59 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:06:19 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-	camerax convierte la columna j (0..WIN_W) en un valor normalizado [-1,1].
-	Esto determina qué parte del plano de visión usa este rayo.
-
-	raydirx/Y = dirección real del rayo en el mundo.
-	Es la dirección del jugador + una parte del plano de cámara.
-
-	mapx/Y = celda actual donde está el jugador, convertido a índice entero.
-
-	deltax/Y = cuánto debe avanzar el rayo para cruzar una celda entera en X o Y.
-	Si raydir es 0, usamos un número enorme
-	(1e30) para representar “nunca cruzo”.
+	If `raydir` is 0, we use a very large number (1e30) to represent 
+	"never cross."
 */
 static void	ray_init(t_cub *game, t_ray *ray, int j)
 {
@@ -43,17 +34,8 @@ static void	ray_init(t_cub *game, t_ray *ray, int j)
 }
 
 /*
-	stepx/Y = hacia qué dirección avanza el rayo en la grilla.
-
-	sidex/Y = distancia desde la posición del jugador hasta la primera pared
-	vertical u horizontal que podría cruzar el rayo.
-
-	Si el rayo va hacia la izquierda:
-		sidex = (player.x - mapx)
-	Si va hacia la derecha:
-		sidex = (mapx + 1 - player.x)
-
-	Lo mismo para Y.
+	stepx/Y = the direction the ray travels on the grid.
+	sidex/Y = the distance from the player's position to the first
 */
 static void	ray_step_init(t_cub *game, t_ray *ray)
 {
@@ -80,11 +62,8 @@ static void	ray_step_init(t_cub *game, t_ray *ray)
 }
 
 /*
-	sidex ... si va hacia la izquierda
-	distancia en X = posición del jugador - X entero de la celda en la que está
-	Si va hacia la derecha
-	distancia en X	= (X entero de próxima celda) - posición del jugador
-               		= (mapx + 1) - jugador.x
+	distance in X 	= (X integer of next cell) - player position
+					= (mapx + 1) - player.x
 */
 static int	cast_single_ray(t_cub *game, int j)
 {
@@ -113,7 +92,7 @@ static int	cast_single_ray(t_cub *game, int j)
 }
 
 /*
-	Recorro todas las columnas de la pantalla, tirando un rayo por cada una.
+I scan all the columns of the screen, shooting a ray at each one.
 */
 int	cast_all_rays(t_cub *game)
 {

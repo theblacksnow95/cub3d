@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:11:07 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:57:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:58:36 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,8 @@ bool	wall_collition(t_cub *game, double new_x, double new_y)
 	return (false);
 }
 
-/*	chequeo de la colision temporal - aca no tengo en cuenta
-	mapas desproporcionados
-	si esta entre los limites o si es 1 ... devuelve 1 sino 0
-
-	mas adelante haré el calculo con el pixel siguiente dependiendo
-	de la direccion donde mire
-	si el pixel siguiente es diferente de 0, hay colision
+/*
+	chequeo de la colision
 */
 bool	is_wall(t_cub *game, double x, double y)
 {

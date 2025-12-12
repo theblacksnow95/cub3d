@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 22:12:37 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/09 15:58:02 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:13:32 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ double	get_time_ms(void)
 	return (tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0);
 }
 
-/*FUNCION PARA BUSCAR LA POSICION INICIAL DEL JUGADOR EN EL MAPA Y
-	ASIGNARLA A LA ESTRUCTURA PLAYER DEL JUEGO*/
 static void	find_player_position(t_cub *game, int *x, int *y, char *dir)
 {
 	int	i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/12 11:45:00 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:51:59 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 # define EXTENSION_LEN	4
 # define COLLITION_RAD	0.20
-# define PLAYER_RAD		2
+# define PLAYER_RAD		5
 
 // simple tools
 int			ft_isspace(int s);

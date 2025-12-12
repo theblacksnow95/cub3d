@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:26:53 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 10:49:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:29:54 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_color(t_texture *text, int x, int y)
+static int	get_color(t_texture *text, int x, int y)
 {
 	char	*pixel;
 

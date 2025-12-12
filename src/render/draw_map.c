@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/09 17:09:18 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:09:14 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	draw_player(t_mlx *mlx, double px, double py, int color)
 	int	j;
 	int	radius;
 
-	radius = 3;
+	radius = PLAYER_RAD;
 	i = -radius;
 	px = px * TILE_SIZE;
 	py = py * TILE_SIZE;
@@ -69,11 +69,7 @@ int	draw_player(t_mlx *mlx, double px, double py, int color)
 }
 
 /*
-	my_mlx_pixel_put es mejor porque es
-	SOLO 1 llamada al sistema para TODOS los píxeles
-
-	desplazamiento de la celda para poner el color:
-	dst= mlx->addr + (y * mlx->line_len + x * (mlx->bpp/8));
+	cell offset to set color
 */
 int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
@@ -88,7 +84,7 @@ int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	return (0);
 }
 
-/*funcion para dibujar un cuadrado*/
+/*function to draw a square*/
 static int	draw_square(t_mlx *mlx, int w, int h, int color)
 {
 	int		x;
@@ -117,15 +113,6 @@ static int	draw_square(t_mlx *mlx, int w, int h, int color)
 	return (0);
 }
 
-/*
-	recorre el mapa pixel por pixel
-	dependiendo del valor 0, 1 etc... le agrega el color
-
-	le agrego:
-	clear_window(game->mlx.mlx, 0x000000);
-	por el momento borro toda la pantalla, talvez mas adelante
-	podria borrar solo las posiciones anteriores donde estaba el jugador
-*/
 int	draw_map(t_cub *game)
 {
 	int		y;
