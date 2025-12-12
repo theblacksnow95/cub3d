@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/12 14:43:18 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/12 18:43:49 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int ac, char **av)
 
 	if ((WIN_H < 500 || WIN_H > 1440) || (WIN_W < 600 || WIN_W > 2560))
 		return (printf("bad - resolution - limit (W - 2560 x H - 1440)\n"), 1);
+	if ((TILE_SIZE < 10 || TILE_SIZE > 20))
+		return (printf("bad - size tile (10 ~ 20)\n"), 1);
 	if (!check_file_format_n_extention(av[1]) || ac != 2)
 	{
 		ft_printf(CLR_RED"Error:\nIncorrect # arguments:"

@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/12 14:51:59 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/12 18:44:38 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # define WIN_W			1080
 # define WIN_H			940
-# define TILE_SIZE		16
+# define TILE_SIZE		14
 
 # define NO_ID          "NO"
 # define SO_ID          "SO"
