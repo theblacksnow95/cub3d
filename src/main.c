@@ -6,7 +6,7 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/12 18:43:49 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/12 18:46:14 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,12 @@ int	main(int ac, char **av)
 	if ((TILE_SIZE < 10 || TILE_SIZE > 20))
 		return (printf("bad - size tile (10 ~ 20)\n"), 1);
 	if (!check_file_format_n_extention(av[1]) || ac != 2)
-	{
-		ft_printf(CLR_RED"Error:\nIncorrect # arguments:"
-			CLR_YLLW"./bin/cub3d '[*file*.cub]'\n"RST_ALL);
-		return (1);
-	}
+		return (ft_printf(CLR_RED"Error:\nIncorrect # arguments:"
+			CLR_YLLW"./bin/cub3d '[*file*.cub]'\n"RST_ALL), 1);
 	init_variables(&game);
 	game.map_path = av[1];
 	if (!check_for_params(game.map_path, &game))
-	{
-		close_windows(&game);
-		return (1);
-	}
+		return (close_windows(&game), 1);
 	init_player(&game);
 	if (init_game(&game))
 		close_windows(&game);
