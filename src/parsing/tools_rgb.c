@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:42:42 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/08 12:06:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:57:27 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,34 @@ int	valid_rgb(char *s)
 		{
 			return (0);
 		}
+	}
+	return (1);
+}
+
+static int	is_to_big(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (i > 3)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	limit_digits(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (is_to_big(s[i]))
+			return (0);
+		i++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 11:11:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:45:00 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			ft_isspace(int s);
 void		*s_malloc(size_t bytes);
 void		print_array(char **arr);
 
-// init
+// init && parsing
 int			check_file_format_n_extention(char *file);
 t_cub		*init_variables(t_cub *data);
 void		process_params(char *line, t_cub *data, char *id);
@@ -65,6 +65,8 @@ int			locate_player(t_cub *data);
 int			fill_validation(char **map, int y, int x);
 void		validate_map(t_cub *data);
 int			empty_line(char *s);
+int			limit_digits(char **s);
+
 
 // error handling and frees
 void		s_free(void *ptr);

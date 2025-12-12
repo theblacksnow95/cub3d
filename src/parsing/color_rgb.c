@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:09:32 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/09 15:50:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:49:46 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	valid_nums(char **tmp, t_cub *data, char *id, char *line)
 	i = 0;
 	while (tmp[i])
 		i++;
-	if (i != 3)
+	if (i != 3 || !limit_digits(tmp))
 	{
 		error_handler(line, E_COLOR, id, data);
 	}
