@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:31:25 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 13:58:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:20:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ static void	flood(char **map, int y, int x, t_flood *fill)
 {
 	if (fill->error == true)
 		return ;
-	if (y < 0 || x < 0 || !map[y] || !map[y][x])
+	if (y < 0 || x < 0 || !map[y])
+	{
+		fill->error = true;
+		return ;
+	}
+	if (x >= (int)ft_strlen(map[y]))
 	{
 		fill->error = true;
 		return ;
@@ -68,6 +73,7 @@ int	fill_validation(char **map, int y, int x)
 	if (!map_copy)
 		return (1);
 	flood(map_copy, y, x, &fill);
+	print_array(map_copy);
 	s_array_free(map_copy);
 	if (fill.error)
 		return (1);
