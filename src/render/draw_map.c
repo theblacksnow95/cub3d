@@ -6,16 +6,30 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/12 15:09:14 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/13 10:10:25 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-	si selections es 1, es el ceiling, sino es floor
+	cell offset to set color
 */
-void	clear_window_select(t_mlx *mlx, int color, bool selection)
+int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
+		return (1);
+	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
+	*(unsigned int *)dst = (unsigned int)color;
+	return (0);
+}
+
+/*
+	if select 1 = ceiling, 0 = floor
+*/
+void	clear_window_select(t_mlx *mlx, int color, bool selection, t_cub *game)
 {
 	int	x;
 	int	y;
@@ -25,6 +39,8 @@ void	clear_window_select(t_mlx *mlx, int color, bool selection)
 	y = 0;
 	divh = WIN_H;
 	divw = WIN_W;
+	if (game->dark == true)
+			color = (color >> 1) & 8355711;
 	if (selection)
 		divh -= WIN_H / 2;
 	else
@@ -65,22 +81,6 @@ int	draw_player(t_mlx *mlx, double px, double py, int color)
 		}
 		i++;
 	}
-	return (0);
-}
-
-/*
-	cell offset to set color
-*/
-int	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-	{
-		return (0);
-	}
-	dst = mlx->addr + (y * mlx->line_len + x * (mlx->bpp / 8));
-	*(unsigned int *)dst = (unsigned int)color;
 	return (0);
 }
 
@@ -128,16 +128,16 @@ int	draw_map(t_cub *game)
 		{
 			cell = game->map[y][x];
 			if (cell == '1' || cell == ' ')
-				error = draw_square(&game->mlx, x, y, 0x00FFFF);
+				error = draw_square(&game->mlx, x, y, 0x5555FF);
 			else
-				error = draw_square(&game->mlx, x, y, 0x808080);
+				error = draw_square(&game->mlx, x, y, 0x101010);
 			if (error)
 				close_windows(game);
 			x++;
 		}
 		y++;
 	}
-	draw_player(&game->mlx, game->player.x, game->player.y, 0x000FF0);
+	draw_player(&game->mlx, game->player.x, game->player.y, 0xFF0000);
 	draw_player_arrow(game);
 	return (0);
 }

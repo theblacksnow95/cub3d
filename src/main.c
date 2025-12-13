@@ -6,13 +6,13 @@
 /*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/12 18:46:14 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/13 10:11:05 by antuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	rgb_to_int(int r, int g, int b)
+static int	rgb_to_int(int r, int g, int b) 
 {
 	int	color;
 
@@ -27,11 +27,9 @@ static int	init_game(t_cub *game)
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIN_W, WIN_H, "cub3d");
 	if (!game->mlx.win)
 		return (perror("windows error"), 1);
-	game->mlx.img = NULL;
 	game->mlx.img = mlx_new_image(game->mlx.mlx, WIN_W, WIN_H);
 	if (!game->mlx.img)
 		return (perror("image error"), 1);
-	game->mlx.addr = NULL;
 	game->mlx.addr = mlx_get_data_addr(game->mlx.img, &game->mlx.bpp,
 			&game->mlx.line_len, &game->mlx.endian);
 	if (!game->mlx.addr)
@@ -46,8 +44,8 @@ int	game_loop(t_cub *game)
 	now = get_time_ms();
 	game->tm.frame_time = now - game->tm.old_time;
 	game->tm.old_time = now;
-	clear_window_select(&game->mlx, game->c_rgb->ceiling, 1);
-	clear_window_select(&game->mlx, game->f_rgb->floor, 0);
+	clear_window_select(&game->mlx, game->c_rgb->ceiling, 1, game);
+	clear_window_select(&game->mlx, game->f_rgb->floor, 0, game);
 	cast_all_rays(game);
 	movements(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img, 0, 0);
