@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/13 10:10:49 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/13 11:40:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void		validate_map(t_cub *data);
 int			empty_line(char *s);
 int			limit_digits(char **s);
 
-
 // error handling and frees
 void		s_free(void *ptr);
 void		s_array_free(char **s);
@@ -82,7 +81,8 @@ void		init_player(t_cub *game);
 
 // dibujo
 int			draw_map(t_cub *game);
-void		clear_window_select(t_mlx *mlx, int color, bool selection, t_cub *game);
+void		clear_window_select(t_mlx *mlx, int color, bool selection,\
+		t_cub *game);
 int			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int			draw_player(t_mlx *mlx, double x, double y, int color);
 int			cast_all_rays(t_cub *game);

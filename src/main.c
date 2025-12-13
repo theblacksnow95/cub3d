@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:08:34 by anoviedo          #+#    #+#             */
-/*   Updated: 2025/12/13 10:11:05 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/13 11:40:36 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	rgb_to_int(int r, int g, int b) 
+static int	rgb_to_int(int r, int g, int b)
 {
 	int	color;
 
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		return (printf("bad - size tile (10 ~ 20)\n"), 1);
 	if (!check_file_format_n_extention(av[1]) || ac != 2)
 		return (ft_printf(CLR_RED"Error:\nIncorrect # arguments:"
-			CLR_YLLW"./bin/cub3d '[*file*.cub]'\n"RST_ALL), 1);
+				CLR_YLLW"./bin/cub3d '[*file*.cub]'\n"RST_ALL), 1);
 	init_variables(&game);
 	game.map_path = av[1];
 	if (!check_for_params(game.map_path, &game))

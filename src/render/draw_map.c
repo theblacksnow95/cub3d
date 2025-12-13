@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antuel <antuel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:15 by antuel            #+#    #+#             */
-/*   Updated: 2025/12/13 10:10:25 by antuel           ###   ########.fr       */
+/*   Updated: 2025/12/13 11:40:50 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	clear_window_select(t_mlx *mlx, int color, bool selection, t_cub *game)
 	divh = WIN_H;
 	divw = WIN_W;
 	if (game->dark == true)
-			color = (color >> 1) & 8355711;
+		color = (color >> 1) & 8355711;
 	if (selection)
 		divh -= WIN_H / 2;
 	else
