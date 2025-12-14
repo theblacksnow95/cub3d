@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 15:51:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/13 12:40:42 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 11:35:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,6 @@ int	is_empty_rgb(char *line)
 	return (0);
 }
 
-
-int	count_commas(char *line)
-{
-	int	comma;
-	int	i;
-
-	comma = 0;
-	i = 0;
-	printf("line: %s\n", line);
-	while (line[i])
-	{
-		if (line[i] == ',')
-			comma++;
-		if (comma > 2)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 void	colors_f_c(char *line, t_cub *data, char *id)
 {

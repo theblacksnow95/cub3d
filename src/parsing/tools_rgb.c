@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:42:42 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/12 11:57:27 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 11:35:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,27 @@ int	limit_digits(char **s)
 	while (s[i])
 	{
 		if (is_to_big(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+
+
+int	count_commas(char *line)
+{
+	int	comma;
+	int	i;
+
+	comma = 0;
+	i = 0;
+	printf("line: %s\n", line);
+	while (line[i])
+	{
+		if (line[i] == ',')
+			comma++;
+		if (comma > 2)
 			return (0);
 		i++;
 	}

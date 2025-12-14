@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 13:44:08 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/13 11:40:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 11:35:33 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int			fill_validation(char **map, int y, int x);
 void		validate_map(t_cub *data);
 int			empty_line(char *s);
 int			limit_digits(char **s);
+int			count_commas(char *line);
 
 // error handling and frees
 void		s_free(void *ptr);
