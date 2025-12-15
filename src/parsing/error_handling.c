@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 12:56:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/12/11 14:48:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/12/15 10:48:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	error_handler(char *line, t_ecode code, char *id, t_cub *data)
 	{
 		ft_printf(RST_ALL"Error\n: %s\n", data->map_path);
 		ft_printf(CLR_RED"Missing ID in :%s \n"RST_ALL, line);
+		ft_printf(CLR_YLLW"Missing parameter, invalid file.\n"RST_ALL);
 	}
 }
